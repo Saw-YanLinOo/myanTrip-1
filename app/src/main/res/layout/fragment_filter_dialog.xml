@@ -137,6 +137,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 app:cornerRadius="20dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -150,6 +151,7 @@
                 android:paddingRight="20dp"
                 app:cornerRadius="20dp"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
                 android:textAllCaps="false"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:text="Apply"/>

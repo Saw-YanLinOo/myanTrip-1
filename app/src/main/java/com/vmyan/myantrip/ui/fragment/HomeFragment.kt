@@ -18,6 +18,7 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.ui.PlaceByCategoryActivity
+import com.vmyan.myantrip.ui.PlaceDetailsActivity
 import com.vmyan.myantrip.ui.SearchPlaceActivity
 import com.vmyan.myantrip.ui.adapter.HomePlaceListAdapter
 import com.vmyan.myantrip.ui.adapter.PlaceCategoryAdapter
@@ -249,7 +250,9 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
     }
 
     override fun onPlaceClick(place_id: String) {
-        Toast.makeText(activity,place_id,Toast.LENGTH_SHORT).show()
+        val i = Intent(activity, PlaceDetailsActivity::class.java)
+        i.putExtra("place_id",place_id)
+        startActivity(i)
     }
 
     override fun onResume() {
