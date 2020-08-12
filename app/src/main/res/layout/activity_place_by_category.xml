@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PlaceByCategoryActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Hotel"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:id="@+id/pc_title"/>
+
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/nav_menu_btn_bg"
+        android:layout_margin="10dp"
+        android:id="@+id/pc_back_btn_ly">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/pc_back_btn"
+            android:background="@drawable/ic_back_arrow"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/nav_menu_btn_bg"
+        android:layout_margin="10dp"
+        android:id="@+id/pc_search_btn_ly"
+        android:layout_alignParentEnd="true">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="30dp"
+            android:id="@+id/pc_search_btn"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_search"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pc_recycler"
+        android:layoutAnimation="@anim/layoutanimation_up_to_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pc_back_btn_ly"
+        android:paddingStart="20dp"
+        android:paddingBottom="20dp"
+        tools:listitem="@layout/place_category_item_layout"
+        tools:ignore="RtlSymmetry"
+        android:visibility="gone"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/placebycategory_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pc_back_btn_ly"
+        android:paddingStart="20dp"
+        android:paddingBottom="20dp"
+        tools:ignore="RtlSymmetry">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/place_category_item_placeholder"/>
+            <include layout="@layout/place_category_item_placeholder"/>
+            <include layout="@layout/place_category_item_placeholder"/>
+            <include layout="@layout/place_category_item_placeholder"/>
+            <include layout="@layout/place_category_item_placeholder"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</RelativeLayout>

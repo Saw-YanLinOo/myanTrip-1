@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recommended"
+        android:layout_margin="10dp"
+        android:textSize="25sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/pc_sub_cat_name"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pc_sub_cat_name"
+        android:id="@+id/pc_place_list_recycler"
+        tools:listitem="@layout/pc_place_item_layout"
+        android:layoutAnimation="@anim/layoutanimation_left_to_right"/>
+</RelativeLayout>

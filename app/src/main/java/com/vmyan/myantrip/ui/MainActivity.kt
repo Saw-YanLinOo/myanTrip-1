@@ -1,0 +1,39 @@
+package com.vmyan.myantrip.ui
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.fragment.*
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        bottom_nav_menu.setItemSelected(R.id.nav_home,true)
+        openFragment(HomeFragment())
+        bottom_nav_menu.setOnItemSelectedListener {
+            when(it){
+                R.id.nav_plan -> openFragment(PlanFragment())
+                R.id.nav_booking -> openFragment(BookingFragment())
+                R.id.nav_home -> openFragment(HomeFragment())
+                R.id.nav_communication -> openFragment(CommunicationFragment())
+                R.id.nav_blog -> openFragment(BlogFragment())
+            }
+        }
+    }
+
+    private fun openFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_containger,fragment)
+        transaction.commit()
+    }
+
+
+
+
+}

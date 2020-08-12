@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/home_search_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/homw_search_bg">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_search"
+                        android:id="@+id/home_search_btn1"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="Search for places"
+                        android:textColor="#000000"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:id="@+id/home_search_btn2"/>
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_sos"
+                    android:id="@+id/home_sos_button"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/discover_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_search_btn"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Discover"
+                    android:textColor="#000000"
+                    android:textSize="38sp"
+                    android:textStyle="bold" />
+
+                <com.vmyan.myantrip.customui.tab.AdvancedTabLayout
+                    android:id="@+id/sub_cat_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/discover_txt"
+                    app:tl_indicator_color="@color/bottom_nav_select"
+                    app:tl_indicator_corner_radius="2dp"
+                    app:tl_indicator_height="5dp"
+                    app:tl_indicator_width="10dp"
+                    app:tl_smoothScroll_enable="true"
+                    app:tl_textBold="SELECT"
+                    app:tl_textSelectColor="@color/bottom_nav_select"
+                    app:tl_textSelectSize="18dp"
+                    app:tl_textUnselectColor="#8D000000"
+                    app:tl_textsize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/sub_cat_tab_layout"
+                    android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layoutAnimation="@anim/layoutanimation_left_to_right"
+                        android:id="@+id/home_place_list_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/sub_cat_tab_layout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:clipChildren="false"
+                        android:overScrollMode="never"
+                        tools:listitem="@layout/home_place_list_item"
+                        android:visibility="gone"/>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/home_placeitem_placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/sub_cat_tab_layout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <include layout="@layout/home_placelist_placeholder"/>
+                            <include layout="@layout/home_placelist_placeholder"/>
+                            <include layout="@layout/home_placelist_placeholder"/>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cat_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Categories"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/home_cat_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:overScrollMode="never"
+                        tools:listitem="@layout/home_cat_item"
+                        android:layoutAnimation="@anim/layoutanimation_left_to_right"/>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/homecat_placeholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                            <include layout="@layout/home_cat_placeholder"/>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

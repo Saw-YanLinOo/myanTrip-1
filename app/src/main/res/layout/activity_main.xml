@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+        <RelativeLayout
+            android:id="@+id/nav_btn_ly"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/nav_menu_btn_bg">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/nav_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_menu"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="myanTrip"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="30sp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/profile"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/main_containger"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"/>
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottom_nav_menu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:elevation="16dp"
+        android:gravity="center"
+        app:cnb_menuResource="@menu/main_bottom_nav_menu"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
