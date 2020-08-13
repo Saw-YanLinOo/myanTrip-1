@@ -15,7 +15,7 @@ class SearchPlaceViewModel (private val searchPlaceRepository: SearchPlaceReposi
             val placeList = searchPlaceRepository.getPlaceBySearch()
             emit(placeList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
     }
 

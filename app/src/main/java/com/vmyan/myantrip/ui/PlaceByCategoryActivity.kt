@@ -77,10 +77,10 @@ class PlaceByCategoryActivity : AppCompatActivity(), DIAware {
                     placebycategory_placeholder.stopShimmer()
                     placebycategory_placeholder.visibility = View.GONE
                     pc_recycler.visibility = View.GONE
-                    println(it.throwable.message)
+                    println(it.message)
                     Toast.makeText(
                         this,
-                        "An error is ocurred:${it.throwable.message}",
+                        "An error is ocurred:${it.message}",
                         Toast.LENGTH_SHORT
                     )
                 }

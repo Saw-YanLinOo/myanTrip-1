@@ -14,7 +14,7 @@ class PlaceByCategoryViewModel (private val placeByCategoryRepository: PlaceByCa
             val placeList = placeByCategoryRepository.getPlaceByCategory(id)
             emit(placeList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
     }
 

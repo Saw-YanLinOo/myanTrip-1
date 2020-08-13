@@ -13,7 +13,7 @@ class PlaceDetailsViewModel (private val placeDetailsRepository: PlaceDetailsRep
             val place = placeDetailsRepository.getPlaceDetails(id)
             emit(place)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
     }
 }

@@ -92,6 +92,7 @@ dependencies {
     //Auto Image Slider
     implementation 'com.github.smarteist:autoimageslider:1.3.9-appcompat'
 
+    //Zoom Image View
     implementation 'com.github.RaviKoradiya:ZoomableImageView:1.1.1'
 
 }

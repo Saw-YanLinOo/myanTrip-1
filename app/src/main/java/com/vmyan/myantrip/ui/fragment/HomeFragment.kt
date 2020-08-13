@@ -146,7 +146,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
                     view.home_placeitem_placeholder.startShimmer()
                     view.home_placeitem_placeholder.visibility = View.VISIBLE
                     view.home_place_list_recycler.visibility = View.GONE
-                    println(it.throwable.message)
+                    println(it.message)
 
                 }
             }
@@ -169,7 +169,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
                 }
                 is Resource.Failure -> {
 
-                    println(it.throwable.message)
+                    println(it.message)
 
                 }
             }
@@ -202,7 +202,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
                     view.home_placeitem_placeholder.startShimmer()
                     view.home_placeitem_placeholder.visibility = View.VISIBLE
                     view.home_place_list_recycler.visibility = View.GONE
-                    println(it.throwable.message)
+                    println(it.message)
 
                 }
             }
@@ -234,7 +234,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
                         view.home_placeitem_placeholder.startShimmer()
                         view.home_placeitem_placeholder.visibility = View.VISIBLE
                         view.home_place_list_recycler.visibility = View.GONE
-                        println(it.throwable.message)
+                        println(it.message)
 
                     }
                 }

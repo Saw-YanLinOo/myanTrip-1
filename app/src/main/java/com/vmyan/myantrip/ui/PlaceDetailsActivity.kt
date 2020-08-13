@@ -157,10 +157,10 @@ class PlaceDetailsActivity : AppCompatActivity(), DIAware {
                     }
                 }
                 is Resource.Failure -> {
-                    println(it.throwable.message)
+                    println(it.message)
                     Toast.makeText(
                         this,
-                        "An error is ocurred:${it.throwable.message}",
+                        "An error is ocurred:${it.message}",
                         Toast.LENGTH_SHORT
                     )
                 }

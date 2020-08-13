@@ -15,7 +15,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
             val placeCategoryList = homeRepository.getPlaceCategory()
             emit(placeCategoryList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
     }
 
@@ -25,7 +25,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
             val subPlaceCategoryList = homeRepository.getSubPlaceCategory()
             emit(subPlaceCategoryList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
 
     }
@@ -37,7 +37,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
             val placeList = homeRepository.getPlaceBySubCategory(id)
             emit(placeList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!))
+            emit(Resource.Failure(e.cause!!.toString()))
         }
     }
 
