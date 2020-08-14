@@ -1,5 +1,6 @@
 package com.vmyan.myantrip.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -17,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
-import com.google.firebase.firestore.auth.User
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
@@ -113,7 +113,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         }
     }
 
-    fun showFilterDialog() {
+    private fun showFilterDialog() {
         val fragmentManager = supportFragmentManager
         val newFragment = FilterDialogFragment()
         val transaction = fragmentManager.beginTransaction()
@@ -124,13 +124,13 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
             .commit()
     }
 
-    private fun searchPlaces(name: String) {
-        var name = name
-        if (name.length > 0) name =
-            name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase()
+    private fun searchPlaces(nameS: String) {
+        var name = nameS
+        if (name.isNotEmpty()) name =
+            name.substring(0, 1).toUpperCase(Locale.ROOT) + name.substring(1).toLowerCase(Locale.ROOT)
         val results: MutableList<Place> = mutableListOf()
         for (user in placeList) {
-            if (user.name != null && user.name.contains(name)) {
+            if (user.name.contains(name)) {
                 results.add(user)
             }
         }
@@ -159,65 +159,49 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
 
 
     private fun ascPlaceList(list: MutableList<Place>): MutableList<Place>{
-        Collections.sort(
-            list,
-            object : Comparator<Place?> {
-                override fun compare(p0: Place?, p1: Place?): Int {
-                    var res = -1
-                    if (p0!!.name > p1!!.name) {
-                        res = 1
-                    }
-                    return res
-                }
-            })
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.name > p1!!.name) {
+                res = 1
+            }
+            res
+        })
 
         return list
     }
 
     private fun descPlaceList(list: MutableList<Place>): MutableList<Place>{
-        Collections.sort(
-            list,
-            object : Comparator<Place?> {
-                override fun compare(p0: Place?, p1: Place?): Int {
-                    var res = -1
-                    if (p0!!.name < p1!!.name) {
-                        res = 1
-                    }
-                    return res
-                }
-            })
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.name < p1!!.name) {
+                res = 1
+            }
+            res
+        })
 
         return list
     }
 
     private fun highRPlaceList(list: MutableList<Place>): MutableList<Place>{
-        Collections.sort(
-            list,
-            object : Comparator<Place?> {
-                override fun compare(p0: Place?, p1: Place?): Int {
-                    var res = -1
-                    if (p0!!.ratingValue < p1!!.ratingValue) {
-                        res = 1
-                    }
-                    return res
-                }
-            })
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.ratingValue < p1!!.ratingValue) {
+                res = 1
+            }
+            res
+        })
 
         return list
     }
 
     private fun lowRPlaceList(list: MutableList<Place>): MutableList<Place>{
-        Collections.sort(
-            list,
-            object : Comparator<Place?> {
-                override fun compare(p0: Place?, p1: Place?): Int {
-                    var res = -1
-                    if (p0!!.ratingValue > p1!!.ratingValue) {
-                        res = 1
-                    }
-                    return res
-                }
-            })
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.ratingValue > p1!!.ratingValue) {
+                res = 1
+            }
+            res
+        })
 
         return list
     }
@@ -251,6 +235,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
 
     }
 
+    @SuppressLint("ShowToast")
     private fun setUpObserver() {
         viewModel.fetchPlaceBySearch().observe(this, Observer {
             when (it) {
@@ -288,12 +273,14 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
     }
 
     override fun onPlaceClick(place_id: String) {
-        Toast.makeText(this,place_id,Toast.LENGTH_SHORT).show()
+        val i = Intent(this, PlaceDetailsActivity::class.java)
+        i.putExtra("place_id", place_id)
+        startActivity(i)
     }
 
-    override fun onFinishDialog(sort: String, state: String) {
+    override fun onFinishDialog(sort: String, staet: String) {
         this.sort = sort
-        this.state = state
+        this.state = staet
         searchPlaces("")
     }
 

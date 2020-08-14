@@ -16,4 +16,14 @@ class PlaceDetailsViewModel (private val placeDetailsRepository: PlaceDetailsRep
             emit(Resource.Failure(e.cause!!.toString()))
         }
     }
+
+    fun fetchNearByPlace(city: String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            val place = placeDetailsRepository.getNearByPlace(city)
+            emit(place)
+        }catch (e: Exception){
+            emit(Resource.Failure(e.cause!!.toString()))
+        }
+    }
 }

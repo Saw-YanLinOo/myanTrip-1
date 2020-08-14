@@ -95,4 +95,7 @@ dependencies {
     //Zoom Image View
     implementation 'com.github.RaviKoradiya:ZoomableImageView:1.1.1'
 
+    //Round Corner Progress Bar
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.1'
+
 }

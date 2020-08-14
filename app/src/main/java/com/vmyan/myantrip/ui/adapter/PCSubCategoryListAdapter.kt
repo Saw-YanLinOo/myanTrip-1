@@ -7,13 +7,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.PlaceByCategory
+import com.vmyan.myantrip.ui.PlaceDetailsActivity
 import kotlinx.android.synthetic.main.place_category_item_layout.view.*
 
 class PCSubCategoryListAdapter(private val c: Context, private val items: MutableList<PlaceByCategory>)
@@ -66,10 +66,10 @@ class PCSubCategoryListAdapter(private val c: Context, private val items: Mutabl
 
 
         override fun onPlaceClick(place_id: String) {
-//            val intent = Intent(c, PlaceItemDetails::class.java)
-//            intent.putExtra("place_id",place_id.toString())
-//            c.startActivity(intent)
-            Toast.makeText(c,place_id,Toast.LENGTH_SHORT).show()
+            val intent = Intent(c, PlaceDetailsActivity::class.java)
+            intent.putExtra("place_id",place_id)
+            c.startActivity(intent)
+
         }
 
     }

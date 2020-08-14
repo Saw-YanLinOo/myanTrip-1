@@ -160,7 +160,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
                 is Resource.Success -> {
 
                     subPlaceCategoryList.clear()
-                    for (data in it.data!!){
+                    for (data in it.data){
                         if (subPlaceCategoryList.size < it.data.size ){
                             subPlaceCategoryList.add(data.name)
                         }

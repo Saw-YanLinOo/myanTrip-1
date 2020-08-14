@@ -10,4 +10,5 @@
         <!-- ViewUpdater implementation class. If not set, DefaultViewUpdater class is used. -->
         <attr name="viewUpdater" format="string"/>
     </declare-styleable>
+
 </resources>
