@@ -27,19 +27,23 @@ import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.model.PlaceDetails
 import com.vmyan.myantrip.model.Review
 import com.vmyan.myantrip.ui.adapter.*
+import com.vmyan.myantrip.ui.fragment.AddReviewDialogFragment
 import com.vmyan.myantrip.ui.fragment.ReviewAllDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsVMFactory
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
 import com.vmyan.myantrip.utils.Resource
+import kotlinx.android.synthetic.main.activity_place_by_category.*
 import kotlinx.android.synthetic.main.activity_place_details.*
+import kotlinx.android.synthetic.main.addreview_dialogfragment.*
 import kotlinx.android.synthetic.main.location_card.*
 import kotlinx.android.synthetic.main.rating_reviews_place_details.*
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.instance
+import java.text.SimpleDateFormat
 
-class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, DIAware {
+class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, AddReviewDialogFragment.DialogListener, DIAware {
 
     override val di: DI by closestDI()
     private val viewModelFactory : PlaceDetailsVMFactory by instance()
@@ -51,6 +55,9 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     private lateinit var placeDetailsGalleryAdapter: PlaceDetailsGalleryAdapter
     private lateinit var reviewListAdapter: ReviewListAdapter
     private lateinit var pcPlaceListAdapter: PCPlaceListAdapter
+
+    private var desc = ""
+    private var rVal = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +77,19 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
 
 //        place_mapView.onCreate(savedInstanceState)
 //        place_mapView.onResume()
+        detail_s_btn.setOnClickListener {
+            startActivity(Intent(this, SearchPlaceActivity::class.java))
+        }
+        detail_s_btnly.setOnClickListener {
+            startActivity(Intent(this, SearchPlaceActivity::class.java))
+        }
+
+        detail_back_btnly.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+        detail_back_btn.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
 
     }
 
@@ -168,7 +188,7 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         pcPlaceListAdapter.setItems(list)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun setUpUI(data: PlaceDetails){
         placeImgSliderAdapter.setItems(data.place.sliderImg)
         placeDetailsGalleryAdapter.setItems(data.place.gallery)
@@ -206,65 +226,114 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
 //            }
 //        }
 
-        if (data.reviewList.size != 0){
-
-            var avgOne = 0
-            var avgTwo = 0
-            var avgThree = 0
-            var avgFour = 0
-            var avgFive = 0
-            val total = data.reviewList.size
-            var totalRVal = 0F
-            var litmit = 0
-            val reviewListLitmit = mutableListOf<Review>()
-            for (r in data.reviewList){
-                totalRVal+= r.rating_val
-                litmit++
-                if (litmit >= total-2){
-                    reviewListLitmit.add(r)
-                }
-                if (r.rating_val == 5F){
-                    avgFive++
-                }else if (r.rating_val >=4 && r.rating_val <5){
-                    avgTwo++
-                }else if (r.rating_val >=3 && r.rating_val <4){
-                    avgThree++
-                }
-                else if (r.rating_val >=2 && r.rating_val <3){
-                    avgFour++
-                }
-                else if (r.rating_val >=1 && r.rating_val <2){
-                    avgFive++
-                }
-            }
-            val avgr = (totalRVal/total)
-            avg_review_val.text = avgr.toString()
-            avg_review_bar.rating = avgr
-            totalreview.text = total.toString()
-            avg_review_one.max = total.toFloat()
-            avg_review_one.progress = avgOne.toFloat()
-            avg_review_two.max = total.toFloat()
-            avg_review_two.progress = avgTwo.toFloat()
-            avg_review_three.max = total.toFloat()
-            avg_review_three.progress = avgThree.toFloat()
-            avg_review_four.max = total.toFloat()
-            avg_review_four.progress = avgFour.toFloat()
-            avg_review_five.max = total.toFloat()
-            avg_review_five.progress = avgFive.toFloat()
-
-            reviewListAdapter.setItems(reviewListLitmit)
-
-            viewalluserreview_btn.setOnClickListener {
-                showReviewAllDialog(data.reviewList,data.place)
+        var avgOne = 0
+        var avgTwo = 0
+        var avgThree = 0
+        var avgFour = 0
+        var avgFive = 0
+        val total = data.reviewList.size
+        var totalRVal = 0F
+        var litmit = 0
+        val reviewListLitmit = mutableListOf<Review>()
+        val userReview = mutableListOf<Review>()
+        for (r in data.reviewList){
+            totalRVal+= r.rating_val
+            litmit++
+            if (litmit >= total-2){
+                reviewListLitmit.add(r)
             }
 
-            getNearybyList(data.place.place_id, data.place.city)
+            if (r.user_id == "1"){
+                userReview.add(r)
+            }
+
+            if (r.rating_val == 5F){
+                avgFive++
+            }else if (r.rating_val >=4 && r.rating_val <5){
+                avgFour++
+            }else if (r.rating_val >=3 && r.rating_val <4){
+                avgThree++
+            }
+            else if (r.rating_val >=2 && r.rating_val <3){
+                avgTwo++
+            }
+            else if (r.rating_val >=1 && r.rating_val <2){
+                avgOne++
+            }
         }
+        val avgr = (totalRVal/total)
+        avg_review_val.text = avgr.toString()
+        avg_review_bar.rating = avgr
+        totalreview.text = total.toString()
+        avg_review_one.max = total.toFloat()
+        avg_review_one.progress = avgOne.toFloat()
+        avg_review_two.max = total.toFloat()
+        avg_review_two.progress = avgTwo.toFloat()
+        avg_review_three.max = total.toFloat()
+        avg_review_three.progress = avgThree.toFloat()
+        avg_review_four.max = total.toFloat()
+        avg_review_four.progress = avgFour.toFloat()
+        avg_review_five.max = total.toFloat()
+        avg_review_five.progress = avgFive.toFloat()
+
+        reviewListAdapter.setItems(reviewListLitmit)
+
+        write_review_btn.setOnClickListener {
+            addReviewDialog(data,add_rval.rating,viewModel)
+        }
+
+        viewalluserreview_btn.setOnClickListener {
+            showReviewAllDialog(data.reviewList,data.place)
+        }
+
+
+        rbtn.setOnRatingChangeListener { ratingBar, rating, fromUser ->
+            addReviewDialog(data,rating,viewModel)
+        }
+
+        getNearybyList(data.place.place_id, data.place.city)
+
+        if (userReview.size == 0){
+            ratethisplace_ly.visibility = View.VISIBLE
+            write_review_btn.visibility = View.VISIBLE
+            edit_review_btn.visibility = View.GONE
+            yourreview_ly.visibility = View.GONE
+        }else{
+            for (data in userReview){
+                yourreview_ly.visibility = View.VISIBLE
+                ratethisplace_ly.visibility = View.GONE
+                write_review_btn.visibility = View.INVISIBLE
+                edit_review_btn.visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(data.user_img)
+                    .into(yourreview_userimg)
+                val date = data.date.toDate()
+                val pattern = "dd/MM/yyyy"
+                val simpleDateFormat = SimpleDateFormat(pattern)
+                val d = simpleDateFormat.format(date)
+                yourreview_date.text = d
+                yourreview_desc.text = data.desc
+                yourreview_username.text = data.user_name
+
+            }
+        }
+
     }
 
     private fun showReviewAllDialog(list: MutableList<Review>, place: Place) {
         val fragmentManager = supportFragmentManager
         val newFragment = ReviewAllDialogFragment(list,place)
+        val transaction = fragmentManager.beginTransaction()
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction
+            .add(android.R.id.content, newFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun addReviewDialog(place: PlaceDetails,rating: Float,viewModel: PlaceDetailsViewModel) {
+        val fragmentManager = supportFragmentManager
+        val newFragment = AddReviewDialogFragment(place,rating,viewModel)
         val transaction = fragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transaction
@@ -324,6 +393,10 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         val i = Intent(this,PlaceDetailsActivity::class.java)
         i.putExtra("place_id", place_id)
         startActivity(i)
+    }
+
+    override fun onFinishDialog(id: String) {
+        setUpObserver(id)
     }
 
 

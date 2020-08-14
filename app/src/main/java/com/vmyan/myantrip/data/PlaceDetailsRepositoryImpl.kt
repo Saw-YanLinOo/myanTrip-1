@@ -1,5 +1,6 @@
 package com.vmyan.myantrip.data
 
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -68,6 +69,7 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
 
                     placeDetails.add(
                         PlaceDetails(
+                            cat.id,sub.id,
                         Place(
                             id,
                             address!!,
@@ -110,13 +112,13 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
         for (cat in catList){
             val cid = cat.id
             val subList = FirebaseFirestore.getInstance()
-                .collection("/PlaceList/"+cid+"/SubCategory")
+                .collection("/PlaceList/$cid/SubCategory")
                 .get()
                 .await()
             for (sub in subList){
                 val sid = sub.id
                 val resultList = FirebaseFirestore.getInstance()
-                    .collection("/PlaceList/"+cid+"/SubCategory/"+sid+"/Place")
+                    .collection("/PlaceList/$cid/SubCategory/$sid/Place")
                     .whereEqualTo("city",city)
 //                    .orderBy("ratingValue",Query.Direction.DESCENDING)
                     .get()
@@ -148,6 +150,33 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
             }
         }
         return Resource.Success(placeList)
+    }
+
+    override suspend fun addReview(
+        cat_name: String,
+        subcat_id: String,
+        place_id: String,
+        userid: String,
+        username: String,
+        userImg: String,
+        rating: Float,
+        desc: String,
+        date: Timestamp
+    ): Resource<String> {
+        val data = hashMapOf(
+            "date" to date,
+            "desc" to desc,
+            "rating_val" to rating,
+            "user_id" to userid,
+            "user_name" to username,
+            "user_img" to userImg
+        )
+        FirebaseFirestore.getInstance()
+            .collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place/$place_id/Review")
+            .add(data)
+            .await()
+
+        return Resource.Success("Success")
     }
 
 

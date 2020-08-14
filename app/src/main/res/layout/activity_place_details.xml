@@ -139,9 +139,11 @@
                     <RelativeLayout
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:id="@+id/detail_back_btnly"
                         android:layout_margin="5dp"
                         android:background="@drawable/nav_menu_btn_bg">
                         <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/detail_back_btn"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_centerVertical="true"
@@ -159,6 +161,7 @@
                         android:textColor="#000"
                         android:textStyle="bold"/>
                     <RelativeLayout
+                        android:id="@+id/detail_s_btnly"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="5dp"
@@ -169,7 +172,8 @@
                             android:layout_height="20dp"
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/ic_search"/>
+                            android:background="@drawable/ic_search"
+                            android:id="@+id/detail_s_btn"/>
                     </RelativeLayout>
                 </RelativeLayout>
             </com.google.android.material.appbar.MaterialToolbar>

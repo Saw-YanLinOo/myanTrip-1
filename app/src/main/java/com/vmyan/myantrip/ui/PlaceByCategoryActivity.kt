@@ -1,5 +1,6 @@
 package com.vmyan.myantrip.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -40,6 +41,20 @@ class PlaceByCategoryActivity : AppCompatActivity(), DIAware {
         setUpSubPlaceCategoryRecycler()
         if (id != null) {
             setUpObserver(id)
+        }
+
+        pc_search_btn.setOnClickListener {
+            startActivity(Intent(this, SearchPlaceActivity::class.java))
+        }
+        pc_search_btn_ly.setOnClickListener {
+            startActivity(Intent(this, SearchPlaceActivity::class.java))
+        }
+
+        pc_back_btn_ly.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+        pc_back_btn.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
 

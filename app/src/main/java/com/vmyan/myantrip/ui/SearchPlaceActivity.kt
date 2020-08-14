@@ -55,6 +55,8 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         setUpSearchResultRecycler()
         setUpObserver()
 
+
+
         search_input.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
 
@@ -74,6 +76,13 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         }
         s_btn.setOnClickListener {
             openVoiceCommand()
+        }
+
+        s_back_btn_ly.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        s_back_btn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         filter_back_btn.setOnClickListener {
