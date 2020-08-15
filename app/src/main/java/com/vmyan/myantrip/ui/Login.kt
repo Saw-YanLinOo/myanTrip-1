@@ -46,8 +46,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
         super.onStart()
 
         if (auth.currentUser != null){
-            //getUserAndSave()
-            //Toast.makeText(this, "${user_id}",Toast.LENGTH_SHORT).show()
+            getUserAndSave()
             goNextActivity(MainActivity())
         }else{
             Toast.makeText(this, "please! create your account",Toast.LENGTH_SHORT).show()
@@ -76,8 +75,6 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
                 }
                 is Resource.Success -> {
                     val mUser = it.data
-//                    user = User(mUser.value!!.user_id,mUser.value!!.phone_number,mUser.value!!.email,mUser.value!!.username,mUser.value!!.profilephoto)
-//                    Hawk.put("user",user)
                     Hawk.put("user_id",mUser.value!!.user_id)
                     Hawk.put("user_name",mUser.value!!.username)
                     Hawk.put("user_email",mUser.value!!.email)
@@ -99,7 +96,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
             viewModel.Login(email,password).observe(this, Observer {
                 when (it) {
                     is Resource.Loading -> {
-                        //spin_kit.visibility = View.VISIBLE
+                        spin_kit.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
                         spin_kit.visibility = View.GONE

@@ -9,6 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.Register">
+
+        <EditText
+            android:id="@+id/name_input_r"
+            style="@style/big_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/big_input_bg"
+            android:hint="Name"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/email_input_r"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.747" />
+
         <EditText
             android:id="@+id/email_input_r"
             style="@style/big_input"

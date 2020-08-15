@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Profile::class.java)
             startActivity(intent)
         }
-
-        var uEmail = Hawk.get<String>("user_email")
-        Toast.makeText(this,uEmail,Toast.LENGTH_SHORT).show()
     }
 
     public fun openFragment(fragment: Fragment){

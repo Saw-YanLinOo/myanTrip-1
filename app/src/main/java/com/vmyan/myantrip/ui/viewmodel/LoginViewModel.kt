@@ -31,11 +31,11 @@ class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() 
             emit(Resource.Failure(e.message.toString()))
         }
     }
-    fun SignUp(emial:String, password:String) = liveData(Dispatchers.IO) {
+    fun SignUp(name:String, emial:String, password:String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
             val auth = loginRepository.signUp("${emial}","${password}")
-            val result = loginRepository.addNewUser(User("","","${emial}","",""))
+            val result = loginRepository.addNewUser(User("","","${emial}","${name}",""))
             val mresult= loginRepository
                     .addUserAccountSetting(UserAccountSetting(
                         "",
@@ -43,7 +43,7 @@ class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() 
                         0,
                         0,
                         "",
-                        "",
+                        "${name}",
                         ""
                     ))
             emit(auth)
