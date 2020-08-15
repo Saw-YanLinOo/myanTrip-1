@@ -90,11 +90,11 @@ class Register : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
                     Hawk.put("user_email",mUser.value!!.email)
                     Hawk.put("user_phone",mUser.value!!.phone_number)
                     Hawk.put("user_profile",mUser.value!!.profilephoto)
-                    spin_kit_r.visibility = View.GONE
 
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    spin_kit_r.visibility = View.GONE
                     finish()
                 }
                 is Resource.Failure -> {

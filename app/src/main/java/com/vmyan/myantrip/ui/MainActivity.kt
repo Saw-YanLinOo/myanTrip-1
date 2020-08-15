@@ -3,9 +3,7 @@ package com.vmyan.myantrip.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,11 +31,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var uEmail = Hawk.get<String>("user_email")
-        Toast.makeText(this,uEmail,Toast.LENGTH_SHORT).show()
     }
 
-    public fun openFragment(fragment: Fragment){
+    private fun openFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_containger,fragment)
         transaction.commit()

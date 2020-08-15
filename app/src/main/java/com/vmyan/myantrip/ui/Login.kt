@@ -44,7 +44,9 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
 
     override fun onStart() {
         super.onStart()
-        if (auth.currentUser != null){
+        var skip = Hawk.get<Boolean>("skip",false)
+
+        if (auth.currentUser != null || skip){
             getUserAndSave()
             goNextActivity(MainActivity())
         }else{
@@ -79,6 +81,9 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
                     Hawk.put("user_email",mUser.value!!.email)
                     Hawk.put("user_phone",mUser.value!!.phone_number)
                     Hawk.put("user_profile",mUser.value!!.profilephoto)
+                    spin_kit.visibility = View.GONE
+                    goNextActivity(MainActivity())
+
                 }
                 is Resource.Failure -> {
                     Log.e("Save Error=====>",it.message)
@@ -98,10 +103,9 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
                         spin_kit.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
-                        spin_kit.visibility = View.GONE
                         applicationContext.showToast("Login Successful")
                         getUserAndSave()
-                        goNextActivity(MainActivity())
+
                     }
                     is Resource.Failure -> {
                         spin_kit.visibility = View.GONE
@@ -115,6 +119,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
             startActivity(Intent(this, Register::class.java))
         })
         skip.setOnClickListener (View.OnClickListener {
+            Hawk.put("skip",true)
             goNextActivity(MainActivity())
         })
     }

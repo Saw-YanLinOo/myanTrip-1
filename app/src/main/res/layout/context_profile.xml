@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/layout1"
-            android:layout_margin="10dp"
+            android:layout_margin="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -36,7 +36,7 @@
         <LinearLayout
             android:id="@+id/layout2"
             android:layout_toRightOf="@id/layout1"
-            android:layout_margin="10dp"
+            android:layout_margin="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -56,6 +56,15 @@
                 android:layout_gravity="center_horizontal"
                 />
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:layout_toRightOf="@id/layout2"
+            android:layout_margin="16dp"
+            />
 
         <TextView
             android:id="@+id/tv_post"

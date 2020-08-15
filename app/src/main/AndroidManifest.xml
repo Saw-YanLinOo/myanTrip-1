@@ -24,8 +24,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
         <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".ui.Register"/>
-        <activity android:name=".ui.Login">
+        <activity android:name=".ui.Register"
+            android:theme="@style/AppTheme.ProfileTheme"/>
+        <activity android:name=".ui.Login"
+            android:theme="@style/AppTheme.ProfileTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
