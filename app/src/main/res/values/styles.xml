@@ -9,6 +9,15 @@
         <item name="fontFamily">@font/time_new_romen</item>
     </style>
 
+    <style name="MainActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bottom_nav_select</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="fontFamily">@font/time_new_romen</item>
+    </style>
+
     <style name="big_input">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

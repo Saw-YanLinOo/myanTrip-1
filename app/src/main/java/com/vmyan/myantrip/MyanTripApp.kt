@@ -22,7 +22,11 @@ class MyanTripApp : Application(), DIAware {
         bind() from provider { SearchPlaceVMFactory(instance()) }
         bind() from provider { PlaceDetailsVMFactory(instance()) }
         bind() from provider { BlogVMFactory(instance()) }
-        Hawk.init(applicationContext).build()
-
     }
+
+    override fun onCreate() {
+        super.onCreate()
+        Hawk.init(applicationContext).build()
+    }
+
 }

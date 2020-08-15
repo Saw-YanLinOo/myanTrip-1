@@ -9,4 +9,5 @@ interface PlaceDetailsRepository {
     suspend fun getPlaceDetails(place_id: String) : Resource<MutableList<PlaceDetails>>
     suspend fun getNearByPlace(city: String) : Resource<MutableList<Place>>
     suspend fun addReview(cat_name: String, subcat_id: String, place_id: String, userid: String, username: String, userImg: String, rating: Float, desc: String, date: Timestamp) : Resource<String>
+    suspend fun updateReview(cat_name: String, subcat_id: String, place_id: String, review_id: String, rating: Float, desc: String, date: Timestamp) : Resource<String>
 }

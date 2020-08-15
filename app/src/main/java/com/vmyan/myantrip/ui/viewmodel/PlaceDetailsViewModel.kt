@@ -38,4 +38,15 @@ class PlaceDetailsViewModel (private val placeDetailsRepository: PlaceDetailsRep
                 emit(Resource.Failure(e.cause!!.toString()))
             }
         }
+
+    fun updateReview(cat_name: String, subcat_id: String, place_id: String, review_id: String, rating: Float, desc: String, date: Timestamp) =
+        liveData(Dispatchers.IO) {
+            emit(Resource.Loading())
+            try {
+                val reviewResult = placeDetailsRepository.updateReview(cat_name, subcat_id, place_id, review_id, rating, desc, date)
+                emit(reviewResult)
+            }catch (e: Exception){
+                emit(Resource.Failure(e.cause!!.toString()))
+            }
+        }
 }
