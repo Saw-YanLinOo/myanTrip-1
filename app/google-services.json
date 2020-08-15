@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "532061646784-uo3sebikoou65b2dmakjgjrlngom6r80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vmyan.myantrip",
+            "certificate_hash": "f0460822d6ab3e5e8eaeaa91ed2e4a8339933992"
+          }
+        },
+        {
           "client_id": "532061646784-6c6ls1qc7tl32e9kqa3napvp11ggu2hh.apps.googleusercontent.com",
           "client_type": 3
         }

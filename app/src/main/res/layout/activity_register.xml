@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vmyan.myantrip.view.KeyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Register">
+        <EditText
+            android:id="@+id/email_input_r"
+            style="@style/big_input"
+            android:background="@drawable/big_input_bg"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/skip"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.177"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <EditText
+            android:id="@+id/password_input_r"
+            app:layout_constraintTop_toBottomOf="@+id/email_input_r"
+            style="@style/big_input"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:background="@drawable/big_input_bg"/>
+
+        <EditText
+            android:id="@+id/comfirm_password_input_r"
+            style="@style/big_input"
+            android:background="@drawable/big_input_bg"
+            android:ems="10"
+            android:hint="Comfirm Password"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/login_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_input_r"
+            app:layout_constraintVertical_bias="0.137" />
+
+        <Button
+            android:id="@+id/sign_up_btn"
+            style="@style/big_button"
+            android:text="Sign up"
+            app:layout_constraintBottom_toTopOf="@+id/skip"
+            app:layout_constraintTop_toBottomOf="@+id/comfirm_password_input_r"
+            app:layout_constraintVertical_bias="0.117"
+            tools:layout_editor_absoluteX="30dp" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit_r"
+            style="@style/SpinKitView.Large.ChasingDots"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorAccent"
+            android:background="#fff"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:background="@drawable/top_border_grey"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.vmyan.myantrip.view.KeyboardAwareScrollView>

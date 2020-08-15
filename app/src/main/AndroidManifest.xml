@@ -14,13 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.SharePost"/>
+        <activity android:name=".ui.Profile"
+            android:theme="@style/AppTheme.ProfileTheme"/>
         <activity android:name=".ui.PlaceDetailsActivity" />
         <activity android:name=".ui.SearchPlaceActivity" />
         <activity android:name=".ui.PlaceByCategoryActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.Register"/>
+        <activity android:name=".ui.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
