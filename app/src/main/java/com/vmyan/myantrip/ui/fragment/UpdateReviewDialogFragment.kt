@@ -11,18 +11,27 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
-import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.PlaceDetails
+import com.vmyan.myantrip.model.Review
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.addreview_dialogfragment.*
-import kotlinx.android.synthetic.main.addreview_dialogfragment.view.*
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.add_rval
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.cancel_btn
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.cancel_btn_ly
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.desc_input
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.post_btn
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.post_btn_ly
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.ra_backbtn
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.ra_backbtn_ly
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.ra_mainImg
+import kotlinx.android.synthetic.main.addreview_dialogfragment.view.ra_name
 
 
-class AddReviewDialogFragment(
+class UpdateReviewDialogFragment(
     private val place: PlaceDetails,
-    private val rating: Float,
+    private val review: Review,
     private val viewModel: PlaceDetailsViewModel
 ) : DialogFragment() {
 
@@ -32,7 +41,7 @@ class AddReviewDialogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.addreview_dialogfragment, container, false)
+        val view = inflater.inflate(R.layout.updatereview_dialogfragment, container, false)
 
         view.ra_backbtn.setOnClickListener {
             dismiss()
@@ -45,7 +54,8 @@ class AddReviewDialogFragment(
         Glide.with(view)
             .load(place.place.mainImg)
             .into(view.ra_mainImg)
-        view.add_rval.rating = rating
+        view.desc_input.setText(review.desc)
+        view.add_rval.rating = review.rating_val
         view.cancel_btn.setOnClickListener {
             dismiss()
         }
@@ -61,7 +71,7 @@ class AddReviewDialogFragment(
             postReview(desc_input.text.toString(), add_rval.rating)
 
             val dialogListener = activity as DialogListener
-            dialogListener.onFinishDialog(place.place.place_id)
+            dialogListener.onUpdateFinish(place.place.place_id)
             dismiss()
 
             val imm =
@@ -73,7 +83,7 @@ class AddReviewDialogFragment(
             postReview(desc_input.text.toString(), add_rval.rating)
 
             val dialogListener = activity as DialogListener
-            dialogListener.onFinishDialog(place.place.place_id)
+            dialogListener.onUpdateFinish(place.place.place_id)
             dismiss()
             val imm =
                 requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -82,10 +92,7 @@ class AddReviewDialogFragment(
     }
 
     private fun postReview(desc: String, rating: Float){
-        val username = Hawk.get<String>("user_name")
-        val userId = Hawk.get<String>("user_id")
-        val userImg = Hawk.get<String>("user_profile")
-        viewModel.addReview(place.cat_id,place.subcat_id,place.place.place_id, userId,username, userImg,rating,desc, Timestamp.now())
+        viewModel.updateReview(place.cat_id,place.subcat_id,place.place.place_id, review.review_id,rating,desc, Timestamp.now())
             .observe(requireActivity(), androidx.lifecycle.Observer {
                 when(it) {
                     is Resource.Loading -> {
@@ -108,7 +115,7 @@ class AddReviewDialogFragment(
     }
 
     interface DialogListener {
-        fun onFinishDialog(id: String)
+        fun onUpdateFinish(id: String)
     }
 
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.material.appbar.AppBarLayout
+import com.orhanobut.hawk.Hawk
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -29,6 +30,7 @@ import com.vmyan.myantrip.model.Review
 import com.vmyan.myantrip.ui.adapter.*
 import com.vmyan.myantrip.ui.fragment.AddReviewDialogFragment
 import com.vmyan.myantrip.ui.fragment.ReviewAllDialogFragment
+import com.vmyan.myantrip.ui.fragment.UpdateReviewDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsVMFactory
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
 import com.vmyan.myantrip.utils.Resource
@@ -41,9 +43,10 @@ import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.instance
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
-class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, AddReviewDialogFragment.DialogListener, DIAware {
+class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, AddReviewDialogFragment.DialogListener, UpdateReviewDialogFragment.DialogListener, DIAware {
 
     override val di: DI by closestDI()
     private val viewModelFactory : PlaceDetailsVMFactory by instance()
@@ -56,8 +59,6 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     private lateinit var reviewListAdapter: ReviewListAdapter
     private lateinit var pcPlaceListAdapter: PCPlaceListAdapter
 
-    private var desc = ""
-    private var rVal = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -239,11 +240,11 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         for (r in data.reviewList){
             totalRVal+= r.rating_val
             litmit++
-            if (litmit >= total-2){
+            if (litmit <= 3){
                 reviewListLitmit.add(r)
             }
 
-            if (r.user_id == "1"){
+            if (r.user_id == Hawk.get("user_id")){
                 userReview.add(r)
             }
 
@@ -262,7 +263,7 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
             }
         }
         val avgr = (totalRVal/total)
-        avg_review_val.text = avgr.toString()
+        avg_review_val.text = DecimalFormat("#.#").format(avgr).toString()
         avg_review_bar.rating = avgr
         totalreview.text = total.toString()
         avg_review_one.max = total.toFloat()
@@ -278,8 +279,9 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
 
         reviewListAdapter.setItems(reviewListLitmit)
 
+        rbtn.rating = 0f
         write_review_btn.setOnClickListener {
-            addReviewDialog(data,add_rval.rating,viewModel)
+            addReviewDialog(data,rbtn.rating,viewModel)
         }
 
         viewalluserreview_btn.setOnClickListener {
@@ -299,22 +301,25 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
             edit_review_btn.visibility = View.GONE
             yourreview_ly.visibility = View.GONE
         }else{
-            for (data in userReview){
+            for (review in userReview){
                 yourreview_ly.visibility = View.VISIBLE
                 ratethisplace_ly.visibility = View.GONE
                 write_review_btn.visibility = View.INVISIBLE
                 edit_review_btn.visibility = View.VISIBLE
                 Glide.with(this)
-                    .load(data.user_img)
+                    .load(review.user_img)
                     .into(yourreview_userimg)
-                val date = data.date.toDate()
+                val date = review.date.toDate()
                 val pattern = "dd/MM/yyyy"
                 val simpleDateFormat = SimpleDateFormat(pattern)
                 val d = simpleDateFormat.format(date)
                 yourreview_date.text = d
-                yourreview_desc.text = data.desc
-                yourreview_username.text = data.user_name
-
+                yourreview_desc.text = review.desc
+                yourreview_username.text = review.user_name
+                yourreview_ratingbar.rating = review.rating_val
+                edit_review_btn.setOnClickListener {
+                    updateReviewDialog(data, review, viewModel)
+                }
             }
         }
 
@@ -334,6 +339,17 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     private fun addReviewDialog(place: PlaceDetails,rating: Float,viewModel: PlaceDetailsViewModel) {
         val fragmentManager = supportFragmentManager
         val newFragment = AddReviewDialogFragment(place,rating,viewModel)
+        val transaction = fragmentManager.beginTransaction()
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction
+            .add(android.R.id.content, newFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun updateReviewDialog(place: PlaceDetails, review: Review,viewModel: PlaceDetailsViewModel) {
+        val fragmentManager = supportFragmentManager
+        val newFragment = UpdateReviewDialogFragment(place, review,viewModel)
         val transaction = fragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transaction
@@ -396,6 +412,10 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     }
 
     override fun onFinishDialog(id: String) {
+        setUpObserver(id)
+    }
+
+    override fun onUpdateFinish(id: String) {
         setUpObserver(id)
     }
 

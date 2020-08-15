@@ -44,7 +44,6 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
 
     override fun onStart() {
         super.onStart()
-
         if (auth.currentUser != null){
             //getUserAndSave()
             //Toast.makeText(this, "${user_id}",Toast.LENGTH_SHORT).show()
@@ -59,7 +58,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         KeyboardVisibilityEvent.setEventListener(this, this)
-        var doubleBounce:Sprite  = DoubleBounce();
+        val doubleBounce:Sprite  = DoubleBounce();
         spin_kit.setIndeterminateDrawable(doubleBounce)
 
         coordinateButtonAndInputs(login_btn, email_input, password_input)

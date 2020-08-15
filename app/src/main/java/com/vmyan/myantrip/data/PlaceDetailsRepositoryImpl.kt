@@ -179,5 +179,27 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
         return Resource.Success("Success")
     }
 
+    override suspend fun updateReview(
+        cat_name: String,
+        subcat_id: String,
+        place_id: String,
+        review_id: String,
+        rating: Float,
+        desc: String,
+        date: Timestamp
+    ): Resource<String> {
+        val data = mapOf(
+            "date" to date,
+            "desc" to desc,
+            "rating_val" to rating
+        )
+        FirebaseFirestore.getInstance()
+            .collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place/$place_id/Review/").document(review_id)
+            .update(data)
+            .await()
+
+        return Resource.Success("Success")
+    }
+
 
 }

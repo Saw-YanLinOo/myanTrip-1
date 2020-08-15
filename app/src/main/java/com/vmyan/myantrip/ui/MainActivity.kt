@@ -33,11 +33,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var uEmail = Hawk.get<String>("user_email")
-        Toast.makeText(this,uEmail,Toast.LENGTH_SHORT).show()
+
     }
 
-    public fun openFragment(fragment: Fragment){
+    private fun openFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_containger,fragment)
         transaction.commit()

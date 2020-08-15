@@ -7,4 +7,17 @@
 
     <string name="google_map_key">AIzaSyBRKZRZbQ0PrwRmunKH7LA4UWeR5Gy48B8</string>
 
+    <string name="testmotion">
+        The app:constraintSetStart and app:constraintSetEnd attributes are references to the two ConstrainSets defining the expanded and collapsed states. The OnSwipe element binds this transition to the user dragging on the RecyclerView in the main layout file that we looked at earlier. In the expanded and collapsed states, the top edge of the RecyclerView is at a different location because it is constrained to the bottom edge of the ImageView with the ID toolbar_image, and this transition is all about controlling that variable location, and that control comes from the user dragging on the RecyclerView. There’s a huge amount of work being done for us in these 10 lines of XML. The internals are quite complex because it’s being driven off the scrolling behaviour of the RecyclerView.
+
+To understand the two ConstrainSet definitions, let’s first consider that there are only two things that we need to control. The first is the ImageView which represents the background (with ID toolbar_image) changes height, and the image opacity changes. By changing the height, it will also cause the top of the RecyclerView to move because the latter is constrained to the bottom of this ImageView. The second view is the TextView which contains the title (with ID title) which needs to both move and change size.
+
+Let’s first look at the delta between the two states of the ImageView. In the expanded state it is this:
+        The app:constraintSetStart and app:constraintSetEnd attributes are references to the two ConstrainSets defining the expanded and collapsed states. The OnSwipe element binds this transition to the user dragging on the RecyclerView in the main layout file that we looked at earlier. In the expanded and collapsed states, the top edge of the RecyclerView is at a different location because it is constrained to the bottom edge of the ImageView with the ID toolbar_image, and this transition is all about controlling that variable location, and that control comes from the user dragging on the RecyclerView. There’s a huge amount of work being done for us in these 10 lines of XML. The internals are quite complex because it’s being driven off the scrolling behaviour of the RecyclerView.
+
+To understand the two ConstrainSet definitions, let’s first consider that there are only two things that we need to control. The first is the ImageView which represents the background (with ID toolbar_image) changes height, and the image opacity changes. By changing the height, it will also cause the top of the RecyclerView to move because the latter is constrained to the bottom of this ImageView. The second view is the TextView which contains the title (with ID title) which needs to both move and change size.
+
+Let’s first look at the delta between the two states of the ImageView. In the expanded state it is this:
+    </string>
+
 </resources>
