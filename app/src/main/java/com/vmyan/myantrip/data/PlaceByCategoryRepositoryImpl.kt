@@ -4,6 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.model.PlaceByCategory
+import com.vmyan.myantrip.model.Review
 import com.vmyan.myantrip.model.SubPlaceCategory
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
@@ -42,6 +43,7 @@ class PlaceByCategoryRepositoryImpl : PlaceByCategoryRepository {
                 val ratingValue = document.getDouble("ratingValue")?.toFloat()
                 val sliderImg = document.get("sliderImg") as ArrayList<String>
                 val state = document.getString("state")
+
 
                 pList.add(Place(pid, address!!, buildDate!!, category!!, city!!, country!!, founder!!, gallery, history!!, info!!, latlng!!, mainImg!!, pname!!, ratingValue!!, sliderImg, state!!))
             }

@@ -176,6 +176,36 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
             .add(data)
             .await()
 
+        val reviewList = mutableListOf<Review>()
+        val reviewResult = FirebaseFirestore.getInstance()
+            .collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place/$place_id/Review")
+            .get()
+            .await()
+        for (review in reviewResult){
+            val rid = review.id
+            val user_id = review.getString("user_id")
+            val user_name = review.getString("user_name")
+            val user_img = review.getString("user_img")
+            val rating_val = review.getDouble("rating_val")!!.toFloat()
+            val desc = review.getString("desc")
+            val date = review.getTimestamp("date")
+
+            reviewList.add(Review(rid, user_id!!, user_name!!, user_img!!, rating_val, desc!!, date!!))
+
+        }
+
+        var avg = 0f
+        for (r in reviewList){
+            avg+= r.rating_val
+        }
+        var rVal = (avg/reviewList.size)
+
+        FirebaseFirestore.getInstance().collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place")
+            .document(place_id)
+            .update(mapOf(
+                "ratingValue" to rVal
+            ))
+
         return Resource.Success("Success")
     }
 
@@ -197,6 +227,36 @@ class PlaceDetailsRepositoryImpl : PlaceDetailsRepository {
             .collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place/$place_id/Review/").document(review_id)
             .update(data)
             .await()
+
+        val reviewList = mutableListOf<Review>()
+        val reviewResult = FirebaseFirestore.getInstance()
+            .collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place/$place_id/Review")
+            .get()
+            .await()
+        for (review in reviewResult){
+            val rid = review.id
+            val user_id = review.getString("user_id")
+            val user_name = review.getString("user_name")
+            val user_img = review.getString("user_img")
+            val rating_val = review.getDouble("rating_val")!!.toFloat()
+            val desc = review.getString("desc")
+            val date = review.getTimestamp("date")
+
+            reviewList.add(Review(rid, user_id!!, user_name!!, user_img!!, rating_val, desc!!, date!!))
+
+        }
+
+        var avg = 0f
+        for (r in reviewList){
+            avg+= r.rating_val
+        }
+        var rVal = (avg/reviewList.size)
+
+        FirebaseFirestore.getInstance().collection("/PlaceList/$cat_name/SubCategory/$subcat_id/Place")
+            .document(place_id)
+            .update(mapOf(
+                "ratingValue" to rVal
+            ))
 
         return Resource.Success("Success")
     }

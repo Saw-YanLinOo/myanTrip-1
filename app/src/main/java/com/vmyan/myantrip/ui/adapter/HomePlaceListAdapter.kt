@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
 import kotlinx.android.synthetic.main.home_place_list_item.view.*
+import java.text.DecimalFormat
 
 class HomePlaceListAdapter(private val listener: ItemClickListener, private val items: MutableList<Place>) : RecyclerView.Adapter<HomePlaceListAdapter.HomePlaceViewHolder>() {
     interface ItemClickListener {
@@ -54,7 +55,7 @@ class HomePlaceListAdapter(private val listener: ItemClickListener, private val 
             view.name.text = item.name
             view.category.text = item.category
             view.address.text = item.address + ", " + item.city + ", " + item.state + ", "+ item.country
-            view.rating_value.text = item.ratingValue.toString()
+            view.rating_value.text = DecimalFormat("#.#").format(item.ratingValue).toString()
             view.rating_bar.rating = item.ratingValue
         }
 

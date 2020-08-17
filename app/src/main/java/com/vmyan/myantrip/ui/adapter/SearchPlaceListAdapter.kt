@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
 import kotlinx.android.synthetic.main.search_place_item_layout.view.*
+import java.text.DecimalFormat
 
 class SearchPlaceListAdapter(private val listener: ItemClickListener, private val items: MutableList<Place>) : RecyclerView.Adapter<SearchPlaceListAdapter.SearchPlaceListViewHolder>() {
     interface ItemClickListener {
@@ -52,7 +53,7 @@ class SearchPlaceListAdapter(private val listener: ItemClickListener, private va
                 .into(view.s_img)
             view.s_name.text = item.name
             view.s_address.text = item.address + ", " + item.city + ", " + item.state + ", "+ item.country
-            view.s_rval.text = item.ratingValue.toString()
+            view.s_rval.text = DecimalFormat("#.#").format(item.ratingValue).toString()
             view.s_category.text = item.category
         }
 

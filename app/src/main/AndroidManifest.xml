@@ -3,7 +3,9 @@
     package="com.vmyan.myantrip">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".MyanTripApp"
@@ -14,19 +16,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.SharePost"/>
-        <activity android:name=".ui.Profile"
-            android:theme="@style/AppTheme.ProfileTheme"/>
+        <activity android:name=".ui.AddNewTripActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".ui.SharePost" />
+        <activity
+            android:name=".ui.Profile"
+            android:theme="@style/AppTheme.ProfileTheme" />
         <activity android:name=".ui.PlaceDetailsActivity" />
         <activity android:name=".ui.SearchPlaceActivity" />
         <activity android:name=".ui.PlaceByCategoryActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
-        <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".ui.Register"
-            android:theme="@style/AppTheme.ProfileTheme"/>
-        <activity android:name=".ui.Login"
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/MainActivityTheme" />
+        <activity
+            android:name=".ui.Register"
+            android:theme="@style/AppTheme.ProfileTheme" />
+        <activity
+            android:name=".ui.Login"
             android:theme="@style/AppTheme.ProfileTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

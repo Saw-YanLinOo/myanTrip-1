@@ -47,6 +47,8 @@ class SearchPlaceRepositoryImpl : SearchPlaceRepository {
                     val sliderImg = document.get("sliderImg") as ArrayList<String>
                     val state = document.getString("state")
 
+
+
                     placeList.add(
                         Place(id, address!!, buildDate!!, category!!, city!!, country!!, founder!!, gallery, history!!, info!!, latlng!!, mainImg!!, name!!, ratingValue!!, sliderImg, state!!)
                     )

@@ -1,8 +1,6 @@
 package com.vmyan.myantrip.data
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.type.LatLng
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.model.PlaceCategory
 import com.vmyan.myantrip.model.SubPlaceCategory

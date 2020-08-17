@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.PastTripFragment">
+    tools:context=".ui.fragment.PastTripFragment"
+    android:background="@color/shimmer_placeholder">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/past_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="past" />
+        tools:listitem="@layout/trip_item_layout"
+        tools:itemCount="2" />
 
 </FrameLayout>

@@ -62,22 +62,23 @@ class AddReviewDialogFragment(
 
             val dialogListener = activity as DialogListener
             dialogListener.onFinishDialog(place.place.place_id)
-            dismiss()
+
 
             val imm =
                 requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-
+            dismiss()
         }
         view.post_btn.setOnClickListener {
             postReview(desc_input.text.toString(), add_rval.rating)
 
             val dialogListener = activity as DialogListener
             dialogListener.onFinishDialog(place.place.place_id)
-            dismiss()
+
             val imm =
                 requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+            dismiss()
         }
     }
 
