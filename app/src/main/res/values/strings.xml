@@ -7,15 +7,5 @@
 
     <string name="google_map_key">AIzaSyBRKZRZbQ0PrwRmunKH7LA4UWeR5Gy48B8</string>
 
-    <string-array name="currency">
-        <item>USD</item>
-        <item>MMK</item>
-        <item>JPY</item>
-        <item>SGD</item>
-        <item>THB</item>
-    </string-array>
-
-
-
 </resources>
 

@@ -6,10 +6,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
 import com.orhanobut.hawk.Hawk
@@ -18,7 +21,6 @@ import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_new_trip.*
 import org.koin.android.ext.android.inject
-
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.time.ExperimentalTime
@@ -47,19 +49,19 @@ class AddNewTripActivity : AppCompatActivity() {
         pickimg_card.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
             i.type = "image/*"
-            startActivityForResult(i,1)
+            startActivityForResult(i, 1)
         }
 
         pickimg_ly.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
             i.type = "image/*"
-            startActivityForResult(i,1)
+            startActivityForResult(i, 1)
         }
 
         pickimg_btn.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
             i.type = "image/*"
-            startActivityForResult(i,1)
+            startActivityForResult(i, 1)
         }
 
         tripclear_btn.setOnClickListener {
@@ -135,6 +137,7 @@ class AddNewTripActivity : AppCompatActivity() {
     @ExperimentalTime
     private fun datePicker(status: String){
         val builder = MaterialDatePicker.Builder.datePicker()
+        builder.setCalendarConstraints(limitRange()!!.build())
         val picker = builder.build()
         picker.show(supportFragmentManager, picker.toString())
         picker.addOnPositiveButtonClickListener {
@@ -149,6 +152,25 @@ class AddNewTripActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun limitRange(): CalendarConstraints.Builder? {
+        val constraintsBuilderRange = CalendarConstraints.Builder()
+        val calendarStart = Calendar.getInstance()
+        val calendarEnd = Calendar.getInstance()
+        val year = 2022
+//        val startMonth = 2
+//        val startDate = 15
+        val endMonth = 12
+        val endDate = 31
+//        calendarStart[year, startMonth - 1] = startDate - 1
+        calendarEnd[year, endMonth - 1] = endDate
+        val minDate = calendarStart.timeInMillis
+        val maxDate = calendarEnd.timeInMillis
+        constraintsBuilderRange.setStart(minDate)
+        constraintsBuilderRange.setEnd(maxDate)
+        constraintsBuilderRange.setValidator(RangeValidator(minDate, maxDate))
+        return constraintsBuilderRange
     }
 
 
@@ -173,8 +195,19 @@ class AddNewTripActivity : AppCompatActivity() {
         userName: String,
         userImg: String
     ){
-        viewModel.addNewTrip(tripImgUri, tripDestination, tripStartDate, tripEndDate, tripType, tripName, tripDesc, userId, userName, userImg).observe(this, androidx.lifecycle.Observer {
-            when(it) {
+        viewModel.addNewTrip(
+            tripImgUri,
+            tripDestination,
+            tripStartDate,
+            tripEndDate,
+            tripType,
+            tripName,
+            tripDesc,
+            userId,
+            userName,
+            userImg
+        ).observe(this, androidx.lifecycle.Observer {
+            when (it) {
                 is Resource.Loading -> {
                     formly.visibility = View.GONE
                     addtrip_progressbar.visibility = View.VISIBLE
@@ -190,5 +223,46 @@ class AddNewTripActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    internal class RangeValidator : DateValidator {
+        var minDate: Long
+        var maxDate: Long
+
+        constructor(minDate: Long, maxDate: Long) {
+            this.minDate = minDate
+            this.maxDate = maxDate
+        }
+
+        constructor(parcel: Parcel) {
+            minDate = parcel.readLong()
+            maxDate = parcel.readLong()
+        }
+
+        override fun isValid(date: Long): Boolean {
+            return !(minDate > date || maxDate < date)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        override fun writeToParcel(dest: Parcel, flags: Int) {
+            dest.writeLong(minDate)
+            dest.writeLong(maxDate)
+        }
+
+        companion object {
+            val CREATOR: Parcelable.Creator<RangeValidator?> =
+                object : Parcelable.Creator<RangeValidator?> {
+                    override fun createFromParcel(parcel: Parcel): RangeValidator? {
+                        return RangeValidator(parcel)
+                    }
+
+                    override fun newArray(size: Int): Array<RangeValidator?> {
+                        return arrayOfNulls(size)
+                    }
+                }
+        }
     }
 }
