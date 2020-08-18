@@ -7,33 +7,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.adapter.PCSubCategoryListAdapter
-import com.vmyan.myantrip.ui.viewmodel.PlaceByCategoryVMFactory
 import com.vmyan.myantrip.ui.viewmodel.PlaceByCategoryViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_place_by_category.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 
-class PlaceByCategoryActivity : AppCompatActivity(), DIAware {
+class PlaceByCategoryActivity : AppCompatActivity() {
 
-    override val di: DI by closestDI()
-    private val viewModelFactory : PlaceByCategoryVMFactory by instance()
 
-    private lateinit var viewModel: PlaceByCategoryViewModel
+    private val viewModel: PlaceByCategoryViewModel by inject()
     private lateinit var pcSubCategoryListAdapter: PCSubCategoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_by_category)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PlaceByCategoryViewModel::class.java)
 
         val id = intent.getStringExtra("cat_id")
         val name = intent.getStringExtra("cat_name")

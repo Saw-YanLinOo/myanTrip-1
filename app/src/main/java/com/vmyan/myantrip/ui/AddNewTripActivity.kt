@@ -2,7 +2,6 @@ package com.vmyan.myantrip.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -15,29 +14,21 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
-import com.vmyan.myantrip.ui.viewmodel.AddNewTripVMFactory
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_new_trip.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
+
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.time.ExperimentalTime
-import kotlin.time.days
-import kotlin.time.milliseconds
-import kotlin.time.seconds
 
 
 @ExperimentalTime
-class AddNewTripActivity : AppCompatActivity(), DIAware {
+class AddNewTripActivity : AppCompatActivity() {
 
-    override val di: DI by closestDI()
-    private val viewModelFactory : AddNewTripVMFactory by instance()
 
-    private lateinit var viewModel: AddNewTripViewModel
+    private val viewModel: AddNewTripViewModel by inject()
 
     private var imgUri: ByteArray? = null
     private var startDate: Timestamp? = null
@@ -52,7 +43,6 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
         )
         compressImage(img)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(AddNewTripViewModel::class.java)
 
         pickimg_card.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
@@ -160,6 +150,7 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
             }
         }
     }
+
 
     private fun compressImage(imgUri: Uri){
         val bmp = MediaStore.Images.Media.getBitmap(contentResolver, imgUri)

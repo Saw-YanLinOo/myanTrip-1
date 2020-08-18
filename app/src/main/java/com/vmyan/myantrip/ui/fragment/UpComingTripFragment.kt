@@ -7,41 +7,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.TripPlanActivity
-import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
 import com.vmyan.myantrip.ui.adapter.UpComingTripListAdapter
-import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
-import com.vmyan.myantrip.ui.viewmodel.UpComingTripVMFactory
 import com.vmyan.myantrip.ui.viewmodel.UpComingTripViewModel
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_search_place.*
 import kotlinx.android.synthetic.main.fragment_up_coming_trip.view.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.x.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 
-class UpComingTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener, DIAware {
+class UpComingTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener{
 
-    override val di: DI by closestDI()
-
-    private val viewModelFactory : UpComingTripVMFactory by instance()
-
-    private lateinit var viewModel: UpComingTripViewModel
+    private val viewModel: UpComingTripViewModel by inject()
     private lateinit var upComingTripListAdapter: UpComingTripListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(UpComingTripViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_up_coming_trip, container, false)
 
         setUpUpComingRecycler(view)

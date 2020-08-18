@@ -3,6 +3,8 @@ package com.vmyan.myantrip.data
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.orhanobut.hawk.Hawk
+import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.model.Trip
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
@@ -13,8 +15,7 @@ class UpComingTripRepositoryImpl : UpComingTripRepository {
 
         val resultList = FirebaseFirestore.getInstance()
             .collection("TripList")
-            .whereGreaterThan("tripEndDate", Timestamp.now())
-            .orderBy("tripEndDate")
+            .whereEqualTo("userId", Hawk.get("user_id"))
             .get()
             .await()
 
@@ -32,10 +33,25 @@ class UpComingTripRepositoryImpl : UpComingTripRepository {
             val userName = doc.getString("userName")
 
 
-            tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate!!,tripType!!,tripName!!,tripDestination!!,tripDesc!!,userId!!,userImg!!,userName!!))
+            if (tripEndDate!! > Timestamp.now()){
+                tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate,tripType!!,tripName!!,tripDestination!!,tripDesc!!,userId!!,userImg!!,userName!!))
+            }
         }
 
-        return Resource.Success(tripList)
+
+
+        return Resource.Success(ascList(tripList))
     }
 
+    private fun ascList(list: MutableList<Trip>): MutableList<Trip>{
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.tripStartDate > p1!!.tripStartDate) {
+                res = 1
+            }
+            res
+        })
+
+        return list
+    }
 }

@@ -18,13 +18,13 @@ class SearchPlaceRepositoryImpl : SearchPlaceRepository {
         for (cat in catList){
             val cid = cat.id
             val subList = FirebaseFirestore.getInstance()
-                .collection("/PlaceList/"+cid+"/SubCategory")
+                .collection("/PlaceList/$cid/SubCategory")
                 .get()
                 .await()
             for (sub in subList){
                 val sid = sub.id
                 val resultList = FirebaseFirestore.getInstance()
-                    .collection("/PlaceList/"+cid+"/SubCategory/"+sid+"/Place")
+                    .collection("/PlaceList/$cid/SubCategory/$sid/Place")
                     .orderBy("name",Query.Direction.ASCENDING)
                     .get()
                     .await()

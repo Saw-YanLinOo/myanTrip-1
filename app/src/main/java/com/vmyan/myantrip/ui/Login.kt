@@ -8,17 +8,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.User
-import com.vmyan.myantrip.ui.viewmodel.LoginVMFactory
 import com.vmyan.myantrip.ui.viewmodel.LoginViewModel
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs
@@ -26,18 +23,14 @@ import com.vmyan.myantrip.utils.showToast
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 
-class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
 
-    override val di: DI by closestDI()
-    private val viewModelFactory: LoginVMFactory by instance()
+class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
+
     private val TAG = "LoginActivity"
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by inject()
 
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var user : User
@@ -57,7 +50,6 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         KeyboardVisibilityEvent.setEventListener(this, this)
         val doubleBounce:Sprite  = DoubleBounce();
         spin_kit.setIndeterminateDrawable(doubleBounce)

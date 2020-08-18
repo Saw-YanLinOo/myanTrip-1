@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
@@ -22,23 +21,17 @@ import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
 import com.vmyan.myantrip.ui.fragment.FilterDialogFragment
-import com.vmyan.myantrip.ui.viewmodel.SearchPlaceVMFactory
 import com.vmyan.myantrip.ui.viewmodel.SearchPlaceViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_search_place.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 import java.util.*
 
 
-class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClickListener,FilterDialogFragment.DialogListener, DIAware {
+class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClickListener,FilterDialogFragment.DialogListener {
 
-    override val di: DI by closestDI()
-    private val viewModelFactory : SearchPlaceVMFactory by instance()
 
-    private lateinit var viewModel: SearchPlaceViewModel
+    private val viewModel: SearchPlaceViewModel by inject()
     private lateinit var searchPlaceListAdapter: SearchPlaceListAdapter
     private val placeList = mutableListOf<Place>()
     private var sort = ""
@@ -51,7 +44,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_place)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SearchPlaceViewModel::class.java)
+
         setUpSearchResultRecycler()
         setUpObserver()
 

@@ -12,31 +12,23 @@ import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
-import com.vmyan.myantrip.ui.viewmodel.LoginVMFactory
 import com.vmyan.myantrip.ui.viewmodel.LoginViewModel
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs
 import com.vmyan.myantrip.utils.showToast
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 
-class Register : AppCompatActivity(), KeyboardVisibilityEventListener, DIAware {
-    override val di: DI by closestDI()
-    private val viewModelFactory: LoginVMFactory by instance()
+class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
     private val TAG = "RegisterActivity"
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
         KeyboardVisibilityEvent.setEventListener(this, this)
 
         var doubleBounce: Sprite = DoubleBounce();

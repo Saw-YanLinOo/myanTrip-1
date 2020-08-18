@@ -13,32 +13,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
-import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
+
 import com.vmyan.myantrip.ui.adapter.UpComingTripListAdapter
 import com.vmyan.myantrip.ui.viewmodel.*
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_search_place.*
+
 import kotlinx.android.synthetic.main.fragment_past_trip.view.*
-import kotlinx.android.synthetic.main.fragment_up_coming_trip.view.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.x.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 
-class PastTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener, DIAware {
+class PastTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener {
 
-    override val di: DI by closestDI()
 
-    private val viewModelFactory : PastTripVMFactory by instance()
-
-    private lateinit var viewModel: PastTripViewModel
+    private val viewModel: PastTripViewModel by inject()
     private lateinit var upComingTripListAdapter: UpComingTripListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PastTripViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_past_trip, container, false)
 
         setUpUpComingRecycler(view)

@@ -13,7 +13,7 @@ class PlaceByCategoryRepositoryImpl : PlaceByCategoryRepository {
     override suspend fun getPlaceByCategory(cat_id: String): Resource<MutableList<PlaceByCategory>> {
         val placeList = mutableListOf<PlaceByCategory>()
         val resultList = FirebaseFirestore.getInstance()
-            .collection("/PlaceList/"+cat_id+"/SubCategory")
+            .collection("/PlaceList/$cat_id/SubCategory")
             .get()
             .await()
 
@@ -22,7 +22,7 @@ class PlaceByCategoryRepositoryImpl : PlaceByCategoryRepository {
             val name = data.getString("name")
             val pList = mutableListOf<Place>()
             val rList = FirebaseFirestore.getInstance()
-                .collection("/PlaceList/"+cat_id+"/SubCategory/"+id+"/Place")
+                .collection("/PlaceList/$cat_id/SubCategory/$id/Place")
                 .orderBy("ratingValue", Query.Direction.DESCENDING)
                 .get()
                 .await()

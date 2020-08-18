@@ -31,27 +31,19 @@ import com.vmyan.myantrip.ui.adapter.*
 import com.vmyan.myantrip.ui.fragment.AddReviewDialogFragment
 import com.vmyan.myantrip.ui.fragment.ReviewAllDialogFragment
 import com.vmyan.myantrip.ui.fragment.UpdateReviewDialogFragment
-import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsVMFactory
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_place_by_category.*
 import kotlinx.android.synthetic.main.activity_place_details.*
-import kotlinx.android.synthetic.main.addreview_dialogfragment.*
 import kotlinx.android.synthetic.main.location_card.*
 import kotlinx.android.synthetic.main.rating_reviews_place_details.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
-class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, AddReviewDialogFragment.DialogListener, UpdateReviewDialogFragment.DialogListener, DIAware {
+class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickListener, AddReviewDialogFragment.DialogListener, UpdateReviewDialogFragment.DialogListener {
 
-    override val di: DI by closestDI()
-    private val viewModelFactory : PlaceDetailsVMFactory by instance()
 
-    private lateinit var viewModel: PlaceDetailsViewModel
+    private val viewModel: PlaceDetailsViewModel by inject()
     private lateinit var placeImgSliderAdapter: PlaceImgSliderAdapter
     private lateinit var layoutManger: CardSliderLayoutManager
     private lateinit var recyclerView: RecyclerView
@@ -64,7 +56,6 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_details)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PlaceDetailsViewModel::class.java)
 
         val placeId = intent.getStringExtra("place_id")
         setUpToolbar()

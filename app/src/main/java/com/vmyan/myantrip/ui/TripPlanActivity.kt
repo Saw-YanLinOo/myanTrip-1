@@ -11,8 +11,6 @@ class TripPlanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_plan)
 
-
-
     }
 
 
