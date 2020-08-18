@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/trip_item_layout"
-        tools:itemCount="2" />
+        tools:itemCount="2"
+        android:layoutAnimation="@anim/layoutanimation_up_to_down"/>
 
 </FrameLayout>

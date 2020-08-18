@@ -11,8 +11,8 @@ import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
-import com.noowenz.customdatetimepicker.CustomDateTimePicker
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripVMFactory
@@ -25,8 +25,13 @@ import org.kodein.di.android.closestDI
 import org.kodein.di.instance
 import java.io.ByteArrayOutputStream
 import java.util.*
+import kotlin.time.ExperimentalTime
+import kotlin.time.days
+import kotlin.time.milliseconds
+import kotlin.time.seconds
 
 
+@ExperimentalTime
 class AddNewTripActivity : AppCompatActivity(), DIAware {
 
     override val di: DI by closestDI()
@@ -72,13 +77,12 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
         }
 
         startdate_input.setOnClickListener {
-            showDateTimePicker("start")
+            datePicker("start")
 
         }
 
         enddate_input.setOnClickListener {
-            showDateTimePicker("end")
-
+            datePicker("end")
         }
 
         tripadd_btn.setOnClickListener {
@@ -100,7 +104,7 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
             clearAll()
         }
 
-
+        home.setOnClickListener { onBackPressed() }
 
     }
 
@@ -138,6 +142,25 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
 
     }
 
+    @ExperimentalTime
+    private fun datePicker(status: String){
+        val builder = MaterialDatePicker.Builder.datePicker()
+        val picker = builder.build()
+        picker.show(supportFragmentManager, picker.toString())
+        picker.addOnPositiveButtonClickListener {
+            when(status){
+                "start" -> {
+                    startdate_input.text = picker.headerText
+                    startDate = Timestamp(Date(it))
+                }
+                "end" -> {
+                    enddate_input.text = picker.headerText
+                    endDate = Timestamp(Date(it))
+                }
+            }
+        }
+    }
+
     private fun compressImage(imgUri: Uri){
         val bmp = MediaStore.Images.Media.getBitmap(contentResolver, imgUri)
         val baos = ByteArrayOutputStream()
@@ -146,53 +169,6 @@ class AddNewTripActivity : AppCompatActivity(), DIAware {
         this.imgUri = data
     }
 
-    private fun showDateTimePicker(status: String) {
-
-        CustomDateTimePicker(this, object : CustomDateTimePicker.ICustomDateTimeListener{
-            override fun onCancel() {
-
-            }
-
-            @SuppressLint("SetTextI18n")
-            override fun onSet(
-                dialog: Dialog,
-                calendarSelected: Calendar,
-                dateSelected: Date,
-                year: Int,
-                monthFullName: String,
-                monthShortName: String,
-                monthNumber: Int,
-                day: Int,
-                weekDayFullName: String,
-                weekDayShortName: String,
-                hour24: Int,
-                hour12: Int,
-                min: Int,
-                sec: Int,
-                AM_PM: String
-            ) {
-                when(status){
-                    "start" -> {
-                        startdate_input.text = "$monthShortName $day, $year"
-                        startDate = Timestamp(dateSelected)
-                    }
-                    "end" -> {
-                        enddate_input.text = "$monthShortName $day, $year"
-                        endDate = Timestamp(dateSelected)
-                    }
-                }
-            }
-        }).apply {
-            set24HourFormat(false)
-            setMaxMinDisplayDate(
-                minDate = Calendar.getInstance().apply { add(Calendar.MINUTE, 5) }.timeInMillis,
-                maxDate = Calendar.getInstance().apply { add(Calendar.YEAR, 1) }.timeInMillis
-            )
-            setMaxMinDisplayedTime(5)
-            showDialog()
-        }
-
-    }
 
     private fun addNewTrip(
         tripImgUri: ByteArray,

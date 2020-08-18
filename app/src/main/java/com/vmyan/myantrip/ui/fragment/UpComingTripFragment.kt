@@ -1,5 +1,6 @@
 package com.vmyan.myantrip.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
 import com.vmyan.myantrip.ui.adapter.UpComingTripListAdapter
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
@@ -51,7 +53,8 @@ class UpComingTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListen
     }
 
     override fun onTripClick(tripId: String) {
-        println(tripId)
+        val intent = Intent(activity, TripPlanActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setUpUpComingRecycler(view: View){

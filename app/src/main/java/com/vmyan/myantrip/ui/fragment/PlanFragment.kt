@@ -12,9 +12,11 @@ import com.vmyan.myantrip.ui.AddNewTripActivity
 import com.vmyan.myantrip.ui.adapter.TripViewPagerAdapter
 import com.vmyan.myantrip.utils.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.fragment_plan.view.*
+import kotlin.time.ExperimentalTime
 
 class PlanFragment : Fragment() {
 
+    @ExperimentalTime
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

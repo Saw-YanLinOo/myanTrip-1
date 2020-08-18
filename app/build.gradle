@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.vmyan.myantrip"
@@ -109,7 +109,5 @@ dependencies {
     //Hawk
     implementation "com.orhanobut:hawk:2.0.1"
 
-    //Date Time Picker
-    implementation "com.github.noowenz:CustomDateTimePicker:1.01"
 
 }
