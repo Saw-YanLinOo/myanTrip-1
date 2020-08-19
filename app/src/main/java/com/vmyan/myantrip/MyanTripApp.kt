@@ -26,8 +26,7 @@ class MyanTripApp : Application(){
                 searchPlaceModule,
                 upComingTripModule,
                 profileModule,
-                uploadPostModule
-                upComingTripModule,
+                uploadPostModule,
                 tripPlanModule,
                 addPlanModule
             ))
