@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +26,6 @@ import org.koin.android.ext.android.inject
 
 
 class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
-
     private val TAG = "LoginActivity"
 
     private val viewModel: LoginViewModel by inject()
@@ -40,7 +38,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
         var skip = Hawk.get<Boolean>("skip",false)
 
         if (auth.currentUser != null || skip){
-            getUserAndSave()
+            //getUserAndSave()
             goNextActivity(MainActivity())
         }else{
             Toast.makeText(this, "please! create your account",Toast.LENGTH_SHORT).show()
@@ -61,7 +59,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
     }
 
     private fun getUserAndSave(){
-        viewModel.user.observe(this, Observer {
+        viewModel.user(auth.currentUser!!.uid).observe(this, Observer {
             when (it) {
                 is Resource.Loading -> {
                     //spin_kit.visibility = View.VISIBLE

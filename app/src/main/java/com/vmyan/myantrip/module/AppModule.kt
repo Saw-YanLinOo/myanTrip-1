@@ -29,6 +29,12 @@ val loginModule = module {
     }
 }
 
+val registerModule = module {
+    single {
+        RegisterViewModel(RegisterRepositoryImpl())
+    }
+}
+
 val pastTripModule = module {
     single {
         PastTripViewModel(PastTripRepositoryImpl())
@@ -68,5 +74,17 @@ val tripPlanModule = module {
 val addPlanModule = module {
     factory {
         AddPlanViewModel(AddPlanRepositoryImpl())
+    }
+}
+
+val profileModule = module {
+    single {
+        ProfileViewModel(ProfileRepositoryImpl())
+    }
+}
+
+val uploadPostModule = module{
+    single {
+        UploadViewModel(UploadPostRepositoryImpl())
     }
 }

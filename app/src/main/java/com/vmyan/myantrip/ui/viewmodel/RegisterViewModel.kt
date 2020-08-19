@@ -1,32 +1,29 @@
 package com.vmyan.myantrip.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.vmyan.myantrip.data.LoginRepository
+import com.vmyan.myantrip.data.RegisterRepository
 import com.vmyan.myantrip.model.User
-import com.vmyan.myantrip.model.UserAccountSetting
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
-import kotlin.math.log
 
-class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() {
-
+class RegisterViewModel(private val registerRepository: RegisterRepository) {
     fun user(id : String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            val user = loginRepository.getCurrentUser(id)
+            val user = registerRepository.getCurrentUser(id)
             emit(user)
         }catch (e : Exception){
             emit(Resource.Failure(e.message.toString()))
         }
     }
-    fun Login(emial:String, password:String) = liveData(Dispatchers.IO) {
+    fun SignUp(name:String, emial:String, password:String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            val auth = loginRepository.signIn("${emial}","${password}")
+            val auth = registerRepository.signUp("${emial}","${password}")
+            val result = registerRepository.addNewUser(User("","0","${emial}","${name}","0","0","0","0"))
             emit(auth)
-        }catch (e:Exception){
+        }catch (e: Exception){
             e.printStackTrace()
             emit(Resource.Failure(e.message.toString()))
         }

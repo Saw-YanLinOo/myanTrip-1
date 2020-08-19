@@ -8,5 +8,8 @@ data class User (
     var phone_number:String,
     var email:String,
     var username:String,
-    var profilephoto:String
+    var profilephoto:String,
+    var backgroudphoto : String?,
+    var followers : String,
+    var followings : String
 )
