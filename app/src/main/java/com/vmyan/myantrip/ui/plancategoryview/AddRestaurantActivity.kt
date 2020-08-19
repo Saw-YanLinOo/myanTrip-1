@@ -15,12 +15,13 @@ import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.viewmodel.AddPlanViewModel
 import com.vmyan.myantrip.utils.DateRange
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_add_hotel.*
+import kotlinx.android.synthetic.main.activity_add_restaurant.*
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddHotelActivity : AppCompatActivity() {
+class AddRestaurantActivity : AppCompatActivity() {
+
 
     private val viewModel: AddPlanViewModel by inject()
 
@@ -28,15 +29,14 @@ class AddHotelActivity : AppCompatActivity() {
     private lateinit var tripEndDate: Timestamp
     private lateinit var tripId: String
     private var checkInDate: Timestamp? = null
-    private var checkOutDate: Timestamp? = null
     private var checkInTime: String? = null
-    private var checkOutTime: String? = null
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_hotel)
+        setContentView(R.layout.activity_add_restaurant)
+
 
         tripId = intent.getStringExtra("tripId")!!
         tripStartDate = intent.getParcelableExtra("tripStartDate")!!
@@ -46,20 +46,13 @@ class AddHotelActivity : AppCompatActivity() {
         titleText.text = "Add $planName"
         Glide.with(this).load(planImg).into(titleImg)
 
-        checkindate.setOnClickListener {
-            datePicker("in")
+        plan_addrestaurant_date.setOnClickListener {
+            datePicker()
         }
 
-        plan_addhotel_checkout.setOnClickListener {
-            datePicker("out")
-        }
 
-        checkintime.setOnClickListener {
-            pickTime("in")
-        }
-
-        plan_checkouttime_btn.setOnClickListener {
-            pickTime("out")
+        plan_addrestaurant_time.setOnClickListener {
+            pickTime()
         }
 
         var confirm = true
@@ -70,22 +63,22 @@ class AddHotelActivity : AppCompatActivity() {
             confirm = false
         }
 
-        addbtn.setOnClickListener {
+        plan_addrestaurant_addbtn.setOnClickListener {
             addPlan(
                 tripId,
-                hotelname.text.toString(),
+                plan_addrestaurant_name.text.toString(),
                 planImg!!,
                 checkInDate!!,
-                checkOutDate!!,
+                null,
                 checkInTime!!,
-                checkOutTime!!,
-                state.text.toString(),
                 "",
-                city.text.toString(),
+                plan_addrestaurant_state.text.toString(),
                 "",
-                address.text.toString(),
+                plan_addrestaurant_city.text.toString(),
                 "",
-                cost.text.toString().toInt(),
+                plan_addrestaurant_address.text.toString(),
+                "",
+                plan_addrestaurant_cost.text.toString().toInt(),
                 confirm,
                 "",
                 "",
@@ -96,12 +89,13 @@ class AddHotelActivity : AppCompatActivity() {
 
     }
 
+
     private fun addPlan(
         tripId: String,
         name: String,
         img: String,
         fromDate: Timestamp,
-        toDate: Timestamp,
+        toDate: Timestamp?,
         fromTime: String,
         toTime: String,
         fromState: String,
@@ -115,10 +109,11 @@ class AddHotelActivity : AppCompatActivity() {
         type: String,
         description: String,
         details: String,
-        viewType : String
+        viewType: String
     ){
         viewModel.addPlan(
-            tripId, name, img, fromDate, toDate, fromTime, toTime, fromState, toState, fromCity, toCity, fromAddress, toAddress, estimationCost, confirmation, type, description, details, viewType
+            tripId, name, img, fromDate,
+            toDate, fromTime, toTime, fromState, toState, fromCity, toCity, fromAddress, toAddress, estimationCost, confirmation, type, description, details, viewType
         ).observe(this,{
             when(it){
                 is Resource.Loading ->{
@@ -136,48 +131,33 @@ class AddHotelActivity : AppCompatActivity() {
         })
     }
 
+
+
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun datePicker(status: String){
+    private fun datePicker(){
         val builder = MaterialDatePicker.Builder.datePicker()
         builder.setCalendarConstraints(
             DateRange.limitRange(
                 SimpleDateFormat("dd-MM-yyyy").format(tripStartDate.toDate()),
                 SimpleDateFormat("dd-MM-yyyy").format(tripEndDate.toDate()),
                 "other"
-                )!!.build())
+            )!!.build())
         val picker = builder.build()
         picker.show(supportFragmentManager, picker.toString())
         picker.addOnPositiveButtonClickListener {
-            when(status){
-                "in" -> {
-                    checkindate.text = picker.headerText
-                    checkInDate = Timestamp(Date(it))
-                }
-                "out" -> {
-                    plan_addhotel_checkout.text = picker.headerText
-                    checkOutDate = Timestamp(Date(it))
-                }
-            }
+            plan_addrestaurant_date.text = picker.headerText
+            checkInDate = Timestamp(Date(it))
         }
     }
 
-    private fun pickTime(status: String){
+    private fun pickTime(){
         val picker = MaterialTimePicker()
         picker.show(supportFragmentManager,"timepicker")
         picker.setListener {
             val result = "${it.hour}:${it.minute}"
-            when(status){
-                "in" -> {
-                    checkintime.text = DateRange.setAMPM(it.hour,it.minute)
-                    checkInTime = result
-                }
-                "out" -> {
-                    plan_checkouttime_btn.text = DateRange.setAMPM(it.hour,it.minute)
-                    checkOutTime = result
-                }
-            }
+            plan_addrestaurant_time.text = DateRange.setAMPM(it.hour,it.minute)
+            checkInTime = result
         }
     }
-
 }

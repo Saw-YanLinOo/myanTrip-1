@@ -40,6 +40,7 @@ class UpComingTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListen
 
     override fun onTripClick(tripId: String) {
         val intent = Intent(activity, TripPlanActivity::class.java)
+        intent.putExtra("tripId",tripId)
         startActivity(intent)
     }
 

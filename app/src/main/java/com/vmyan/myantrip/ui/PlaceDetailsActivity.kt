@@ -143,7 +143,7 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     }
     
     private fun getNearybyList(id: String, city: String){
-        viewModel.fetchNearByPlace(city).observe(this, Observer {
+        viewModel.fetchNearByPlace(city).observe(this, {
             when (it) {
                 is Resource.Loading -> {
                 }

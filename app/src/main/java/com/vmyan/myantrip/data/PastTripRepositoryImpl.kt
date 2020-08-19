@@ -27,12 +27,13 @@ class PastTripRepositoryImpl : PastTripRepository {
             val tripName = doc.getString("tripName")
             val tripDestination = doc.getString("tripDestination")
             val tripDesc = doc.getString("tripDesc")
+            val tripCost = doc.getDouble("tripCost")
             val userId = doc.getString("userId")
             val userImg = doc.getString("userImg")
             val userName = doc.getString("userName")
 
             if (tripEndDate!! < Timestamp.now()){
-                tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate,tripType!!,tripName!!,tripDestination!!,tripDesc!!,userId!!,userImg!!,userName!!))
+                tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId!!,userImg!!,userName!!))
             }
         }
 

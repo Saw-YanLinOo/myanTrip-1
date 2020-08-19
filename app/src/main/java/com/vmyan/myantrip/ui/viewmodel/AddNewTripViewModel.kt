@@ -20,11 +20,12 @@ class AddNewTripViewModel (private val addNewTripRepository: AddNewTripRepositor
         tripDesc: String,
         userId: String,
         userName: String,
-        userImg: String
+        userImg: String,
+        tripCost: Int
     ) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            val addNewTripResult = addNewTripRepository.addNewTrip(tripImgUri,tripDestination, tripStartDate, tripEndDate, tripType, tripName, tripDesc, userId, userName, userImg)
+            val addNewTripResult = addNewTripRepository.addNewTrip(tripImgUri,tripDestination, tripStartDate, tripEndDate, tripType, tripName, tripDesc, userId, userName, userImg, tripCost)
             emit(addNewTripResult)
         }catch (e: Exception){
             emit(Resource.Failure(e.cause!!.toString()))

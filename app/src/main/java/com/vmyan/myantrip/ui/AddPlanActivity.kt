@@ -8,22 +8,32 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.firebase.Timestamp
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.PlaceCategory
 import com.vmyan.myantrip.model.PlanCategory
 import com.vmyan.myantrip.ui.adapter.PlanCategoryListAdapter
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
 import com.vmyan.myantrip.ui.plancategoryview.AddHotelActivity
+import com.vmyan.myantrip.ui.plancategoryview.AddRestaurantActivity
 import kotlinx.android.synthetic.main.activity_add_plan.*
 import kotlinx.android.synthetic.main.activity_search_place.*
 
 class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickListener {
 
     private lateinit var planCategoryListAdapter: PlanCategoryListAdapter
+    private val list = mutableListOf<PlanCategory>()
+    private lateinit var tripId: String
+    private lateinit var tripStartDate: Timestamp
+    private lateinit var tripEndDate: Timestamp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_plan)
+
+        tripId = intent.getStringExtra("tripId")!!
+        tripStartDate = intent.getParcelableExtra("tripStartDate")!!
+        tripEndDate = intent.getParcelableExtra("tripEndDate")!!
 
         setUpSearchResultRecycler()
         loadData()
@@ -45,13 +55,13 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
     }
 
     private fun loadData(){
-        val list = mutableListOf<PlanCategory>()
 
         list.add(PlanCategory("Hotel", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fhotel.png?alt=media&token=c272ea5e-fa34-4987-9b69-2ecbc956af7d"))
+        list.add(PlanCategory("Restaurant", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Frestaurant.png?alt=media&token=e31c5e30-f945-48fc-8c4e-6396f69ca5a1"))
         list.add(PlanCategory("Bus", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fbus.png?alt=media&token=ed0b346c-3580-426b-aceb-b1b1fcc85377"))
+        list.add(PlanCategory("Flight", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fairplane_take_off_127px.png?alt=media&token=4af47c02-d0be-4fb8-b563-a8961feaa3ea"))
         list.add(PlanCategory("Train", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Ftrain.png?alt=media&token=697d27f6-eeec-434d-8220-f1e5c2e1c181"))
         list.add(PlanCategory("Car Rental", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fcarrental.png?alt=media&token=c0d72d6a-a0df-4f8d-a0e7-3a070abd9573"))
-        list.add(PlanCategory("Restaurant", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Frestaurant.png?alt=media&token=e31c5e30-f945-48fc-8c4e-6396f69ca5a1"))
         list.add(PlanCategory("Note", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fnotepad.png?alt=media&token=cb29a708-c01a-4784-8ced-ae7f597accb7"))
         list.add(PlanCategory("Direction", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fsignpost.png?alt=media&token=b056d3b4-11ff-4b7b-81d6-b37a81a6c43d"))
         list.add(PlanCategory("Parking", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fcar-parking.png?alt=media&token=449d4c27-c349-430a-a74b-f8fbe8247988"))
@@ -66,6 +76,20 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
         when(name){
             "Hotel" -> {
                 val i = Intent(this, AddHotelActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[0].name)
+                i.putExtra("planImg", list[0].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Restaurant" -> {
+                val i = Intent(this, AddRestaurantActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[1].name)
+                i.putExtra("planImg", list[1].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
                 startActivity(i)
             }
         }

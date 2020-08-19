@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.plancategoryview.AddHotelActivity"
-    app:layoutDescription="@xml/activity_add_hotel_scene">
+    tools:context=".ui.plancategoryview.AddRestaurantActivity"
+    app:layoutDescription="@xml/activity_add_restaurant_scene">
 
     <ImageView
         android:id="@+id/titleImg"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleImg"
-        android:text="Add Hotel"
+        android:text="Add Restaurant"
         android:elevation="10dp"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
@@ -82,11 +82,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:hint="Hotel Name"
+                    android:hint="Restaurant Name"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/hotelname"
+                        android:id="@+id/plan_addrestaurant_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -98,99 +98,27 @@
                     android:weightSum="2">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/checkindate"
+                        android:id="@+id/plan_addrestaurant_date"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:text="Check in Date"
+                        android:text="Date"
                         android:textAllCaps="false"
                         app:icon="@drawable/ic_date_for_triplist"
                         app:iconTint="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/checkintime"
+                        android:id="@+id/plan_addrestaurant_time"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
-                        android:text="Check in Time"
-                        android:textAllCaps="false"
-                        app:icon="@drawable/ic_baseline_access_time_24"
-                        app:iconTint="@color/colorAccent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <ImageButton
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/ic_topdown"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <ImageButton
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/ic_topdown"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/plan_addhotel_checkout"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Check out Date"
-                        android:textAllCaps="false"
-                        app:icon="@drawable/ic_date_for_triplist"
-                        app:iconTint="@color/colorAccent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/plan_checkouttime_btn"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_weight="1"
-                        android:text="Check out Time"
+                        android:text="Time"
                         android:textAllCaps="false"
                         app:icon="@drawable/ic_baseline_access_time_24"
                         app:iconTint="@color/colorAccent" />
@@ -207,7 +135,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/cost"
+                        android:id="@+id/plan_addrestaurant_cost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
@@ -224,7 +152,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/state"
+                        android:id="@+id/plan_addrestaurant_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -240,7 +168,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/city"
+                        android:id="@+id/plan_addrestaurant_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -256,7 +184,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/address"
+                        android:id="@+id/plan_addrestaurant_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -266,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:text="Are you booking?"
+                    android:text="Are you ordering?"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -292,7 +220,7 @@
                 </RadioGroup>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/addbtn"
+                    android:id="@+id/plan_addrestaurant_addbtn"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -307,6 +235,5 @@
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

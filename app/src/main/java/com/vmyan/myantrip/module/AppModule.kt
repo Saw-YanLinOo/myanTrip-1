@@ -58,3 +58,15 @@ val upComingTripModule = module {
         UpComingTripViewModel(UpComingTripRepositoryImpl())
     }
 }
+
+val tripPlanModule = module {
+    single {
+        TripPlanViewModel(TripPlanRepositoryImpl())
+    }
+}
+
+val addPlanModule = module {
+    factory {
+        AddPlanViewModel(AddPlanRepositoryImpl())
+    }
+}

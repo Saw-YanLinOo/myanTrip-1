@@ -10,8 +10,8 @@ import kotlinx.coroutines.tasks.await
 
 class AddNewTripRepositoryImpl : AddNewTripRepository {
 
-    val storageRef = FirebaseStorage.getInstance().reference
-    val firestoreRef = FirebaseFirestore.getInstance()
+    private val storageRef = FirebaseStorage.getInstance().reference
+    private val firestoreRef = FirebaseFirestore.getInstance()
 
     override suspend fun addNewTrip(
         tripImgUri: ByteArray,
@@ -23,7 +23,8 @@ class AddNewTripRepositoryImpl : AddNewTripRepository {
         tripDesc: String,
         userId: String,
         userName: String,
-        userImg: String
+        userImg: String,
+        tripCost: Int
     ): Resource<String> {
         var downloadUrl = ""
 
@@ -52,7 +53,8 @@ class AddNewTripRepositoryImpl : AddNewTripRepository {
             "tripEndDate" to tripEndDate,
             "userId" to userId,
             "userName" to userName,
-            "userImg" to userImg
+            "userImg" to userImg,
+            "tripCost" to tripCost
         )
 
         firestoreRef.collection("TripList").add(data).await()

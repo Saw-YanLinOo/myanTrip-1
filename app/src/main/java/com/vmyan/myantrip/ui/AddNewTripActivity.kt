@@ -5,23 +5,23 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.provider.MediaStore
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.CalendarConstraints.DateValidator
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
+import com.vmyan.myantrip.utils.DateRange
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_new_trip.*
 import org.koin.android.ext.android.inject
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.time.ExperimentalTime
 
@@ -36,6 +36,7 @@ class AddNewTripActivity : AppCompatActivity() {
     private var startDate: Timestamp? = null
     private var endDate: Timestamp? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_trip)
@@ -90,7 +91,7 @@ class AddNewTripActivity : AppCompatActivity() {
                     triptype_input.text.toString(),
                     tripname_input.text.toString(),
                     description_input.text.toString(),
-                    userId, userName, userImg
+                    userId, userName, userImg,0
                 )
             }
             clearAll()
@@ -134,10 +135,12 @@ class AddNewTripActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.O)
     @ExperimentalTime
     private fun datePicker(status: String){
         val builder = MaterialDatePicker.Builder.datePicker()
-        builder.setCalendarConstraints(limitRange()!!.build())
+        builder.setCalendarConstraints(DateRange.limitRange(SimpleDateFormat("dd-MM-yyyy").format(Date()), "31-12-2022" ,"datefun")!!.build())
         val picker = builder.build()
         picker.show(supportFragmentManager, picker.toString())
         picker.addOnPositiveButtonClickListener {
@@ -154,24 +157,7 @@ class AddNewTripActivity : AppCompatActivity() {
         }
     }
 
-    private fun limitRange(): CalendarConstraints.Builder? {
-        val constraintsBuilderRange = CalendarConstraints.Builder()
-        val calendarStart = Calendar.getInstance()
-        val calendarEnd = Calendar.getInstance()
-        val year = 2022
-//        val startMonth = 2
-//        val startDate = 15
-        val endMonth = 12
-        val endDate = 31
-//        calendarStart[year, startMonth - 1] = startDate - 1
-        calendarEnd[year, endMonth - 1] = endDate
-        val minDate = calendarStart.timeInMillis
-        val maxDate = calendarEnd.timeInMillis
-        constraintsBuilderRange.setStart(minDate)
-        constraintsBuilderRange.setEnd(maxDate)
-        constraintsBuilderRange.setValidator(RangeValidator(minDate, maxDate))
-        return constraintsBuilderRange
-    }
+
 
 
     private fun compressImage(imgUri: Uri){
@@ -193,7 +179,8 @@ class AddNewTripActivity : AppCompatActivity() {
         tripDesc: String,
         userId: String,
         userName: String,
-        userImg: String
+        userImg: String,
+        tripCost: Int
     ){
         viewModel.addNewTrip(
             tripImgUri,
@@ -205,7 +192,8 @@ class AddNewTripActivity : AppCompatActivity() {
             tripDesc,
             userId,
             userName,
-            userImg
+            userImg,
+            tripCost
         ).observe(this, androidx.lifecycle.Observer {
             when (it) {
                 is Resource.Loading -> {
@@ -225,44 +213,5 @@ class AddNewTripActivity : AppCompatActivity() {
         })
     }
 
-    internal class RangeValidator : DateValidator {
-        var minDate: Long
-        var maxDate: Long
 
-        constructor(minDate: Long, maxDate: Long) {
-            this.minDate = minDate
-            this.maxDate = maxDate
-        }
-
-        constructor(parcel: Parcel) {
-            minDate = parcel.readLong()
-            maxDate = parcel.readLong()
-        }
-
-        override fun isValid(date: Long): Boolean {
-            return !(minDate > date || maxDate < date)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        override fun writeToParcel(dest: Parcel, flags: Int) {
-            dest.writeLong(minDate)
-            dest.writeLong(maxDate)
-        }
-
-        companion object {
-            val CREATOR: Parcelable.Creator<RangeValidator?> =
-                object : Parcelable.Creator<RangeValidator?> {
-                    override fun createFromParcel(parcel: Parcel): RangeValidator? {
-                        return RangeValidator(parcel)
-                    }
-
-                    override fun newArray(size: Int): Array<RangeValidator?> {
-                        return arrayOfNulls(size)
-                    }
-                }
-        }
-    }
 }

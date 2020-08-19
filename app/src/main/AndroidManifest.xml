@@ -16,9 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.plancategoryview.AddHotelActivity"
+        <activity android:name=".ui.plancategoryview.AddRestaurantActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.plancategoryview.AddHotelActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.AddPlanActivity" />
         <activity android:name=".ui.TripPlanActivity" />
         <activity

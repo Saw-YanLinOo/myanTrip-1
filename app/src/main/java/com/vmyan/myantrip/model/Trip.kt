@@ -13,6 +13,7 @@ data class Trip(
     var tripName: String,
     var tripDestination: String,
     var tripDesc: String,
+    var tripCost: Int,
     var userId: String,
     var userImg: String,
     var userName: String

@@ -67,7 +67,7 @@ class PlaceByCategoryActivity : AppCompatActivity() {
     }
 
     private fun setUpObserver(id: String) {
-        viewModel.fetchPlaceByCategory(id).observe(this, Observer {
+        viewModel.fetchPlaceByCategory(id).observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     placebycategory_placeholder.startShimmer()

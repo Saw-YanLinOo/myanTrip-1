@@ -29,6 +29,7 @@ class UpComingTripListAdapter(private val listener: ItemClickListener, private v
         return UpComingTripListViewHolder(view, listener)
     }
 
+
     override fun getItemCount(): Int {
         return items.size
     }
@@ -57,6 +58,7 @@ class UpComingTripListAdapter(private val listener: ItemClickListener, private v
             val startDate = simpleDateFormat.format(start.toDate())
             val endDate = simpleDateFormat.format(end.toDate())
 
+            view.trip_total_cost.text = "MMK ${item.tripCost}"
             view.trip_name.text = item.tripName
             view.trip_startdate.text = startDate
             view.trip_enddate.text = endDate

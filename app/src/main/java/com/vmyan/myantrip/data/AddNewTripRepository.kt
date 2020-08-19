@@ -15,6 +15,7 @@ interface AddNewTripRepository {
         tripDesc: String,
         userId: String,
         userName: String,
-        userImg: String
+        userImg: String,
+        tripCost: Int
     ) : Resource<String>
 }

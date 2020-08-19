@@ -23,7 +23,9 @@ class MyanTripApp : Application(){
                 placeByCategoryModule,
                 placeDetailsModule,
                 searchPlaceModule,
-                upComingTripModule
+                upComingTripModule,
+                tripPlanModule,
+                addPlanModule
             ))
         }
     }
