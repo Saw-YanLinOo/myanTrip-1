@@ -6,6 +6,6 @@
     <dimen name="card_corner_radius">10dp</dimen>
 
 
-    <dimen name="design_fab_image_size" tools:override="true">150dp</dimen>
-    <dimen name="headerTextSize">28sp</dimen>
+<!--    <dimen name="design_fab_image_size" tools:override="true">150dp</dimen>-->
+<!--    <dimen name="headerTextSize">28sp</dimen>-->
 </resources>

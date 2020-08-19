@@ -19,11 +19,14 @@ class MyanTripApp : Application(){
                 blogTripModule,
                 homeModule,
                 loginModule,
+                registerModule,
                 pastTripModule,
                 placeByCategoryModule,
                 placeDetailsModule,
                 searchPlaceModule,
-                upComingTripModule
+                upComingTripModule,
+                profileModule,
+                uploadPostModule
             ))
         }
     }

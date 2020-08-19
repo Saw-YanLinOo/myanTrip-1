@@ -1,17 +1,17 @@
 package com.vmyan.myantrip.ui
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.fragment.CameraFragment
 
 class SharePost : AppCompatActivity() {
 
@@ -22,10 +22,16 @@ class SharePost : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_post)
 
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, IMAGE_CAPTURE_CODE)
+        openFragment(CameraFragment())
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        startActivityForResult(intent, IMAGE_CAPTURE_CODE)
     }
 
+    fun openFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.share_containger,fragment)
+        transaction.commit()
+    }
 
     private fun showChooser() {
         val intent = Intent(Intent.ACTION_GET_CONTENT);

@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.DoubleBounce
+import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.viewmodel.LoginViewModel
+import com.vmyan.myantrip.ui.viewmodel.RegisterViewModel
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs
 import com.vmyan.myantrip.utils.showToast
@@ -23,8 +25,9 @@ import org.koin.android.ext.android.inject
 
 class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
     private val TAG = "RegisterActivity"
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private val viewModel: LoginViewModel by inject()
+    private val viewModel: RegisterViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -70,7 +73,7 @@ class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
 
     private fun getUserAndSave(){
         Log.e("Start Save","")
-        viewModel.user.observe(this, Observer {
+        viewModel.user(auth.currentUser!!.uid).observe(this, Observer {
             when (it) {
                 is Resource.Loading -> {
                 }

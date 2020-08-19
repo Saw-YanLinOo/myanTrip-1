@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.SharePost"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/camer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <io.fotoapparat.view.CameraView
+            android:id="@+id/camera_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/fab_camera"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_camera"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            android:layout_centerHorizontal="true"
+            app:backgroundTint="@android:color/white"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_pick_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:src="@drawable/ic_search_image"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            app:backgroundTint="@android:color/white"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_switch_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:src="@drawable/ic_switch_camera"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            android:layout_alignParentRight="true"
+            app:backgroundTint="@android:color/white"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/imageView_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_margin="10dp"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:src="@drawable/ic_clear"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            app:backgroundTint="@android:color/white"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_comfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="normal"
+            android:src="@drawable/ic_check"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            android:layout_alignParentRight="true"
+            app:backgroundTint="@android:color/white"/>
+    </RelativeLayout>
+
+</RelativeLayout>
