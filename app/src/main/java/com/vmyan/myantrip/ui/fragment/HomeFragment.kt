@@ -119,7 +119,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
 
     @SuppressLint("ShowToast")
     private fun setUpObserver(view: View) {
-        viewModel.fetchPlaceCategoryList.observe(viewLifecycleOwner, Observer {
+        viewModel.fetchPlaceCategoryList.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     view.homecat_placeholder.startShimmer()

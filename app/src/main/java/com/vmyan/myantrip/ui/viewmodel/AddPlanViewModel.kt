@@ -13,26 +13,21 @@ class AddPlanViewModel (private val addPlanRepository: AddPlanRepository) : View
         tripId: String,
         name: String,
         img: String,
-        fromDate: Timestamp,
-        toDate: Timestamp?,
-        fromTime: String,
-        toTime: String,
-        fromState: String,
-        toState: String,
-        fromCity: String,
-        toCity: String,
-        fromAddress: String,
-        toAddress: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
         estimationCost: Int,
         confirmation: Boolean,
         type: String,
         description: String,
         details: String,
-        viewType : String
+        viewType : Int,
+        status: String
     ) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            val addPlan = addPlanRepository.addPlan(tripId, name, img, fromDate, toDate, fromTime, toTime, fromState, toState, fromCity, toCity, fromAddress, toAddress, estimationCost, confirmation, type, description, details, viewType)
+            val addPlan = addPlanRepository.addPlan(tripId, name, img, date, state, city, address, estimationCost, confirmation, type, description, details, viewType, status)
             emit(addPlan)
         }catch (e: Exception){
             emit(Resource.Failure(e.cause!!.toString()))

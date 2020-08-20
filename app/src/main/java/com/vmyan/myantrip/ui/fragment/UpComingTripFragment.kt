@@ -24,6 +24,11 @@ class UpComingTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListen
     private val viewModel: UpComingTripViewModel by inject()
     private lateinit var upComingTripListAdapter: UpComingTripListAdapter
 
+    override fun onResume() {
+        super.onResume()
+        setUpObserver(requireView())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -38,8 +38,7 @@ class BlogRepositoryImpl:BlogRepository {
             val share = document.getString("share")
             val imglist = document.get("Photo") as ArrayList<String>
             val time = document.getTimestamp("time")
-            val post = Posts(id,user_id!!,description!!,imglist!!,like!!,share!!,time!!)
-            Log.e("Post List ==>", "${document.id} => ${post}")
+            val post = Posts(id,user_id!!,description!!, imglist,like!!,share!!,time!!)
 
             val userResultList = FirebaseFirestore.getInstance()
                 .collection("User")
@@ -49,10 +48,8 @@ class BlogRepositoryImpl:BlogRepository {
             val username = userResultList.getString("username")
             val profilephoto = userResultList.getString("profilephoto")
             val user = User(user_id,"","",username!!,profilephoto!!,"","0","0")
-            Log.e("User ==>","${userResultList.id} => ${user}")
 
             postList.add(GetPost(user,post))
-            Log.e("Get Post ==>"," => ${postList}")
         }
 
 

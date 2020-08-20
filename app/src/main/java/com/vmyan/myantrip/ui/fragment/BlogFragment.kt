@@ -28,6 +28,7 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
 
     private lateinit var postListAdapter: PostListAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,10 +39,10 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
         setUpPostRecycler(view)
         setUpObserve()
 
-        view.share_btn.setOnClickListener (View.OnClickListener {
-            val intent = Intent(context,SharePost::class.java)
+        view.share_btn.setOnClickListener {
+            val intent = Intent(context, SharePost::class.java)
             startActivity(intent)
-        })
+        }
 
         return view
     }
@@ -58,16 +59,15 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
 
     @SuppressLint("showToast")
     private fun setUpObserve() {
-        viewModel.fetchAllPost.observe(viewLifecycleOwner, Observer {
+        viewModel.fetchAllPost().observe(viewLifecycleOwner, {
             when(it){
                 is Resource.Loading -> {
+                    Toast.makeText(activity,"Loading Blog",Toast.LENGTH_SHORT).show()
                     blog_postitem_placeholder.startShimmer()
                     blog_postitem_placeholder.visibility = View.VISIBLE
                     post_recyclerView.visibility = View.GONE
-                    println("loading.....PostList")
                 }
                 is Resource.Success -> {
-                    println("GetPostList ==> ${it.data}")
                     blog_postitem_placeholder.stopShimmer()
                    blog_postitem_placeholder.visibility = View.GONE
                     post_recyclerView.visibility = View.VISIBLE
@@ -82,14 +82,6 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
                 }
             }
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        println("onResume")
-
-        setUpPostRecycler(requireView())
-        setUpObserve()
     }
 
     override fun onPostClick(position: Int) {

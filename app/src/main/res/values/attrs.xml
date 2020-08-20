@@ -11,4 +11,44 @@
         <attr name="viewUpdater" format="string"/>
     </declare-styleable>
 
+
+    <!-- Attrs Time -->
+    <declare-styleable name="TimeCircleView">
+        <attr name="timeCircleColor" format="reference|color" />
+        <attr name="timeCenterColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TimeRadialSelectorView">
+        <attr name="timeSelectorColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TimeRadialNumbersView">
+        <attr name="timeCircularNumbersColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TimeAmPmCirclesView">
+        <attr name="timeAmPmBackgroundColor" format="reference|color" />
+        <attr name="timeAmPmSelectBackgroundColor" format="reference|color" />
+        <attr name="timeAmPmHighlightSelected" format="boolean" />
+        <attr name="timeAmPmTextColor" format="reference|color" />
+    </declare-styleable>
+
+    <!-- Attrs Years -->
+    <declare-styleable name="ListPickerYearView">
+        <attr name="minYear" format="reference|integer" />
+        <attr name="maxYear" format="reference|integer" />
+        <attr name="defaultYear" format="reference|integer" />
+    </declare-styleable>
+
+    <!-- Attrs Year Text Indicator -->
+    <declare-styleable name="YearTextIndicator">
+        <attr name="yearSelectBackgroundColor" format="reference|color" />
+        <attr name="yearSelectTextColor" format="reference|color" />
+    </declare-styleable>
+
+    <!-- Attrs Year background circle -->
+    <declare-styleable name="TextCircularIndicatorView">
+        <attr name="colorCircleIndicator" format="reference|color" />
+    </declare-styleable>
+
 </resources>

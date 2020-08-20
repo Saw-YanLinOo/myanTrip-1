@@ -16,7 +16,6 @@ import com.google.firebase.Timestamp
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
-import com.vmyan.myantrip.utils.DateRange
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_new_trip.*
 import org.koin.android.ext.android.inject
@@ -140,7 +139,6 @@ class AddNewTripActivity : AppCompatActivity() {
     @ExperimentalTime
     private fun datePicker(status: String){
         val builder = MaterialDatePicker.Builder.datePicker()
-        builder.setCalendarConstraints(DateRange.limitRange(SimpleDateFormat("dd-MM-yyyy").format(Date()), "31-12-2022" ,"datefun")!!.build())
         val picker = builder.build()
         picker.show(supportFragmentManager, picker.toString())
         picker.addOnPositiveButtonClickListener {

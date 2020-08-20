@@ -1,8 +1,9 @@
 package com.vmyan.myantrip.data
 
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.vmyan.myantrip.model.Trip
+import com.vmyan.myantrip.model.TripPlan
 import com.vmyan.myantrip.model.TripWithPlan
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
@@ -15,7 +16,7 @@ class TripPlanRepositoryImpl : TripPlanRepository {
             .get()
             .await()
 
-        val tripId = result.id
+        val tid = result.id
         val tripImg = result.getString("tripImg")
         val tripStartDate = result.getTimestamp("tripStartDate")
         val tripEndDate = result.getTimestamp("tripEndDate")
@@ -28,7 +29,50 @@ class TripPlanRepositoryImpl : TripPlanRepository {
         val userImg = result.getString("userImg")
         val userName = result.getString("userName")
 
-        return Resource.Success(TripWithPlan(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate!!,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId!!,userImg!!,userName!!), mutableListOf()))
+        val planList = mutableListOf<TripPlan>()
+        val planResult = FirebaseFirestore.getInstance()
+            .collection("/TripList/$tripId/Plan")
+            .orderBy("date",Query.Direction.ASCENDING)
+            .get()
+            .await()
+
+        for (plan in planResult){
+            val planId = plan.id
+            val name = plan.getString("name")
+            val img = plan.getString("img")
+            val date = plan.getTimestamp("date")
+            val state = plan.getString("state")
+            val city = plan.getString("city")
+            val address = plan.getString("address")
+            val estimationCost = plan.getDouble("estimationCost")!!.toInt()
+            val confirmation = plan.getBoolean("confirmation")
+            val type = plan.getString("type")
+            val description = plan.getString("description")
+            val details = plan.getString("details")
+            val viewType = plan.getDouble("viewType")!!.toInt()
+            val status = plan.getString("status")
+
+            planList.add(TripPlan(
+                planId,
+                name!!,
+                img!!,
+                date!!,
+                state!!,
+                city!!,
+                address!!,
+                estimationCost,
+                confirmation!!,
+                type!!,
+                description!!,
+                details!!,
+                viewType,
+                status!!
+            ))
+
+        }
+
+        return Resource.Success(TripWithPlan(Trip(tid,tripImg!!,tripStartDate!!,tripEndDate!!,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId!!,userImg!!,userName!!)
+            , planList))
 
     }
 

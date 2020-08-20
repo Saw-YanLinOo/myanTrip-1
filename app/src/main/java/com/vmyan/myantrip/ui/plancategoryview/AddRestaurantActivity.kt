@@ -3,22 +3,20 @@ package com.vmyan.myantrip.ui.plancategoryview
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.firebase.Timestamp
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.customui.switchdatetime.SwitchDateTimeDialogFragment
 import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.viewmodel.AddPlanViewModel
-import com.vmyan.myantrip.utils.DateRange
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_restaurant.*
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class AddRestaurantActivity : AppCompatActivity() {
 
@@ -29,10 +27,7 @@ class AddRestaurantActivity : AppCompatActivity() {
     private lateinit var tripEndDate: Timestamp
     private lateinit var tripId: String
     private var checkInDate: Timestamp? = null
-    private var checkInTime: String? = null
 
-    @SuppressLint("SetTextI18n")
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_restaurant)
@@ -47,12 +42,7 @@ class AddRestaurantActivity : AppCompatActivity() {
         Glide.with(this).load(planImg).into(titleImg)
 
         plan_addrestaurant_date.setOnClickListener {
-            datePicker()
-        }
-
-
-        plan_addrestaurant_time.setOnClickListener {
-            pickTime()
+            pickCustDate()
         }
 
         var confirm = true
@@ -69,21 +59,16 @@ class AddRestaurantActivity : AppCompatActivity() {
                 plan_addrestaurant_name.text.toString(),
                 planImg!!,
                 checkInDate!!,
-                null,
-                checkInTime!!,
-                "",
                 plan_addrestaurant_state.text.toString(),
-                "",
                 plan_addrestaurant_city.text.toString(),
-                "",
                 plan_addrestaurant_address.text.toString(),
-                "",
                 plan_addrestaurant_cost.text.toString().toInt(),
                 confirm,
                 "",
                 "",
                 "",
-                planName!!
+                2,
+                ""
             )
         }
 
@@ -94,37 +79,44 @@ class AddRestaurantActivity : AppCompatActivity() {
         tripId: String,
         name: String,
         img: String,
-        fromDate: Timestamp,
-        toDate: Timestamp?,
-        fromTime: String,
-        toTime: String,
-        fromState: String,
-        toState: String,
-        fromCity: String,
-        toCity: String,
-        fromAddress: String,
-        toAddress: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
         estimationCost: Int,
         confirmation: Boolean,
         type: String,
         description: String,
         details: String,
-        viewType: String
+        viewType: Int,
+        status: String
     ){
         viewModel.addPlan(
-            tripId, name, img, fromDate,
-            toDate, fromTime, toTime, fromState, toState, fromCity, toCity, fromAddress, toAddress, estimationCost, confirmation, type, description, details, viewType
-        ).observe(this,{
-            when(it){
-                is Resource.Loading ->{
+            tripId,
+            name,
+            img,
+            date,
+            state,
+            city,
+            address,
+            estimationCost,
+            confirmation,
+            type,
+            description,
+            details,
+            viewType,
+            status
+        ).observe(this, {
+            when (it) {
+                is Resource.Loading -> {
 
                 }
-                is Resource.Success ->{
+                is Resource.Success -> {
                     val intent = Intent(this, TripPlanActivity::class.java)
-                    intent.putExtra("tripId",tripId)
+                    intent.putExtra("tripId", tripId)
                     startActivity(intent)
                 }
-                is Resource.Failure ->{
+                is Resource.Failure -> {
 
                 }
             }
@@ -132,32 +124,25 @@ class AddRestaurantActivity : AppCompatActivity() {
     }
 
 
+    private fun pickCustDate() {
+        val picker = SwitchDateTimeDialogFragment.newInstance("Pick Date & Time For Your Plan", "SET", "CANCEL")
+        picker.startAtCalendarView()
+        picker.setTimeZone(TimeZone.getDefault())
+        picker.minimumDateTime = this.tripStartDate.toDate()
+        picker.maximumDateTime = this.tripEndDate.toDate()
 
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun datePicker(){
-        val builder = MaterialDatePicker.Builder.datePicker()
-        builder.setCalendarConstraints(
-            DateRange.limitRange(
-                SimpleDateFormat("dd-MM-yyyy").format(tripStartDate.toDate()),
-                SimpleDateFormat("dd-MM-yyyy").format(tripEndDate.toDate()),
-                "other"
-            )!!.build())
-        val picker = builder.build()
-        picker.show(supportFragmentManager, picker.toString())
-        picker.addOnPositiveButtonClickListener {
-            plan_addrestaurant_date.text = picker.headerText
-            checkInDate = Timestamp(Date(it))
-        }
-    }
+        picker.setOnButtonClickListener(object : SwitchDateTimeDialogFragment.OnButtonClickListener{
+            @SuppressLint("SimpleDateFormat")
+            override fun onPositiveButtonClick(date: Date?) {
+                checkInDate = Timestamp(date!!)
+                plan_addrestaurant_date.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+            }
 
-    private fun pickTime(){
-        val picker = MaterialTimePicker()
-        picker.show(supportFragmentManager,"timepicker")
-        picker.setListener {
-            val result = "${it.hour}:${it.minute}"
-            plan_addrestaurant_time.text = DateRange.setAMPM(it.hour,it.minute)
-            checkInTime = result
-        }
+            override fun onNegativeButtonClick(date: Date?) {
+                println()
+            }
+
+        })
+        picker.show(supportFragmentManager,"pick date")
     }
 }

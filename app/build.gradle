@@ -123,5 +123,8 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
 
+    implementation 'com.github.prolificinteractive:material-calendarview:1.5.0'
+
+
 
 }

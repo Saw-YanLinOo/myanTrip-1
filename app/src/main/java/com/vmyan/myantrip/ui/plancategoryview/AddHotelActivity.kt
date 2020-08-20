@@ -2,20 +2,21 @@ package com.vmyan.myantrip.ui.plancategoryview
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.firebase.Timestamp
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.customui.switchdatetime.SwitchDateTimeDialogFragment
 import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.viewmodel.AddPlanViewModel
-import com.vmyan.myantrip.utils.DateRange
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_hotel.*
+import kotlinx.android.synthetic.main.activity_add_hotel.no
+import kotlinx.android.synthetic.main.activity_add_hotel.titleImg
+import kotlinx.android.synthetic.main.activity_add_hotel.titleText
+import kotlinx.android.synthetic.main.activity_add_hotel.yes
+import kotlinx.android.synthetic.main.activity_add_restaurant.*
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,11 +30,7 @@ class AddHotelActivity : AppCompatActivity() {
     private lateinit var tripId: String
     private var checkInDate: Timestamp? = null
     private var checkOutDate: Timestamp? = null
-    private var checkInTime: String? = null
-    private var checkOutTime: String? = null
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_hotel)
@@ -47,20 +44,14 @@ class AddHotelActivity : AppCompatActivity() {
         Glide.with(this).load(planImg).into(titleImg)
 
         checkindate.setOnClickListener {
-            datePicker("in")
+            pickCustDate("in")
         }
 
         plan_addhotel_checkout.setOnClickListener {
-            datePicker("out")
+            pickCustDate("out")
         }
 
-        checkintime.setOnClickListener {
-            pickTime("in")
-        }
 
-        plan_checkouttime_btn.setOnClickListener {
-            pickTime("out")
-        }
 
         var confirm = true
 
@@ -71,27 +62,44 @@ class AddHotelActivity : AppCompatActivity() {
         }
 
         addbtn.setOnClickListener {
+            //checkin
             addPlan(
                 tripId,
                 hotelname.text.toString(),
                 planImg!!,
                 checkInDate!!,
-                checkOutDate!!,
-                checkInTime!!,
-                checkOutTime!!,
                 state.text.toString(),
-                "",
                 city.text.toString(),
-                "",
                 address.text.toString(),
-                "",
                 cost.text.toString().toInt(),
                 confirm,
                 "",
                 "",
                 "",
-                planName!!
+                1,
+                "Check In"
             )
+            //chceckout
+            addPlan2(
+                tripId,
+                hotelname.text.toString(),
+                planImg,
+                checkOutDate!!,
+                state.text.toString(),
+                city.text.toString(),
+                address.text.toString(),
+                "0".toInt(),
+                confirm,
+                "",
+                "",
+                "",
+                1,
+                "Check Out"
+            )
+
+            val intent = Intent(this, TripPlanActivity::class.java)
+            intent.putExtra("tripId",tripId)
+            startActivity(intent)
         }
 
     }
@@ -100,84 +108,98 @@ class AddHotelActivity : AppCompatActivity() {
         tripId: String,
         name: String,
         img: String,
-        fromDate: Timestamp,
-        toDate: Timestamp,
-        fromTime: String,
-        toTime: String,
-        fromState: String,
-        toState: String,
-        fromCity: String,
-        toCity: String,
-        fromAddress: String,
-        toAddress: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
         estimationCost: Int,
         confirmation: Boolean,
         type: String,
         description: String,
         details: String,
-        viewType : String
+        viewType : Int,
+        status: String
     ){
         viewModel.addPlan(
-            tripId, name, img, fromDate, toDate, fromTime, toTime, fromState, toState, fromCity, toCity, fromAddress, toAddress, estimationCost, confirmation, type, description, details, viewType
+            tripId, name, img, date, state, city, address, estimationCost, confirmation, type, description, details, viewType, status
         ).observe(this,{
             when(it){
                 is Resource.Loading ->{
 
                 }
                 is Resource.Success ->{
-                    val intent = Intent(this, TripPlanActivity::class.java)
-                    intent.putExtra("tripId",tripId)
-                    startActivity(intent)
+
                 }
                 is Resource.Failure ->{
-
+                    println(it.message)
                 }
             }
         })
     }
 
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun datePicker(status: String){
-        val builder = MaterialDatePicker.Builder.datePicker()
-        builder.setCalendarConstraints(
-            DateRange.limitRange(
-                SimpleDateFormat("dd-MM-yyyy").format(tripStartDate.toDate()),
-                SimpleDateFormat("dd-MM-yyyy").format(tripEndDate.toDate()),
-                "other"
-                )!!.build())
-        val picker = builder.build()
-        picker.show(supportFragmentManager, picker.toString())
-        picker.addOnPositiveButtonClickListener {
-            when(status){
-                "in" -> {
-                    checkindate.text = picker.headerText
-                    checkInDate = Timestamp(Date(it))
+    private fun addPlan2(
+        tripId: String,
+        name: String,
+        img: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
+        estimationCost: Int,
+        confirmation: Boolean,
+        type: String,
+        description: String,
+        details: String,
+        viewType : Int,
+        status: String
+    ){
+        viewModel.addPlan(
+            tripId, name, img, date, state, city, address, estimationCost, confirmation, type, description, details, viewType, status
+        ).observe(this,{
+            when(it){
+                is Resource.Loading ->{
+
                 }
-                "out" -> {
-                    plan_addhotel_checkout.text = picker.headerText
-                    checkOutDate = Timestamp(Date(it))
+                is Resource.Success ->{
+
+                }
+                is Resource.Failure ->{
+                    println(it.message)
                 }
             }
-        }
+        })
     }
 
-    private fun pickTime(status: String){
-        val picker = MaterialTimePicker()
-        picker.show(supportFragmentManager,"timepicker")
-        picker.setListener {
-            val result = "${it.hour}:${it.minute}"
-            when(status){
-                "in" -> {
-                    checkintime.text = DateRange.setAMPM(it.hour,it.minute)
-                    checkInTime = result
-                }
-                "out" -> {
-                    plan_checkouttime_btn.text = DateRange.setAMPM(it.hour,it.minute)
-                    checkOutTime = result
+    private fun pickCustDate(status: String) {
+        val picker = SwitchDateTimeDialogFragment.newInstance("Pick Date & Time For Your Plan", "SET", "CANCEL")
+        picker.startAtCalendarView()
+        picker.setTimeZone(TimeZone.getDefault())
+        picker.minimumDateTime = this.tripStartDate.toDate()
+        picker.maximumDateTime = this.tripEndDate.toDate()
+
+        picker.setOnButtonClickListener(object : SwitchDateTimeDialogFragment.OnButtonClickListener{
+            @SuppressLint("SimpleDateFormat")
+            override fun onPositiveButtonClick(date: Date?) {
+                when(status) {
+                    "in" -> {
+                        checkInDate = Timestamp(date!!)
+                        checkindate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    }
+                    "out" -> {
+                        checkOutDate = Timestamp(date!!)
+                        plan_addhotel_checkout.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    }
                 }
             }
-        }
+
+            override fun onNegativeButtonClick(date: Date?) {
+                println()
+            }
+
+        })
+        picker.show(supportFragmentManager,"pick date")
     }
+
+
 
 }

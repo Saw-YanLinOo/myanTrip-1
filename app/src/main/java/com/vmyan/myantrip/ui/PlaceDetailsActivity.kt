@@ -16,6 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.AppBarLayout
 import com.orhanobut.hawk.Hawk
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
@@ -67,8 +72,8 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
             setUpObserver(placeId)
         }
 
-//        place_mapView.onCreate(savedInstanceState)
-//        place_mapView.onResume()
+        place_mapView.onCreate(savedInstanceState)
+        place_mapView.onResume()
         detail_s_btn.setOnClickListener {
             startActivity(Intent(this, SearchPlaceActivity::class.java))
         }
@@ -200,23 +205,23 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         address.text = data.place.address
         lat.text = data.place.latlng.latitude.toString()+"°"
         lng.text = data.place.latlng.longitude.toString()+"°"
-//        place_mapView.getMapAsync {googleMap ->
-//            googleMap?.apply {
-//                mapType = GoogleMap.MAP_TYPE_HYBRID
-//                val placeLatlng = LatLng(data.place.latlng.latitude, data.place.latlng.longitude)
-//
-//                val cameraPosition = CameraPosition.Builder()
-//                    .target(placeLatlng)
-//                    .zoom(15f).build()
-//
-//                addMarker(
-//                    MarkerOptions()
-//                        .position(placeLatlng)
-//                        .title(data.place.name)
-//                )
-//                animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-//            }
-//        }
+        place_mapView.getMapAsync {googleMap ->
+            googleMap?.apply {
+                mapType = GoogleMap.MAP_TYPE_HYBRID
+                val placeLatlng = LatLng(data.place.latlng.latitude, data.place.latlng.longitude)
+
+                val cameraPosition = CameraPosition.Builder()
+                    .target(placeLatlng)
+                    .zoom(15f).build()
+
+                addMarker(
+                    MarkerOptions()
+                        .position(placeLatlng)
+                        .title(data.place.name)
+                )
+                animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            }
+        }
 
         var avgOne = 0
         var avgTwo = 0

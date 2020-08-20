@@ -9,11 +9,10 @@ import java.lang.Exception
 
 class BlogViewModel (private val blogRepository: BlogRepository): ViewModel(){
 
-    val fetchAllPost = liveData(Dispatchers.IO) {
+    fun fetchAllPost() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
             val blogLists = blogRepository.getAllPost()
-            println(blogLists)
             emit(blogLists)
         }catch (e : Exception){
             emit(Resource.Failure(e.cause.toString()))

@@ -17,7 +17,7 @@ import com.vmyan.myantrip.model.GetPost
 import com.vmyan.myantrip.ui.Profile
 import kotlinx.android.synthetic.main.post_recyclerviews.view.*
 
-class PostListAdapter(private val listener: PostListAdapter.ItemClickListener,private val postList:MutableList<GetPost>) : RecyclerView.Adapter<PostListAdapter.BlogViewHolder>(){
+class PostListAdapter(private val listener: ItemClickListener,private val postList:MutableList<GetPost>) : RecyclerView.Adapter<PostListAdapter.BlogViewHolder>(){
 
     interface ItemClickListener {
         fun onPostClick(position : Int)
@@ -54,9 +54,6 @@ class PostListAdapter(private val listener: PostListAdapter.ItemClickListener,pr
             Glide.with(itemView) //1
                 .load(post.user.profilephoto)
                 .placeholder(R.drawable.ic_account_circle)
-                .error(R.drawable.ic_account_circle)
-                .skipMemoryCache(true) //2
-                .diskCacheStrategy(DiskCacheStrategy.NONE) //3
                 .transform(CircleCrop()) //4
                 .into(itemView.img_profile)
 

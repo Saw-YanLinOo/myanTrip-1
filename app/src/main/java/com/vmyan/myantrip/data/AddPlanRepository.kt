@@ -9,21 +9,16 @@ interface AddPlanRepository {
         tripId: String,
         name: String,
         img: String,
-        fromDate: Timestamp,
-        toDate: Timestamp?,
-        fromTime: String,
-        toTime: String,
-        fromState: String,
-        toState: String,
-        fromCity: String,
-        toCity: String,
-        fromAddress: String,
-        toAddress: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
         estimationCost: Int,
         confirmation: Boolean,
         type: String,
         description: String,
         details: String,
-        viewType : String
+        viewType : Int,
+        status: String
     ): Resource<String>
 }

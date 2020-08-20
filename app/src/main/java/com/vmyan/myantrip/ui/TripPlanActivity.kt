@@ -3,10 +3,16 @@ package com.vmyan.myantrip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.model.TripPlan
 import com.vmyan.myantrip.model.TripWithPlan
+import com.vmyan.myantrip.ui.adapter.PlanListAdapter
 import com.vmyan.myantrip.ui.viewmodel.TripPlanViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_trip_plan.*
@@ -14,9 +20,12 @@ import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 
 
-class TripPlanActivity : AppCompatActivity() {
+class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
 
     private val viewModel: TripPlanViewModel by inject()
+
+    private lateinit var planListAdapter: PlanListAdapter
+    private var planList = mutableListOf<TripPlan>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +33,14 @@ class TripPlanActivity : AppCompatActivity() {
 
         val tripId = intent.getStringExtra("tripId")
 
+        setUpPlanListRecycler()
         setUpObserver(tripId!!)
-
-
 
     }
 
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun setUpUI(data: TripWithPlan){
-        trip_total_cost_plan.text = "MMK ${data.trip.tripCost}"
+        trip_total_cost_plan.text = "${data.trip.tripCost} MMK"
         tripName_plan.text = data.trip.tripName
         startDate_plan.text = SimpleDateFormat("MMM, dd\nyyyy").format(data.trip.tripStartDate.toDate())
         endDate_plan.text = SimpleDateFormat("MMM, dd\nyyyy").format(data.trip.tripEndDate.toDate())
@@ -56,6 +64,22 @@ class TripPlanActivity : AppCompatActivity() {
         }
     }
 
+    private fun setUpPlanListRecycler(){
+        planListAdapter = PlanListAdapter(this, mutableListOf())
+        planList_recycler.layoutManager = LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL, false)
+        planList_recycler.apply {
+            setHasFixedSize(true)
+            setItemViewCacheSize(20)
+        }
+
+        val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.TOP)
+        snapHelperStart.attachToRecyclerView(planList_recycler)
+        planList_recycler.isNestedScrollingEnabled = false
+        planList_recycler.adapter = planListAdapter
+
+    }
+
 
     private fun setUpObserver(tripId: String){
         viewModel.getTripPlan(tripId).observe(this, {
@@ -65,6 +89,9 @@ class TripPlanActivity : AppCompatActivity() {
                 }
                 is Resource.Success -> {
                     setUpUI(it.data)
+                    planList.addAll(it.data.planList)
+                    planListAdapter.setItems(it.data.planList)
+
                 }
                 is Resource.Failure -> {
 
@@ -73,6 +100,9 @@ class TripPlanActivity : AppCompatActivity() {
         })
     }
 
+    override fun onPlaceClick(plan_id: String) {
+        println(plan_id)
+    }
 
 
 }

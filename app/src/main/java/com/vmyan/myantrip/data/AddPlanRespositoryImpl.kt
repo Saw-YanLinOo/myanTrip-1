@@ -11,41 +11,32 @@ class AddPlanRepositoryImpl : AddPlanRepository {
         tripId: String,
         name: String,
         img: String,
-        fromDate: Timestamp,
-        toDate: Timestamp?,
-        fromTime: String,
-        toTime: String,
-        fromState: String,
-        toState: String,
-        fromCity: String,
-        toCity: String,
-        fromAddress: String,
-        toAddress: String,
+        date: Timestamp,
+        state: String,
+        city: String,
+        address: String,
         estimationCost: Int,
         confirmation: Boolean,
         type: String,
         description: String,
         details: String,
-        viewType: String
+        viewType : Int,
+        status: String
     ): Resource<String> {
         val data = hashMapOf(
             "name" to name,
             "img" to img,
-            "fromDate" to fromDate,
-            "toDate" to toDate,
-            "fromTime" to fromTime,
-            "toTime" to toTime,
-            "fromState" to fromState,
-            "toState" to toState,
-            "fromCity" to fromCity,
-            "toCity" to toCity,
-            "fromAddress" to toAddress,
+            "date" to date,
+            "state" to state,
+            "city" to city,
+            "address" to address,
             "estimationCost" to estimationCost,
             "confirmation" to confirmation,
             "type" to type,
             "description" to description,
             "details" to details,
-            "viewType" to viewType
+            "viewType" to viewType,
+            "status" to status
         )
         FirebaseFirestore.getInstance()
             .collection("/TripList/$tripId/Plan")
