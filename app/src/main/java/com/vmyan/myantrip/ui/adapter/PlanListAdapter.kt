@@ -8,12 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.TripPlan
+import kotlinx.android.synthetic.main.activity_add_car_rental.view.*
+import kotlinx.android.synthetic.main.plan_activity_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_bus_item_layout.view.*
+import kotlinx.android.synthetic.main.plan_car_item_layout.view.*
+import kotlinx.android.synthetic.main.plan_direction_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_flight_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_hotel_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_hotel_item_layout.view.hotel_address
 import kotlinx.android.synthetic.main.plan_hotel_item_layout.view.hotel_cost_img
+import kotlinx.android.synthetic.main.plan_note_item_layout.view.*
+import kotlinx.android.synthetic.main.plan_parking_item_layout.view.*
+import kotlinx.android.synthetic.main.plan_place_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_restaurant_item_layout.view.*
+import kotlinx.android.synthetic.main.plan_shop_item_layout.view.*
 import kotlinx.android.synthetic.main.plan_train_item_layout.view.*
 import java.text.SimpleDateFormat
 
@@ -50,7 +58,6 @@ class PlanListAdapter(private val listener: ItemClickListener, private val items
             }
             RESTAURANT -> {
                 return RestaurantListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_restaurant_item_layout, parent, false), listener)
-
             }
             BUS -> {
                 return BusListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_bus_item_layout, parent, false), listener)
@@ -60,6 +67,27 @@ class PlanListAdapter(private val listener: ItemClickListener, private val items
             }
             RAIL -> {
                 return TrainListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_train_item_layout, parent, false), listener)
+            }
+            CARRENTAL -> {
+                return CarRentalListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_car_item_layout, parent, false), listener)
+            }
+            NOTE -> {
+                return NoteListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_note_item_layout, parent, false), listener)
+            }
+            DIRECTION -> {
+                return DirectionListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_direction_item_layout, parent, false), listener)
+            }
+            PARKING -> {
+                return ParkingListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_parking_item_layout, parent, false), listener)
+            }
+            ACTIVITY -> {
+                return ActivityListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_activity_item_layout, parent, false), listener)
+            }
+            PLACE -> {
+                return PlaceListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_place_item_layout, parent, false), listener)
+            }
+            SHOPPING -> {
+                return ShopListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.plan_shop_item_layout, parent, false), listener)
             }
         }
 
@@ -86,6 +114,27 @@ class PlanListAdapter(private val listener: ItemClickListener, private val items
             }
             RAIL -> {
                 (holder as TrainListViewHolder).bind(position)
+            }
+            CARRENTAL -> {
+                (holder as CarRentalListViewHolder).bind(position)
+            }
+            NOTE -> {
+                (holder as NoteListViewHolder).bind(position)
+            }
+            DIRECTION -> {
+                (holder as DirectionListViewHolder).bind(position)
+            }
+            PARKING -> {
+                (holder as ParkingListViewHolder).bind(position)
+            }
+            ACTIVITY -> {
+                (holder as ActivityListViewHolder).bind(position)
+            }
+            PLACE -> {
+                (holder as PlaceListViewHolder).bind(position)
+            }
+            SHOPPING -> {
+                (holder as ShopListViewHolder).bind(position)
             }
         }
     }
@@ -306,6 +355,274 @@ class PlanListAdapter(private val listener: ItemClickListener, private val items
             view.rail_type.text = plan.type
 
             Glide.with(view).load(plan.img).into(view.railimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class CarRentalListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.cartopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.carbotbar.visibility = View.INVISIBLE
+            }
+
+            view.car_name.text = plan.name
+            view.car_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            if (plan.status == "Pick Up"){
+                view.car_cost_img.visibility = View.VISIBLE
+                view.car_cost.visibility = View.VISIBLE
+                view.car_cost.text = "${plan.estimationCost} MMK"
+                view.car_from_to.text = "Drop Off"
+            }else if(plan.status == "Arrival"){
+                view.car_cost_img.visibility = View.GONE
+                view.car_cost.visibility = View.GONE
+                view.car_from_to.text = "End"
+            }
+            view.car_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.car_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.car_status.text = plan.status
+            view.car_type.text = plan.type
+
+            Glide.with(view).load(plan.img).into(view.carimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class NoteListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.notetopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.notebotbar.visibility = View.INVISIBLE
+            }
+
+            view.note_title.text = plan.name
+            view.note_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            view.note_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.note_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.note_details.text = plan.details
+
+            Glide.with(view).load(plan.img).into(view.noteimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class DirectionListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.dirtopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.dirbotbar.visibility = View.INVISIBLE
+            }
+
+            view.dir_name.text = plan.name
+            view.dir_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            if (plan.status == "Start"){
+                view.dir_from_to.text = "From"
+            }else if(plan.status == "Destination"){
+                view.dir_from_to.text = "To"
+            }
+            view.dir_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.dir_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.dir_status.text = plan.status
+
+            Glide.with(view).load(plan.img).into(view.dirimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class ParkingListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.parkingtopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.parkingbotbar.visibility = View.INVISIBLE
+            }
+
+            view.parking_name.text = plan.name
+            view.parking_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            if (plan.status == "Drop Off"){
+                view.parking_cost_img.visibility = View.VISIBLE
+                view.parking_cost.visibility = View.VISIBLE
+                view.parking_cost.text = "${plan.estimationCost} MMK"
+            }else if(plan.status == "Pick Up"){
+                view.parking_cost_img.visibility = View.GONE
+                view.parking_cost.visibility = View.GONE
+            }
+            view.parkingtime.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.parking_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.parking_status.text = plan.status
+
+            Glide.with(view).load(plan.img).into(view.parkingimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class ActivityListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.acttopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.actbotbar.visibility = View.INVISIBLE
+            }
+
+            view.act_name.text = plan.name
+            view.act_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            view.act_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.activity_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.activity_status.text = plan.status
+
+            Glide.with(view).load(plan.img).into(view.actimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class PlaceListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.placetopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.placebotbar.visibility = View.INVISIBLE
+            }
+
+            view.place_name.text = plan.name
+            view.place_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            view.place_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.place_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+
+            Glide.with(view).load(plan.img).into(view.placeimg)
+        }
+
+        override fun onClick(p0: View?) {
+            listener.onPlaceClick(plan.plan_id)
+        }
+
+    }
+
+    private inner class ShopListViewHolder(private val view: View, private val listener: ItemClickListener)
+        :RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private lateinit var plan: TripPlan
+
+        init {
+            view.setOnClickListener(this)
+        }
+
+        @SuppressLint("SetTextI18n", "SimpleDateFormat")
+        fun bind(position: Int){
+            this.plan = items[position]
+
+            if (position == 0){
+                view.stopbar.visibility = View.INVISIBLE
+            }
+            if (position == items.size -1){
+                view.sbotbar.visibility = View.INVISIBLE
+            }
+
+            view.shop_name.text = plan.name
+            view.shop_address.text = "${plan.address}, ${plan.city}, ${plan.state}"
+            view.shop_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
+            view.shop_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
+            view.shop_type.text = plan.type
+
+            Glide.with(view).load(plan.img).into(view.shopimg)
         }
 
         override fun onClick(p0: View?) {

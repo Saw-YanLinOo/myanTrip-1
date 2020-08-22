@@ -16,9 +16,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.plancategoryview.AddTrainActivity"
-            android:theme="@style/AddNewTripTheme"
+        <activity android:name=".ui.plancategoryview.AddShoppingActivity" android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.plancategoryview.AddPlaceActivity" android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.plancategoryview.AddActivityActivity" android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.plancategoryview.AddParkingActivity" android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.plancategoryview.AddDirectionActivity" android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ui.plancategoryview.AddNoteActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddCarRentalActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddTrainActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.plancategoryview.AddFlightActivity"
             android:theme="@style/AddNewTripTheme"

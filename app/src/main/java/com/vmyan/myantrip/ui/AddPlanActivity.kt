@@ -123,6 +123,69 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
                 i.putExtra("tripEndDate",tripEndDate)
                 startActivity(i)
             }
+            "Car Rental" -> {
+                val i = Intent(this, AddCarRentalActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[5].name)
+                i.putExtra("planImg", list[5].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Note" -> {
+                val i = Intent(this, AddNoteActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[6].name)
+                i.putExtra("planImg", list[6].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Direction" -> {
+                val i = Intent(this, AddDirectionActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[7].name)
+                i.putExtra("planImg", list[7].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Parking" -> {
+                val i = Intent(this, AddParkingActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[8].name)
+                i.putExtra("planImg", list[8].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Activity" -> {
+                val i = Intent(this, AddActivityActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[9].name)
+                i.putExtra("planImg", list[9].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Place" -> {
+                val i = Intent(this, AddPlaceActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[10].name)
+                i.putExtra("planImg", list[10].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Shopping" -> {
+                val i = Intent(this, AddShoppingActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[11].name)
+                i.putExtra("planImg", list[11].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
         }
     }
 
