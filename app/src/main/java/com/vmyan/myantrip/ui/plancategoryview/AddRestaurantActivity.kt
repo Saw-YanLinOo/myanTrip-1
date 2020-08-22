@@ -32,6 +32,11 @@ class AddRestaurantActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_restaurant)
 
+        addrestaurant_backbtn.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
+
 
         tripId = intent.getStringExtra("tripId")!!
         tripStartDate = intent.getParcelableExtra("tripStartDate")!!

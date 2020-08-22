@@ -11,28 +11,28 @@ import com.vmyan.myantrip.customui.switchdatetime.SwitchDateTimeDialogFragment
 import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.viewmodel.AddPlanViewModel
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_add_hotel.*
-import kotlinx.android.synthetic.main.activity_add_hotel.no
-import kotlinx.android.synthetic.main.activity_add_hotel.titleImg
-import kotlinx.android.synthetic.main.activity_add_hotel.titleText
-import kotlinx.android.synthetic.main.activity_add_hotel.yes
+import kotlinx.android.synthetic.main.activity_add_flight.*
+import kotlinx.android.synthetic.main.activity_add_flight.no
+import kotlinx.android.synthetic.main.activity_add_flight.titleImg
+import kotlinx.android.synthetic.main.activity_add_flight.titleText
+import kotlinx.android.synthetic.main.activity_add_flight.yes
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddHotelActivity : AppCompatActivity() {
+class AddFlightActivity : AppCompatActivity() {
 
     private val viewModel: AddPlanViewModel by inject()
 
     private lateinit var tripStartDate: Timestamp
     private lateinit var tripEndDate: Timestamp
     private lateinit var tripId: String
-    private var checkInDate: Timestamp? = null
-    private var checkOutDate: Timestamp? = null
+    private var departureDate: Timestamp? = null
+    private var arrivalDate: Timestamp? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_hotel)
+        setContentView(R.layout.activity_add_flight)
 
         tripId = intent.getStringExtra("tripId")!!
         tripStartDate = intent.getParcelableExtra("tripStartDate")!!
@@ -42,21 +42,6 @@ class AddHotelActivity : AppCompatActivity() {
         titleText.text = "Add $planName"
         Glide.with(this).load(planImg).into(titleImg)
 
-        addhotel_backbtn.setOnClickListener {
-            onBackPressed()
-            finish()
-        }
-
-        checkindate.setOnClickListener {
-            pickCustDate("in")
-        }
-
-        plan_addhotel_checkout.setOnClickListener {
-            pickCustDate("out")
-        }
-
-
-
         var confirm = true
 
         if (yes.isChecked){
@@ -65,40 +50,51 @@ class AddHotelActivity : AppCompatActivity() {
             confirm = false
         }
 
-        addbtn.setOnClickListener {
-            //checkin
+        flightbackbtn.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
+
+        flightdeparturedate.setOnClickListener {
+            pickCustDate("departure")
+        }
+
+        flightarrivaldate.setOnClickListener {
+            pickCustDate("arrival")
+        }
+
+        flightaddbtn.setOnClickListener {
             addPlan(
                 tripId,
-                hotelname.text.toString(),
+                flightname.text.toString(),
                 planImg!!,
-                checkInDate!!,
-                state.text.toString(),
-                city.text.toString(),
-                address.text.toString(),
-                cost.text.toString().toInt(),
+                departureDate!!,
+                flightfromstate.text.toString(),
+                flightfromcity.text.toString(),
+                flightfromaddress.text.toString(),
+                flightcost.text.toString().toInt(),
                 confirm,
-                "",
-                "",
-                "",
-                1,
-                "Check In"
+                flighttype.text.toString(),
+                flightdepterminal.text.toString(),
+                flightdepgate.text.toString(),
+                4,
+                "Departure"
             )
-            //chceckout
             addPlan2(
                 tripId,
-                hotelname.text.toString(),
+                flightname.text.toString(),
                 planImg,
-                checkOutDate!!,
-                state.text.toString(),
-                city.text.toString(),
-                address.text.toString(),
+                arrivalDate!!,
+                flighttostate.text.toString(),
+                flighttocity.text.toString(),
+                flighttoaddress.text.toString(),
                 "0".toInt(),
                 confirm,
-                "",
-                "",
-                "",
-                1,
-                "Check Out"
+                flighttype.text.toString(),
+                flightarrterminal.text.toString(),
+                flightarrgate.text.toString(),
+                4,
+                "Arrival"
             )
 
             val intent = Intent(this, TripPlanActivity::class.java)
@@ -174,6 +170,7 @@ class AddHotelActivity : AppCompatActivity() {
         })
     }
 
+
     private fun pickCustDate(status: String) {
         val picker = SwitchDateTimeDialogFragment.newInstance("Pick Date & Time For Your Plan", "SET", "CANCEL")
         picker.startAtCalendarView()
@@ -185,13 +182,13 @@ class AddHotelActivity : AppCompatActivity() {
             @SuppressLint("SimpleDateFormat")
             override fun onPositiveButtonClick(date: Date?) {
                 when(status) {
-                    "in" -> {
-                        checkInDate = Timestamp(date!!)
-                        checkindate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    "departure" -> {
+                        departureDate = Timestamp(date!!)
+                        flightdeparturedate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
                     }
-                    "out" -> {
-                        checkOutDate = Timestamp(date!!)
-                        plan_addhotel_checkout.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    "arrival" -> {
+                        arrivalDate = Timestamp(date!!)
+                        flightarrivaldate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
                     }
                 }
             }
@@ -203,7 +200,4 @@ class AddHotelActivity : AppCompatActivity() {
         })
         picker.show(supportFragmentManager,"pick date")
     }
-
-
-
 }

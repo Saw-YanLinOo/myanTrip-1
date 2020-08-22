@@ -7,13 +7,13 @@ import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
-import com.bumptech.glide.Glide
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.TripPlan
 import com.vmyan.myantrip.model.TripWithPlan
 import com.vmyan.myantrip.ui.adapter.PlanListAdapter
 import com.vmyan.myantrip.ui.viewmodel.TripPlanViewModel
+import com.vmyan.myantrip.utils.LoadingDialog
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_trip_plan.*
 import org.koin.android.ext.android.inject
@@ -27,14 +27,23 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
     private lateinit var planListAdapter: PlanListAdapter
     private var planList = mutableListOf<TripPlan>()
 
+    private val loadingDialog = LoadingDialog(this)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_plan)
+
 
         val tripId = intent.getStringExtra("tripId")
 
         setUpPlanListRecycler()
         setUpObserver(tripId!!)
+
+        tripplan_back_btn.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
 
     }
 
@@ -51,11 +60,11 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
         duration_plan.text = "$duration days"
         destination_plan.text = data.trip.tripDestination
         tripType_plan.text = data.trip.tripType
+        tripplan_stepcount.text = "${data.planList.size} Steps"
 //        Glide.with(this).load(data.trip.userImg).into(plan_userImg)
 //        plan_desc.text = data.trip.tripDesc
 //        plan_userName.text = data.trip.userName
-
-        add_plan_btn.setOnClickListener {
+        fab_addplan.setOnClickListener {
             val intent = Intent(this, AddPlanActivity::class.java)
             intent.putExtra("tripId", data.trip.tripId)
             intent.putExtra("tripStartDate",data.trip.tripStartDate)
@@ -63,6 +72,7 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
             startActivity(intent)
         }
     }
+
 
     private fun setUpPlanListRecycler(){
         planListAdapter = PlanListAdapter(this, mutableListOf())
@@ -85,16 +95,16 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
         viewModel.getTripPlan(tripId).observe(this, {
             when(it){
                 is Resource.Loading ->{
-
+                    loadingDialog.startLoading()
                 }
                 is Resource.Success -> {
                     setUpUI(it.data)
                     planList.addAll(it.data.planList)
                     planListAdapter.setItems(it.data.planList)
-
+                    loadingDialog.stopLoading()
                 }
                 is Resource.Failure -> {
-
+                    loadingDialog.stopLoading()
                 }
             }
         })

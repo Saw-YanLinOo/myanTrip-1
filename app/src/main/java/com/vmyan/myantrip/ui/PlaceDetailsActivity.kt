@@ -37,6 +37,7 @@ import com.vmyan.myantrip.ui.fragment.AddReviewDialogFragment
 import com.vmyan.myantrip.ui.fragment.ReviewAllDialogFragment
 import com.vmyan.myantrip.ui.fragment.UpdateReviewDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
+import com.vmyan.myantrip.utils.LoadingDialog
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_place_details.*
 import kotlinx.android.synthetic.main.location_card.*
@@ -55,6 +56,7 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     private lateinit var placeDetailsGalleryAdapter: PlaceDetailsGalleryAdapter
     private lateinit var reviewListAdapter: ReviewListAdapter
     private lateinit var pcPlaceListAdapter: PCPlaceListAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

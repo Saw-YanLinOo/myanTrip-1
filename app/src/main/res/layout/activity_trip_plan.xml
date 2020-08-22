@@ -6,57 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".ui.TripPlanActivity"
     android:background="@color/shimmer_placeholder"
-    >
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/add_plan_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="24dp"
-        app:elevation="20dp"
-        app:srcCompat="@drawable/ic_way" />
+    android:backgroundTint="#DFE5E8">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_plan_btn"
+        android:id="@+id/fab_addplan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="#FFFFFF"
-        app:elevation="20dp"
+        app:backgroundTint="#ffffff"
         android:clickable="true"
+        app:maxImageSize="30dp"
+        app:fabSize="normal"
+        app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="26dp"
-        app:srcCompat="@drawable/ic_add" />
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_add"
+        android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_backpack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#ffffff"
+        android:clickable="true"
+        app:maxImageSize="24dp"
+        app:fabSize="mini"
+        app:elevation="11dp"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+        app:layout_constraintStart_toEndOf="@id/materialCardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_backpack"
+        android:focusable="true" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_planuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#ffffff"
+        android:clickable="true"
+        app:maxImageSize="24dp"
+        app:fabSize="mini"
+        app:elevation="11dp"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/materialCardView2"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_group"
+        android:focusable="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:background="@drawable/tripplan_top_bg"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/tripplan_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            app:tint="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+            app:tint="#000000" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -78,7 +96,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/tripplan_back_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -87,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Category"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tripName_plan" />
@@ -101,6 +120,7 @@
         android:layout_marginTop="80dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="20dp"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -242,6 +262,18 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageButton4" />
+
+            <TextView
+                android:id="@+id/tripplan_stepcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="10 Steps"
+                android:textColor="#FF0909"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

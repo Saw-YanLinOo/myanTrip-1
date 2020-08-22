@@ -14,8 +14,7 @@ import com.vmyan.myantrip.model.PlaceCategory
 import com.vmyan.myantrip.model.PlanCategory
 import com.vmyan.myantrip.ui.adapter.PlanCategoryListAdapter
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
-import com.vmyan.myantrip.ui.plancategoryview.AddHotelActivity
-import com.vmyan.myantrip.ui.plancategoryview.AddRestaurantActivity
+import com.vmyan.myantrip.ui.plancategoryview.*
 import kotlinx.android.synthetic.main.activity_add_plan.*
 import kotlinx.android.synthetic.main.activity_search_place.*
 
@@ -34,6 +33,11 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
         tripId = intent.getStringExtra("tripId")!!
         tripStartDate = intent.getParcelableExtra("tripStartDate")!!
         tripEndDate = intent.getParcelableExtra("tripEndDate")!!
+
+        addplan_backbtn.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
 
         setUpSearchResultRecycler()
         loadData()
@@ -60,7 +64,7 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
         list.add(PlanCategory("Restaurant", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Frestaurant.png?alt=media&token=e31c5e30-f945-48fc-8c4e-6396f69ca5a1"))
         list.add(PlanCategory("Bus", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fbus.png?alt=media&token=ed0b346c-3580-426b-aceb-b1b1fcc85377"))
         list.add(PlanCategory("Flight", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fairplane_take_off_127px.png?alt=media&token=4af47c02-d0be-4fb8-b563-a8961feaa3ea"))
-        list.add(PlanCategory("Train", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Ftrain.png?alt=media&token=697d27f6-eeec-434d-8220-f1e5c2e1c181"))
+        list.add(PlanCategory("Rail", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Ftrain.png?alt=media&token=697d27f6-eeec-434d-8220-f1e5c2e1c181"))
         list.add(PlanCategory("Car Rental", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fcarrental.png?alt=media&token=c0d72d6a-a0df-4f8d-a0e7-3a070abd9573"))
         list.add(PlanCategory("Note", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fnotepad.png?alt=media&token=cb29a708-c01a-4784-8ced-ae7f597accb7"))
         list.add(PlanCategory("Direction", "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/PlanCategory%2Fsignpost.png?alt=media&token=b056d3b4-11ff-4b7b-81d6-b37a81a6c43d"))
@@ -88,6 +92,33 @@ class AddPlanActivity : AppCompatActivity(), PlanCategoryListAdapter.ItemClickLi
                 i.putExtra("tripId",tripId)
                 i.putExtra("planName", list[1].name)
                 i.putExtra("planImg", list[1].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Bus" -> {
+                val i = Intent(this, AddBusActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[2].name)
+                i.putExtra("planImg", list[2].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Flight" -> {
+                val i = Intent(this, AddFlightActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[3].name)
+                i.putExtra("planImg", list[3].img)
+                i.putExtra("tripStartDate",tripStartDate)
+                i.putExtra("tripEndDate",tripEndDate)
+                startActivity(i)
+            }
+            "Rail" -> {
+                val i = Intent(this, AddTrainActivity::class.java)
+                i.putExtra("tripId",tripId)
+                i.putExtra("planName", list[4].name)
+                i.putExtra("planImg", list[4].img)
                 i.putExtra("tripStartDate",tripStartDate)
                 i.putExtra("tripEndDate",tripEndDate)
                 startActivity(i)

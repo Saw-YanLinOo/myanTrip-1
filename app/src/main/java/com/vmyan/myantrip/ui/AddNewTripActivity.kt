@@ -5,16 +5,14 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.customui.switchdatetime.SwitchDateTimeDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.AddNewTripViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_add_new_trip.*
@@ -22,10 +20,8 @@ import org.koin.android.ext.android.inject
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.time.ExperimentalTime
 
 
-@ExperimentalTime
 class AddNewTripActivity : AppCompatActivity() {
 
 
@@ -35,7 +31,6 @@ class AddNewTripActivity : AppCompatActivity() {
     private var startDate: Timestamp? = null
     private var endDate: Timestamp? = null
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_trip)
@@ -69,12 +64,12 @@ class AddNewTripActivity : AppCompatActivity() {
         }
 
         startdate_input.setOnClickListener {
-            datePicker("start")
+            pickCustDate("start")
 
         }
 
         enddate_input.setOnClickListener {
-            datePicker("end")
+            pickCustDate("end")
         }
 
         tripadd_btn.setOnClickListener {
@@ -134,25 +129,34 @@ class AddNewTripActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.O)
-    @ExperimentalTime
-    private fun datePicker(status: String){
-        val builder = MaterialDatePicker.Builder.datePicker()
-        val picker = builder.build()
-        picker.show(supportFragmentManager, picker.toString())
-        picker.addOnPositiveButtonClickListener {
-            when(status){
-                "start" -> {
-                    startdate_input.text = picker.headerText
-                    startDate = Timestamp(Date(it))
-                }
-                "end" -> {
-                    enddate_input.text = picker.headerText
-                    endDate = Timestamp(Date(it))
+
+    private fun pickCustDate(status: String) {
+        val picker = SwitchDateTimeDialogFragment.newInstance("Pick Date & Time For Your Plan", "SET", "CANCEL")
+        picker.startAtCalendarView()
+        picker.setTimeZone(TimeZone.getDefault())
+        picker.minimumDateTime = Date()
+
+        picker.setOnButtonClickListener(object : SwitchDateTimeDialogFragment.OnButtonClickListener{
+            @SuppressLint("SimpleDateFormat")
+            override fun onPositiveButtonClick(date: Date?) {
+                when(status){
+                    "start" -> {
+                        startdate_input.text = SimpleDateFormat("MMM, dd yyyy").format(date)
+                        startDate = Timestamp(date!!)
+                    }
+                    "end" -> {
+                        enddate_input.text = SimpleDateFormat("MMM, dd yyyy").format(date)
+                        endDate = Timestamp(date!!)
+                    }
                 }
             }
-        }
+
+            override fun onNegativeButtonClick(date: Date?) {
+                println()
+            }
+
+        })
+        picker.show(supportFragmentManager,"pick date")
     }
 
 

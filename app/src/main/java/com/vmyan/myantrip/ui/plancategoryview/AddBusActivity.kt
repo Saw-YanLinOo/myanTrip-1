@@ -11,28 +11,28 @@ import com.vmyan.myantrip.customui.switchdatetime.SwitchDateTimeDialogFragment
 import com.vmyan.myantrip.ui.TripPlanActivity
 import com.vmyan.myantrip.ui.viewmodel.AddPlanViewModel
 import com.vmyan.myantrip.utils.Resource
-import kotlinx.android.synthetic.main.activity_add_hotel.*
-import kotlinx.android.synthetic.main.activity_add_hotel.no
-import kotlinx.android.synthetic.main.activity_add_hotel.titleImg
-import kotlinx.android.synthetic.main.activity_add_hotel.titleText
-import kotlinx.android.synthetic.main.activity_add_hotel.yes
+import kotlinx.android.synthetic.main.activity_add_bus.*
+import kotlinx.android.synthetic.main.activity_add_bus.no
+import kotlinx.android.synthetic.main.activity_add_bus.titleImg
+import kotlinx.android.synthetic.main.activity_add_bus.titleText
+import kotlinx.android.synthetic.main.activity_add_bus.yes
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddHotelActivity : AppCompatActivity() {
+class AddBusActivity : AppCompatActivity() {
 
     private val viewModel: AddPlanViewModel by inject()
 
     private lateinit var tripStartDate: Timestamp
     private lateinit var tripEndDate: Timestamp
     private lateinit var tripId: String
-    private var checkInDate: Timestamp? = null
-    private var checkOutDate: Timestamp? = null
+    private var departureDate: Timestamp? = null
+    private var arrivalDate: Timestamp? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_hotel)
+        setContentView(R.layout.activity_add_bus)
 
         tripId = intent.getStringExtra("tripId")!!
         tripStartDate = intent.getParcelableExtra("tripStartDate")!!
@@ -42,20 +42,18 @@ class AddHotelActivity : AppCompatActivity() {
         titleText.text = "Add $planName"
         Glide.with(this).load(planImg).into(titleImg)
 
-        addhotel_backbtn.setOnClickListener {
+        busbackbtn.setOnClickListener {
             onBackPressed()
             finish()
         }
 
-        checkindate.setOnClickListener {
-            pickCustDate("in")
+        busdeparturedate.setOnClickListener {
+            pickCustDate("departure")
         }
 
-        plan_addhotel_checkout.setOnClickListener {
-            pickCustDate("out")
+        busarrivaldate.setOnClickListener {
+            pickCustDate("arrival")
         }
-
-
 
         var confirm = true
 
@@ -65,40 +63,38 @@ class AddHotelActivity : AppCompatActivity() {
             confirm = false
         }
 
-        addbtn.setOnClickListener {
-            //checkin
+        busaddbtn.setOnClickListener {
             addPlan(
                 tripId,
-                hotelname.text.toString(),
+                busname.text.toString(),
                 planImg!!,
-                checkInDate!!,
-                state.text.toString(),
-                city.text.toString(),
-                address.text.toString(),
-                cost.text.toString().toInt(),
+                departureDate!!,
+                busfromstate.text.toString(),
+                busfromcity.text.toString(),
+                busfromaddress.text.toString(),
+                buscost.text.toString().toInt(),
                 confirm,
+                bustype.text.toString(),
                 "",
                 "",
-                "",
-                1,
-                "Check In"
+                3,
+                "Departure"
             )
-            //chceckout
             addPlan2(
                 tripId,
-                hotelname.text.toString(),
+                busname.text.toString(),
                 planImg,
-                checkOutDate!!,
-                state.text.toString(),
-                city.text.toString(),
-                address.text.toString(),
+                arrivalDate!!,
+                bustostate.text.toString(),
+                bustocity.text.toString(),
+                bustoaddress.text.toString(),
                 "0".toInt(),
                 confirm,
+                bustype.text.toString(),
                 "",
                 "",
-                "",
-                1,
-                "Check Out"
+                3,
+                "Arrival"
             )
 
             val intent = Intent(this, TripPlanActivity::class.java)
@@ -107,6 +103,7 @@ class AddHotelActivity : AppCompatActivity() {
         }
 
     }
+
 
     private fun addPlan(
         tripId: String,
@@ -174,6 +171,7 @@ class AddHotelActivity : AppCompatActivity() {
         })
     }
 
+
     private fun pickCustDate(status: String) {
         val picker = SwitchDateTimeDialogFragment.newInstance("Pick Date & Time For Your Plan", "SET", "CANCEL")
         picker.startAtCalendarView()
@@ -185,13 +183,13 @@ class AddHotelActivity : AppCompatActivity() {
             @SuppressLint("SimpleDateFormat")
             override fun onPositiveButtonClick(date: Date?) {
                 when(status) {
-                    "in" -> {
-                        checkInDate = Timestamp(date!!)
-                        checkindate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    "departure" -> {
+                        departureDate = Timestamp(date!!)
+                        busdeparturedate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
                     }
-                    "out" -> {
-                        checkOutDate = Timestamp(date!!)
-                        plan_addhotel_checkout.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
+                    "arrival" -> {
+                        arrivalDate = Timestamp(date!!)
+                        busarrivaldate.text = SimpleDateFormat("MMM, dd yyyy   hh:mm a").format(date)
                     }
                 }
             }
@@ -203,7 +201,4 @@ class AddHotelActivity : AppCompatActivity() {
         })
         picker.show(supportFragmentManager,"pick date")
     }
-
-
-
 }

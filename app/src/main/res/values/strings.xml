@@ -45,7 +45,7 @@ According to legend the pagoda is more than 2,500 years old dating back to the l
 
     <string name="sans_serif" translatable="false">sans-serif</string>
     <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
-    <string name="deleted_key"><xliff:g id="key" example="4">%1$s</xliff:g> deleted</string>
+    <string name="deleted_key"><xliff:g example="4" id="key">%1$s</xliff:g> deleted</string>
 
 </resources>
 
