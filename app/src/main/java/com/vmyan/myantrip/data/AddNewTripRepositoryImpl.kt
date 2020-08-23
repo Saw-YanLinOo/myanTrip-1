@@ -21,9 +21,7 @@ class AddNewTripRepositoryImpl : AddNewTripRepository {
         tripType: String,
         tripName: String,
         tripDesc: String,
-        userId: String,
-        userName: String,
-        userImg: String,
+        userId: ArrayList<String>,
         tripCost: Int
     ): Resource<String> {
         var downloadUrl = ""
@@ -52,8 +50,6 @@ class AddNewTripRepositoryImpl : AddNewTripRepository {
             "tripStartDate" to tripStartDate,
             "tripEndDate" to tripEndDate,
             "userId" to userId,
-            "userName" to userName,
-            "userImg" to userImg,
             "tripCost" to tripCost
         )
 

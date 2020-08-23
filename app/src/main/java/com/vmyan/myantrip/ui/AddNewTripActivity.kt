@@ -20,6 +20,7 @@ import org.koin.android.ext.android.inject
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddNewTripActivity : AppCompatActivity() {
@@ -85,7 +86,8 @@ class AddNewTripActivity : AppCompatActivity() {
                     triptype_input.text.toString(),
                     tripname_input.text.toString(),
                     description_input.text.toString(),
-                    userId, userName, userImg,0
+                    arrayListOf(userId)
+                    ,0
                 )
             }
             clearAll()
@@ -179,9 +181,7 @@ class AddNewTripActivity : AppCompatActivity() {
         tripType: String,
         tripName: String,
         tripDesc: String,
-        userId: String,
-        userName: String,
-        userImg: String,
+        userId: ArrayList<String>,
         tripCost: Int
     ){
         viewModel.addNewTrip(
@@ -193,8 +193,6 @@ class AddNewTripActivity : AppCompatActivity() {
             tripName,
             tripDesc,
             userId,
-            userName,
-            userImg,
             tripCost
         ).observe(this, androidx.lifecycle.Observer {
             when (it) {

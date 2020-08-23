@@ -14,7 +14,7 @@ class PastTripRepositoryImpl : PastTripRepository {
 
         val resultList = FirebaseFirestore.getInstance()
             .collection("TripList")
-            .whereEqualTo("userId", Hawk.get("user_id"))
+            .whereArrayContains("userId", Hawk.get("user_id"))
             .get()
             .await()
 
@@ -28,12 +28,11 @@ class PastTripRepositoryImpl : PastTripRepository {
             val tripDestination = doc.getString("tripDestination")
             val tripDesc = doc.getString("tripDesc")
             val tripCost = doc.getDouble("tripCost")
-            val userId = doc.getString("userId")
-            val userImg = doc.getString("userImg")
-            val userName = doc.getString("userName")
+            val userId = doc.get("userId") as ArrayList<String>
 
             if (tripEndDate!! < Timestamp.now()){
-                tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId!!,userImg!!,userName!!))
+                tripList.add(Trip(tripId,tripImg!!,tripStartDate!!,tripEndDate,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),
+                    userId))
             }
         }
 
@@ -41,13 +40,13 @@ class PastTripRepositoryImpl : PastTripRepository {
     }
 
     private fun decList(list: MutableList<Trip>): MutableList<Trip>{
-        list.sortWith(Comparator { p0, p1 ->
+        list.sortWith { p0, p1 ->
             var res = -1
             if (p0!!.tripStartDate < p1!!.tripStartDate) {
                 res = 1
             }
             res
-        })
+        }
 
         return list
     }

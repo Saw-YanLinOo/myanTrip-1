@@ -88,3 +88,15 @@ val uploadPostModule = module{
         UploadViewModel(UploadPostRepositoryImpl())
     }
 }
+
+val backPackModule = module {
+    single {
+        TripBackPackViewModel(TripBackPackRepositoryImpl())
+    }
+}
+
+val teamMateModule = module {
+    single {
+        TripPlanUserViewModel(TripPlanUserRepositoryImpl())
+    }
+}

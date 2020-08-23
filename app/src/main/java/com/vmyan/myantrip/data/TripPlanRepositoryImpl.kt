@@ -25,9 +25,7 @@ class TripPlanRepositoryImpl : TripPlanRepository {
         val tripDestination = result.getString("tripDestination")
         val tripDesc = result.getString("tripDesc")
         val tripCost = result.getDouble("tripCost")
-        val userId = result.getString("userId")
-        val userImg = result.getString("userImg")
-        val userName = result.getString("userName")
+        val userId = result.get("userId") as ArrayList<String>
 
         val planList = mutableListOf<TripPlan>()
         val planResult = FirebaseFirestore.getInstance()
@@ -71,7 +69,7 @@ class TripPlanRepositoryImpl : TripPlanRepository {
 
         }
 
-        return Resource.Success(TripWithPlan(Trip(tid,tripImg!!,tripStartDate!!,tripEndDate!!,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId!!,userImg!!,userName!!)
+        return Resource.Success(TripWithPlan(Trip(tid,tripImg!!,tripStartDate!!,tripEndDate!!,tripType!!,tripName!!,tripDestination!!,tripDesc!!,tripCost!!.toInt(),userId,)
             , planList))
 
     }

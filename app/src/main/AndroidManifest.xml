@@ -16,16 +16,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.plancategoryview.AddShoppingActivity" android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.plancategoryview.AddPlaceActivity" android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.plancategoryview.AddActivityActivity" android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.plancategoryview.AddParkingActivity" android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.plancategoryview.AddDirectionActivity" android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.TripPlanUserActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.TripBackPackActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddShoppingActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddPlaceActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddActivityActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddParkingActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.plancategoryview.AddDirectionActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.plancategoryview.AddNoteActivity"
             android:theme="@style/AddNewTripTheme"

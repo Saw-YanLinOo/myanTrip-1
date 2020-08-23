@@ -14,8 +14,6 @@ data class Trip(
     var tripDestination: String,
     var tripDesc: String,
     var tripCost: Int,
-    var userId: String,
-    var userImg: String,
-    var userName: String
+    var userId: ArrayList<String>,
 
 )

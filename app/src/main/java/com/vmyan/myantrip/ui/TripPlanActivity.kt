@@ -71,6 +71,17 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
             intent.putExtra("tripEndDate",data.trip.tripEndDate)
             startActivity(intent)
         }
+
+        fab_backpack.setOnClickListener {
+            val intent = Intent(this, TripBackPackActivity::class.java)
+            intent.putExtra("tripId", data.trip.tripId)
+            startActivity(intent)
+        }
+        fab_planuser.setOnClickListener {
+            val intent = Intent(this, TripPlanUserActivity::class.java)
+            intent.putExtra("tripId",data.trip.tripId)
+            startActivity(intent)
+        }
     }
 
 

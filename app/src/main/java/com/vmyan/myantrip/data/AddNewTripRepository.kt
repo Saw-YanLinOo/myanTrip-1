@@ -13,9 +13,7 @@ interface AddNewTripRepository {
         tripType: String,
         tripName: String,
         tripDesc: String,
-        userId: String,
-        userName: String,
-        userImg: String,
+        userId: ArrayList<String>,
         tripCost: Int
     ) : Resource<String>
 }

@@ -28,7 +28,9 @@ class MyanTripApp : Application(){
                 profileModule,
                 uploadPostModule,
                 tripPlanModule,
-                addPlanModule
+                addPlanModule,
+                backPackModule,
+                teamMateModule
             ))
         }
     }
