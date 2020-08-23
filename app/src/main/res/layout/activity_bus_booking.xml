@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.booking.bus.BusBooking">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/colorPrimary"
+        >
+        <LinearLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBackArrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_arrow_back"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus"
+                android:textColor="@color/allColor"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_FlightPickPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBar"
+            android:paddingLeft="20dp"
+
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="20dp"
+            >
+            <LinearLayout
+                android:id="@+id/llFlightFrom"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgFlightFrom"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitXY"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_FligtFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/allColor"
+                    android:layout_below="@id/imgFlightFrom"
+                    />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgFromTo"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/llFlightFrom"
+                android:src="@drawable/ic_fromto"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="false"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+            <LinearLayout
+                android:id="@+id/llFlightTo"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/imgFromTo"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgFlightTo"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitXY"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_FligtTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/allColor"
+                    android:layout_below="@id/imgFlightTo"
+                    />
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="190dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="20dp"
+            android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:cardElevation="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Depart Date"
+                android:textSize="18sp"
+                />
+            <RelativeLayout
+                android:id="@+id/rl_FlightFrom"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/apptxt_choosePlaceText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangel_corner">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appImg_FlightFrom"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_from"
+                    android:layout_alignParentRight="true"
+
+                    android:paddingRight="10dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appAuto_FlightFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:hint="date" />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:cardElevation="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seat"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        />
+
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/horizontal_number_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/rectangel_corner"
+                        app:np_accessibilityDescriptionEnabled="true"
+                        app:np_dividerColor="@color/colorAccent"
+                        app:np_dividerType="side_lines"
+                        app:np_fadingEdgeEnabled="false"
+                        app:np_height="60dp"
+                        app:np_max="10"
+                        app:np_min="0"
+                        app:np_order="ascending"
+                        app:np_orientation="horizontal"
+                        app:np_selectedTextColor="@color/colorAccent"
+                        app:np_selectedTextSize="25sp"
+                        app:np_selectedTypeface="@string/roboto_light"
+                        app:np_textColor="@color/colorAccent"
+                        app:np_textSize="17sp"
+                        app:np_typeface="@string/roboto_light"
+                        app:np_width="180dp"
+                        app:np_wrapSelectorWheel="true" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="10dp"
+                app:cardElevation="3dp"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/card_BusSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Search"
+                    android:textColor="@color/allColor"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:layout_margin="10dp"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recently Search"
+                    android:textSize="18dp"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="CLEAR ALL"
+                    android:textSize="18dp"
+
+                    />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_BusRecentItem"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

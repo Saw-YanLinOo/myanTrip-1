@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.bus.hotel.ShowHotelView">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#dddd"
+        android:layout_height="120dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/appComImgBackClick"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_margin="10dp"
+
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appComTxtSelectedLocationName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="StayLocation"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/appComImgBackClick"
+            android:gravity="left|center"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/appComImgBackClick"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rectangel_corner"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSelectedCheckIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CheckIn"
+                android:textSize="12sp"
+                android:layout_gravity="center"
+                />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="3dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSelectedCheckOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Checkout"
+                android:textSize="12sp"
+                android:layout_gravity="center"
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_hotel"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appComtxtSelectedRoomNO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NoR"
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_hotel"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appComtxtSelectedGuestsNO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NoR"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#959DC8"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dddd"
+    android:orientation="vertical">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="7dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_All"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#102CC5"
+                android:elevation="3dp"
+                app:cardElevation="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/first"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="All"
+                    android:textSize="15sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_TopRating"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:elevation="3dp"
+                app:cardElevation="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="Top Rating"
+                    android:textSize="15dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHighestPriceHotelList"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:elevation="3dp"
+                app:cardElevation="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="Highest Price"
+                    android:padding="2dp"
+                    android:textSize="15sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLowestPriceHotelList"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:elevation="3dp"
+                app:cardElevation="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="Lowest Price"
+                    android:textSize="15sp"
+                    android:padding="2dp"
+                    />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_hotelList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+
+        />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/hotel_list_view_Placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/hotel_list_view_plcaeholder" />
+            <include layout="@layout/hotel_list_view_plcaeholder" />
+            <include layout="@layout/hotel_list_view_plcaeholder" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</LinearLayout>
+
+
+</LinearLayout>

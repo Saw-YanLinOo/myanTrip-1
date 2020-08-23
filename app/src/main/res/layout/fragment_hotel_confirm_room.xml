@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.booking.bus.hotel.HotelConfirmRoom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/confirmFragmentHotelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hotel name"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/confirmHotelAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_place_black_24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/confirmHotelImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/contactInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="5dp"
+                    android:text="Contact Info"
+                    android:gravity="left|center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/textColor"
+                    android:layout_marginBottom="5dp"
+
+                    />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardContactInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                    android:layout_margin="10dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/llContactInfo_checkIn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_below="@+id/confirmCarLinear3"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Check In "
+                                android:layout_weight="1"
+
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_contactInfoCheckIn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="checkin"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/llContactInfo_checkOut"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_below="@+id/confirmCarLinear3"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Check Out"
+                                android:textSize="15sp"
+                                android:layout_weight="1"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_contactInfoCheckOut"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="check out"
+                                android:textSize="15sp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/llContactInfo_Passenger"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_below="@+id/confirmCarLinear7"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Guest "
+                                android:layout_weight="1"
+                                android:layout_marginRight="50dp"
+                                />
+                           <androidx.appcompat.widget.AppCompatTextView
+                               android:id="@+id/ConformNoOFGuests"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:text="0"
+                               android:textSize="15sp"
+                               android:layout_weight="1"
+                               />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Room "
+                                android:layout_weight="1"
+                                android:layout_marginRight="50dp"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/ConformNoOFRoom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="15sp"
+                                android:layout_weight="1"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your room"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/textColor"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="5dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/confirmRoomStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="RoomStatus"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="20sp"
+                            android:layout_marginBottom="5dp"
+                            />
+                        <LinearLayout
+                            android:id="@+id/llConfirmWifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="10dp"
+                            android:weightSum="2"
+                            >
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_check_black_24dp"
+                                android:layout_weight="0.6"
+                                android:textSize="@dimen/textAllSize"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="10dp"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="wifi included"
+                                android:layout_weight="1.4"
+                                android:gravity="left|center"
+                                android:textSize="@dimen/textAllSize"
+                                />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/llconfirmWithToilet"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginLeft="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_check_black_24dp"
+                                android:layout_weight="0.6"
+                                android:textSize="@dimen/textAllSize"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="10dp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="Have bath with Toilet"
+                                android:layout_weight="1.4"
+                                android:gravity="left|center"
+                                android:textSize="@dimen/textAllSize"
+                                />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/llconfirmAircon"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:layout_marginLeft="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_check_black_24dp"
+                                android:layout_weight="0.6"
+                                android:textSize="@dimen/textAllSize"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="10dp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:text="Aircon"
+                                android:layout_weight="1.4"
+                                android:gravity="left|center"
+                                android:textSize="@dimen/textAllSize"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/paymentSymarry"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="5dp"
+                    android:text="Payment Symarry"
+                    android:gravity="left|center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/textColor"
+
+
+                    />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="10dp"
+                   >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        >
+
+
+                        <LinearLayout
+                            android:id="@+id/confirmCarLinear4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                           android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_below="@+id/confirmCarLinear3"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="One Room "
+                                android:layout_weight="1"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/confirmRoomPrice"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="oneroomcost"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/confirmCarLinear7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_below="@+id/confirmCarLinear3"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Discount"
+                                android:textSize="15sp"
+                                android:layout_weight="1"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/confirmHotelDiscount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="15sp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#3F51B5"
+                            />
+                        <LinearLayout
+                            android:id="@+id/confirmCarLinear5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_below="@+id/confirmCarLinear7"
+
+                            >
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Total Cost "
+                                android:layout_weight="1"
+                                />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/confirmTotalRoomCost"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="totalamount"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Contact details"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/textColor"
+                            />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            app:cardElevation="5dp"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="7dp"
+                                >
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="7dp"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:hint="First Name">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/hotelContactFirstName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="text"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="7dp"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:hint="Last Name">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/hotelContactLastName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="text"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="7dp"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:hint="Email">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/hotelContactEmail"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="textEmailAddress"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="7dp"
+
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:hint="Telephone">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/hotelContactPhone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="phone"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="7dp"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:hint="NRC"
+                                    android:layout_marginBottom="10dp">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/hotelContactNRC"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="text"
+                                        />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangel_corner"
+                    android:layout_margin="10dp"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_reserveRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Reseve"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

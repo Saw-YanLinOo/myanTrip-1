@@ -2,7 +2,6 @@ package com.vmyan.myantrip.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.vmyan.myantrip.data.PlaceByCategoryRepository
 import com.vmyan.myantrip.data.SearchPlaceRepository
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.Dispatchers

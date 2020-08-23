@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.bus.flight.FlightBooking">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/beauty_bg"
+        >
+        <LinearLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBackArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flight"
+            android:textColor="@color/allColor"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            />
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_FlightPickPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBar"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
+            >
+            <LinearLayout
+                android:id="@+id/llFlightFrom"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgFlightFrom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_FligtFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/allColor"
+                android:layout_below="@id/imgFlightFrom"
+                />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgFromTo"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/llFlightFrom"
+                android:src="@drawable/ic_fromto"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="false"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
+            <LinearLayout
+                android:id="@+id/llFlightTo"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/imgFromTo"
+                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgFlightTo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_FligtTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/allColor"
+                android:layout_below="@id/imgFlightTo"
+                />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        app:cardElevation="10dp"
+        android:elevation="10dp"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/rlFlightFromPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/apptxt_choosePlaceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:elevation="1dp"
+                android:text="Depart Date" />
+
+            <RelativeLayout
+                android:id="@+id/rl_PickDateFlightDepart"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/apptxt_choosePlaceText"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rectangel_corner">
+
+                <androidx.appcompat.widget.AppCompatImageView
+
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_from"
+
+                    android:paddingRight="10dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appComtxt_FlightDepart"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="date"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="5dp" />
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Passenger"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:elevation="10dp"
+        app:cardElevation="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+           >
+            <LinearLayout
+                android:id="@+id/llFlightAdults"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtAdults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adults"
+                android:layout_marginBottom="2dp"
+
+                />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(12 years and above)"
+                    android:textSize="7sp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginBottom="15dp"
+                    />
+            <nl.dionsegijn.steppertouch.StepperTouch
+                android:id="@+id/stAdultsValue"
+                android:layout_width="95dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/txtAdults"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llFligtChild"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/llFlightAdults"
+                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtChild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Child"
+                />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(Between 2 years and 11 years)"
+                    android:textSize="7sp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginBottom="15dp"
+                    />
+            <nl.dionsegijn.steppertouch.StepperTouch
+
+                android:id="@+id/stChildValue"
+                android:layout_width="95dp"
+                android:layout_height="30dp"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llFlightInfant"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/llFligtChild"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtInfant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Infant"
+                    android:layout_marginBottom="2dp"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(Below 2 years)"
+                    android:textSize="7sp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginBottom="15dp"
+                    />
+                <nl.dionsegijn.steppertouch.StepperTouch
+
+                    android:id="@+id/stInfantValue"
+                    android:layout_width="95dp"
+                    android:layout_height="30dp"
+                    />
+            </LinearLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flight Class"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardElevation="10dp"
+            android:elevation="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_Economy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtEconomy"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="Economy"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_Business"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                  >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtBusiness"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:text="Business"
+                    android:textSize="12sp" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_First"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                  >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFirst"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="First"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="10dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="15dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/card_FlightSearch"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Search"
+                android:textColor="@color/allColor"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+            
+      
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:layout_margin="10dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recently Search"
+                android:textSize="18dp"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="CLEAR ALL"
+                android:textSize="18dp"
+
+                />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_FlightRecentItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</RelativeLayout>

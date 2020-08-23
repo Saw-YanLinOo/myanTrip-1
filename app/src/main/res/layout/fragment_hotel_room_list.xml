@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.booking.bus.hotel.HotelRoomList">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/selected_hotelName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="HotelName"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    android:gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="left|center"
+                        android:background="@drawable/ic_place_black_24dp"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/selec_hotelAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="HotelLocation"
+                        android:layout_gravity="left|center"
+                        android:textSize="10sp"
+                        />
+                </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_slider_Promo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                    android:layout_margin="7dp"
+                    app:cardCornerRadius="15dp">
+
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/sv_RoomImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorEnabled="true"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#5A5A5A"
+                        app:sliderIndicatorUnselectedColor="#FFF"
+                        app:sliderScrollTimeInSec="1" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="PhoneNO"
+                        android:layout_weight="1.4"
+                        />
+                    <TextView
+                        android:id="@+id/selectedHotelPhoneNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="phono"
+                        android:layout_weight="0.6"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginLeft="10dp"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="Check in"
+                        android:layout_weight="1.4"
+
+                        />
+                    <TextView
+                        android:id="@+id/hotelSelectedCheckIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="checkin"
+                        android:layout_weight="0.6"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginLeft="10dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="Check-out"
+                        android:layout_weight="1.4"
+
+                        />
+                    <TextView
+                        android:id="@+id/hotelSelectedCheckOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="checkout"
+                        android:layout_weight="0.6"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+
+                    android:weightSum="2"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="Room"
+                        android:background="@drawable/rectangel_corner"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.7"
+                        android:background="@mipmap/ic_launcher"
+                        />
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_roomList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/rv_roomListPlaceHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <include layout="@layout/room_list_placeholder" />
+                        <include layout="@layout/room_list_placeholder" />
+
+
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

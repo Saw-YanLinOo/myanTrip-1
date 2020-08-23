@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.bus.carRental.CarRental">
+    <LinearLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:layout_height="50dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBackArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car Rentals"
+            android:textColor="@color/allColor"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        app:cardElevation="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Location"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/apptxt_choosePlaceText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/text_corner">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appImg_BusFrom"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_from"
+
+                    android:paddingRight="10dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appAuto_BusFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/appImg_BusFrom"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="location"
+                    android:paddingLeft="5dp" />
+
+
+            </RelativeLayout>
+
+            
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        app:cardElevation="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Date &amp; Duration"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/text_corner">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgDate"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_datefrom"
+
+                    android:paddingRight="10dp" />
+
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/imgDate"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="To"
+                    android:paddingLeft="5dp" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/text_corner">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appImg_BusTo"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_datefrom"
+
+                    android:paddingRight="10dp" />
+
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/appAuto_BusTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/appImg_BusTo"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="To"
+                    android:paddingLeft="5dp" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        app:cardElevation="5dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_marginBottom="10dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How many people ?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+
+            <com.willy.ratingbar.RotationRatingBar
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                app:srb_numStars="6"
+                app:srb_minimumStars="1"
+                app:srb_starWidth="80dp"
+                app:srb_starHeight="90dp"
+                app:srb_starPadding="3dp"
+                app:srb_isIndicator="false"
+                app:srb_scrollable="false"
+                app:srb_clearRatingEnabled="false"
+                app:srb_drawableEmpty="@drawable/ic_person1"
+                app:srb_drawableFilled="@drawable/ic_person">
+            </com.willy.ratingbar.RotationRatingBar>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="10dp"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        >
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/card_CarRentailSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Search"
+            android:textColor="@color/allColor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

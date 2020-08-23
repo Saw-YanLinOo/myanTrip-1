@@ -76,7 +76,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
 
                 }
                 is Resource.Failure -> {
-                    Log.e("Save Error=====>",it.message)
+                    Log.e("Save Error=====>", it.message.toString())
                 }
             }
         })
@@ -93,7 +93,7 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
                         spin_kit.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
-                        applicationContext.showToast("Login Successful")
+                        //applicationContext.showToast("Login Successful")
                         getUserAndSave()
 
                     }

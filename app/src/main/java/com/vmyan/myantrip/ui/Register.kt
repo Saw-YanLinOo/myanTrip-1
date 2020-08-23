@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.github.ybq.android.spinkit.sprite.Sprite
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import com.vmyan.myantrip.R
-import com.vmyan.myantrip.ui.viewmodel.LoginViewModel
 import com.vmyan.myantrip.ui.viewmodel.RegisterViewModel
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs

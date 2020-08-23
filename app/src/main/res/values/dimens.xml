@@ -4,6 +4,13 @@
     <dimen name="left_offset">61dp</dimen>
     <dimen name="card_width">148dp</dimen>
     <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="flightListTxt">12sp</dimen>
+    <dimen name="textAllSize">15sp</dimen>
+    <dimen name="textNormalSize">18sp</dimen>
+    <dimen name="textBar">20dp</dimen>
+    <dimen name="textView">15sp</dimen>
+    <dimen name="textViewTitle">18sp</dimen>
+    <dimen name="textshowlist">15sp</dimen>
 
 
 <!--    <dimen name="design_fab_image_size" tools:override="true">150dp</dimen>-->

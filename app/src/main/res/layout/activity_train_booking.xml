@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.booking.bus.train.TrainBooking"
+    app:layoutDescription="@xml/train"
+    >
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:id="@+id/toolbar_image"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/trip_defaultimg"
+        />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@android:id/home"
+        android:padding="16dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#000000" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="24dp"
+        android:text="Train"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/train_nestedscroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+                <ProgressBar
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:elevation="10dp"
+                    android:visibility="gone"
+                    android:id="@+id/addtrip_progressbar"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:id="@+id/formly">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Find the best train for your trip"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                     android:layout_margin="15dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/apptxt_choosePlaceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:elevation="1dp"
+                        android:text="From" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_FlightFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/apptxt_choosePlaceText"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rectangel_corner">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/appImg_FlightFrom"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/ic_from"
+
+                            android:paddingRight="10dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appAuto_FlightFrom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:layout_toRightOf="@+id/appImg_FlightFrom"
+                            android:paddingLeft="5dp"
+                            android:hint="From" />
+
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/apptxt_FlightTo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:elevation="1dp"
+                                android:text="To" />
+
+
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_below="@id/apptxt_FlightTo"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="15dp"
+                                android:background="@drawable/rectangel_corner">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/appImg_FlightTo"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/ic_to"
+
+                                    android:paddingRight="10dp" />
+
+                                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                    android:id="@+id/appAuto_FlightTo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:layout_centerVertical="true"
+                                    android:background="@android:color/transparent"
+                                    android:gravity="center"
+                                    android:layout_toRightOf="@+id/appImg_FlightTo"
+                                    android:paddingLeft="5dp"
+                                    android:hint="To" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                   android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="7dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Depart Date"
+                            android:textSize="18sp"
+                            />
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_below="@id/apptxt_choosePlaceText"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/rectangel_corner">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/ic_from"
+                                android:layout_alignParentRight="true"
+
+                                android:paddingRight="10dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_centerVertical="true"
+                                android:background="@android:color/transparent"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:hint="date" />
+
+
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7dp"
+                        >
+                    <androidx.appcompat.widget.AppCompatTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Passenger "
+                        android:textSize="18sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rectangel_corner">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appComNoOFAdults"
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:textSize="18dp"
+
+                            android:text="0"
+                            android:paddingRight="10dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appComAdults"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/appComNoOFAdults"
+                            android:paddingLeft="5dp"
+                            android:hint="Adults" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appComNoOFInfant"
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="129dp"
+                            android:layout_toRightOf="@+id/appComNoOFAdults"
+                            android:gravity="center"
+                            android:paddingRight="10dp"
+
+                            android:text="0"
+                            android:textSize="18dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/appComInfant"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+
+                            android:layout_toRightOf="@+id/appComNoOFInfant"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:hint="Infant"
+                            android:paddingLeft="5dp"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="10dp"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/card_TrainSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Search"
+                        android:textColor="@color/allColor"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+
+                    android:background="@color/allColor"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recently Search"
+                        android:textSize="18dp"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="CLEAR ALL"
+                        android:textSize="18dp"
+
+                        />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_TrainRecentItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

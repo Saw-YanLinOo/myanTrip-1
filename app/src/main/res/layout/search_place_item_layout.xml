@@ -60,13 +60,14 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_location"
                     android:layout_gravity="center_vertical"/>
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/s_address"
-                    android:textColor="#000000"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_marginStart="5dp"
-                    tools:text="No.732, Main Road, Mawlamyine, Mon, Myanmar"/>
+                    android:textColor="#000000"
+                    tools:text="No.732, Main Road, Mawlamyine, Mon, Myanmar" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"

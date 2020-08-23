@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Ui.flight.ConfirmFlight">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          android:padding="10dp">
+         <androidx.appcompat.widget.AppCompatTextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Contact details"
+             android:textSize="20sp"
+             android:textStyle="bold"
+             />
+
+         <androidx.cardview.widget.CardView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:padding="10dp"
+             app:cardElevation="5dp"
+             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="7dp"
+                >
+               <com.google.android.material.textfield.TextInputLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                 android:layout_margin="7dp"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                   android:hint="First Name">
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      />
+               </com.google.android.material.textfield.TextInputLayout>
+               <com.google.android.material.textfield.TextInputLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:layout_margin="7dp"
+                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                   android:hint="Last Name">
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      />
+               </com.google.android.material.textfield.TextInputLayout>
+               <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                   android:layout_margin="7dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:hint="Email">
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   />
+            </com.google.android.material.textfield.TextInputLayout>
+               <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="7dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:hint="Telephone">
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   />
+            </com.google.android.material.textfield.TextInputLayout>
+               <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="7dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:hint="NRC"
+                android:layout_marginBottom="10dp">
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="number"
+                   />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+         </androidx.cardview.widget.CardView>
+
+
+         <androidx.appcompat.widget.AppCompatTextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Passenger"
+             android:textStyle="bold"
+             android:textSize="18sp"
+             />
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="5dp"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:text="Same as contact detail"
+                android:layout_centerVertical="true"
+
+               />
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+
+               />
+         </RelativeLayout>
+         <androidx.cardview.widget.CardView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+             android:layout_marginBottom="10dp"
+             app:cardElevation="5dp"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/rectangel_corner"
+
+                >
+
+               <androidx.appcompat.widget.AppCompatTextView
+                   android:id="@+id/txtPassenger"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_gravity="left|center"
+                   android:text="Passenger 1 :" />
+
+               <androidx.appcompat.widget.AppCompatTextView
+                   android:id="@+id/txtPassengerValue"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@+id/txtPassenger"
+
+                   android:text="Adults" />
+
+               <androidx.appcompat.widget.AppCompatImageView
+                   android:id="@+id/imgEdit"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:layout_gravity="right"
+                   android:src="@mipmap/flight"
+
+                   />
+
+            </RelativeLayout>
+            </LinearLayout>
+         </androidx.cardview.widget.CardView>
+
+         <androidx.appcompat.widget.AppCompatTextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Flight Details"
+             android:textSize="18sp"
+             android:textStyle="bold" />
+
+         <androidx.cardview.widget.CardView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:background="#AF9ECC"
+             app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="130dp"
+
+                   android:padding="10dp">
+
+                  <RelativeLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+                     <de.hdodenhof.circleimageview.CircleImageView
+                         android:id="@+id/img_flight"
+                         android:layout_width="40dp"
+                         android:layout_height="40dp"
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginRight="10dp"
+                         android:src="@mipmap/flightt" />
+                  </RelativeLayout>
+
+                  <RelativeLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+                     <androidx.appcompat.widget.AppCompatTextView
+                         android:id="@+id/txtFlightName"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginBottom="10dp"
+                         android:text="Flight Name"
+                         android:textSize="18sp" />
+
+                     <LinearLayout
+                         android:id="@+id/llFlightSEPlace"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_below="@id/txtFlightName"
+                         android:gravity="center"
+                         android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_SPlace"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="sPlace"
+                            android:textSize="@dimen/flightListTxt"
+
+                            />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_fromto" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_EndPlace"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="EPlace"
+                            android:textSize="@dimen/flightListTxt" />
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:id="@+id/llFlightDate"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_below="@id/ll_Departtime"
+                         android:gravity="center"
+                         android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_DepartDate"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Depart"
+                            android:textSize="@dimen/flightListTxt"
+
+                            />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_ConfirmFlightDepartDate"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="depart"
+                            android:textSize="@dimen/flightListTxt" />
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:id="@+id/ll_Departtime"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_below="@id/llFlightSEPlace"
+                         android:gravity="center"
+                         android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_DepartTime"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Time"
+                            android:textSize="@dimen/flightListTxt"
+
+                            />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_fromto" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_ArriveTime"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="arriveTime"
+                            android:textSize="@dimen/flightListTxt" />
+                     </LinearLayout>
+
+                  </RelativeLayout>
+
+
+               </LinearLayout>
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="2dp"
+                   android:background="@color/colorPrimary" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:layout_marginBottom="7dp"
+                   android:gravity="center"
+                   android:orientation="horizontal"
+                   android:weightSum="2">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="Flight Duration" />
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="1h 30m" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:layout_marginBottom="7dp"
+                   android:gravity="center"
+                   android:orientation="horizontal"
+                   android:weightSum="2">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="Baggage" />
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:id="@+id/txtFlightBaggage"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="20 kg" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:layout_marginBottom="10dp"
+                   android:gravity="center"
+                   android:orientation="horizontal"
+                   android:weightSum="2">
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="Price" />
+
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:id="@+id/txtFlightPrice"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:text="600000" />
+
+               </LinearLayout>
+
+            </LinearLayout>
+         </androidx.cardview.widget.CardView>
+
+
+
+
+         <androidx.cardview.widget.CardView
+             android:id="@+id/cardFlightContinue"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:layout_marginLeft="60dp"
+             android:layout_marginRight="60dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="10dp"
+             android:elevation="10dp"
+             app:cardElevation="3dp"
+             app:cardCornerRadius="15dp"
+             app:cardBackgroundColor="@color/colorPrimary"
+             >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/card_FlightSearch"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Continue"
+                android:textColor="@color/allColor"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+         </androidx.cardview.widget.CardView>
+      </LinearLayout>
+
+
+
+
+   </ScrollView>
+
+</FrameLayout>

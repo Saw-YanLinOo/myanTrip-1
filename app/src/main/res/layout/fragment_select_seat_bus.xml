@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Ui.bus.SelectSeatBus">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+      <androidx.appcompat.widget.AppCompatTextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Bus Name"
+          android:textSize="20sp"
+          />
+      <LinearLayout
+          android:id="@+id/llBusTime"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginLeft="20dp"
+          >
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="07:00"
+              />
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="AM"
+              android:layout_marginLeft="5dp"
+              />
+          <View
+              android:layout_width="100dp"
+              android:layout_height="2dp"
+              android:background="@color/colorPrimary"
+              android:layout_gravity="center"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              />
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="07:00"
+
+              />
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="AM"
+              android:layout_marginLeft="5dp"
+              />
+
+      </LinearLayout>
+      <androidx.appcompat.widget.AppCompatTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Yangon-Mandalay-PyinOoLwin"
+          />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:orientation="horizontal"
+          android:gravity="left|center"
+          >
+          <androidx.appcompat.widget.AppCompatTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Seat Number(s) : "
+              android:paddingLeft="20sp"
+              />
+          <androidx.appcompat.widget.AppCompatTextView
+              android:id="@+id/txt_seatNumber"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="20"
+              />
+
+
+      </LinearLayout>
+      <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scrollbars="none">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="10dp"
+          >
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="5dp"
+
+              >
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  >
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:layout_width="35dp"
+                     android:layout_height="35dp"
+                     android:src="@drawable/ic_seats_book"
+                     android:layout_marginLeft="5dp"
+                     android:layout_marginRight="5dp"
+                     />
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Avaliable"
+                      android:layout_gravity="center"
+                      android:layout_marginRight="10dp"
+                      />
+                  <androidx.appcompat.widget.AppCompatImageView
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:src="@drawable/ic_seats_book"
+                      android:layout_marginLeft="5dp"
+                      />
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Selected"
+                      android:layout_marginRight="10dp"
+                      android:layout_gravity="center"
+                      />
+                  <androidx.appcompat.widget.AppCompatImageView
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:src="@drawable/ic_seats_book"
+                      />
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Booked"
+                      android:layout_marginLeft="5dp"
+                      android:layout_gravity="center"
+                      />
+
+
+
+              </LinearLayout>
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:src="@drawable/ic_racinggame"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="5dp"
+                  />
+              <LinearLayout
+                  android:id="@+id/layoutSeat"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  >
+
+              </LinearLayout>
+          </LinearLayout>
+      </androidx.cardview.widget.CardView>
+
+              <androidx.cardview.widget.CardView
+                  android:id="@+id/card_NextBusStepper"
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:layout_marginLeft="60dp"
+                  android:layout_marginRight="60dp"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:elevation="10dp"
+                  app:cardElevation="3dp"
+                  app:cardCornerRadius="15dp"
+                  app:cardBackgroundColor="@color/colorPrimary"
+                  >
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:layout_width="match_parent"
+                      android:layout_height="50dp"
+                      android:text="Done"
+                      android:textColor="@color/allColor"
+                      android:textStyle="bold"
+                      android:textSize="20sp"
+                      android:layout_gravity="center"
+                      android:gravity="center"
+                      />
+
+              </androidx.cardview.widget.CardView>
+          </LinearLayout>
+      </ScrollView>
+
+  </LinearLayout>
+
+</FrameLayout>

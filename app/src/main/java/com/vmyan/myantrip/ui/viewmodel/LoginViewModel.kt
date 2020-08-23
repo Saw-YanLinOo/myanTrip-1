@@ -3,12 +3,9 @@ package com.vmyan.myantrip.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.vmyan.myantrip.data.LoginRepository
-import com.vmyan.myantrip.model.User
-import com.vmyan.myantrip.model.UserAccountSetting
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
-import kotlin.math.log
 
 class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() {
 

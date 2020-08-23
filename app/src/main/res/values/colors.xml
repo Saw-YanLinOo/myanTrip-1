@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#dddddd</color>
+    <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
     <color name="bottom_nav_select">#00B900</color>
     <color name="black_overlay">#66000000</color>
 
+    <color name="divider_color">#FFFFFF</color>
+    <color name="selected_color">#000000</color>
+
     <color name="shimmer_placeholder">#dddddd</color>
 
+
+    <color name="textColor">#000000</color>
+    <color name="buttonColor">#2ae</color>
+    <color name="textColot">#000000</color>
+    <color name="allColor">#E2DFDF</color>
 
 </resources>
