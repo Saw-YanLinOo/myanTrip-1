@@ -90,7 +90,7 @@ class TripPlanUserActivity : AppCompatActivity() {
                 }
                 is Resource.Failure -> {
                     loadingDialog.stopLoading()
-                    println("user not exist!")
+                    Toast.makeText(this, "Email does not exist!", Toast.LENGTH_LONG).show()
                 }
             }
         })
