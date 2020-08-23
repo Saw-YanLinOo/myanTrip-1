@@ -16,6 +16,7 @@ import kotlin.time.ExperimentalTime
 
 class PlanFragment : Fragment() {
 
+
     @ExperimentalTime
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,15 +24,16 @@ class PlanFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_plan, container, false)
 
+
         view.viewPager2.adapter = TripViewPagerAdapter(requireActivity())
         view.viewPager2.setPageTransformer(ZoomOutPageTransformer())
-        TabLayoutMediator(view.tabLayout, view.viewPager2,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                when(position){
-                    0 -> tab.text = "Upcoming"
-                    1 -> tab.text = "Past"
-                }
-            }).attach()
+        TabLayoutMediator(view.tabLayout, view.viewPager2
+        ) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Upcoming"
+                1 -> tab.text = "Past"
+            }
+        }.attach()
 
         view.addtripfabbtn.setOnClickListener {
             startActivity(Intent(activity, AddNewTripActivity::class.java))

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -33,6 +34,7 @@ import com.vmyan.myantrip.ui.booking.bus.hotel.HotelBooking
 import com.vmyan.myantrip.ui.booking.bus.train.TrainBooking
 import com.vmyan.myantrip.ui.viewmodel.bookingCate.BookingCateVMFactory
 import com.vmyan.myantrip.ui.viewmodel.bookingCate.BookingCateViewModel
+import com.vmyan.myantrip.utils.NoAccountDialog
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.fragment_booking.view.*
@@ -52,6 +54,7 @@ class BookingFragment : Fragment(),BookingCateAdapter.ItemClickListener {
     lateinit var bookingCate : MutableList<BookingCateItem>
     private lateinit var sliderImageAdapter: PromoSliderImageAdapter
     private lateinit var bookingCateAdapter: BookingCateAdapter
+    private val auth = FirebaseAuth.getInstance()
 
 
     override fun onCreateView(
@@ -59,10 +62,20 @@ class BookingFragment : Fragment(),BookingCateAdapter.ItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val view =inflater.inflate(R.layout.fragment_booking, container, false)
-        view.txtUserName.text= Hawk.get("user_name")
-        showImageSlider(view)
-        setUpObserver(view)
-        setUpPlaceCategoryRecycler(view)
+
+        val userid = auth.currentUser?.uid.toString().trim()
+
+        if (userid == "null"){
+            view.neslay.visibility = View.GONE
+            NoAccountDialog(requireContext()).noAccountDialog()
+        }else{
+            view.neslay.visibility = View.VISIBLE
+            view.txtUserName.text= Hawk.get("user_name")
+            showImageSlider(view)
+            setUpObserver(view)
+            setUpPlaceCategoryRecycler(view)
+        }
+
 
         view.viewPager2.adapter = ExpierPreViewPagerAdapter(requireActivity())
         view.viewPager2.setPageTransformer(ZoomOutPageTransformer())

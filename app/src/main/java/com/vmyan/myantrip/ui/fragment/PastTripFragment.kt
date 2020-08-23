@@ -13,11 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.google.firebase.auth.FirebaseAuth
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.TripPlanActivity
 
 import com.vmyan.myantrip.ui.adapter.UpComingTripListAdapter
 import com.vmyan.myantrip.ui.viewmodel.*
+import com.vmyan.myantrip.utils.NoAccountDialog
 import com.vmyan.myantrip.utils.Resource
 
 import kotlinx.android.synthetic.main.fragment_past_trip.view.*
@@ -28,6 +30,7 @@ class PastTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener {
 
     private val viewModel: PastTripViewModel by inject()
     private lateinit var upComingTripListAdapter: UpComingTripListAdapter
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +38,16 @@ class PastTripFragment : Fragment(), UpComingTripListAdapter.ItemClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_past_trip, container, false)
 
-        setUpUpComingRecycler(view)
-        setUpObserver(view)
+        val userid = auth.currentUser?.uid.toString().trim()
+
+        if (userid == "null"){
+            NoAccountDialog(requireContext()).noAccountDialog()
+        }else{
+            setUpUpComingRecycler(view)
+            setUpObserver(view)
+        }
+
+
 
 
 

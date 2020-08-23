@@ -39,11 +39,10 @@
                         android:id="@+id/home_search_btn2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
                         android:text="Search for places"
                         android:textColor="#000000"
-                        android:textSize="23sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -64,7 +63,7 @@
                     android:layout_marginTop="10dp"
                     android:text="Discover"
                     android:textColor="#000000"
-                    android:textSize="38sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <com.vmyan.myantrip.customui.tab.AdvancedTabLayout
@@ -131,7 +130,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Types of Travel"
                         android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView

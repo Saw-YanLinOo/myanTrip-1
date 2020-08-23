@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.BookingFragment">
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/neslay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"

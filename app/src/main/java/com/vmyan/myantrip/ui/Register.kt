@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import com.github.ybq.android.spinkit.sprite.Sprite
-import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
+import com.realpacific.clickshrinkeffect.applyClickShrink
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.viewmodel.RegisterViewModel
+import com.vmyan.myantrip.utils.LoadingDialog
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs
 import com.vmyan.myantrip.utils.showToast
@@ -24,6 +24,7 @@ import org.koin.android.ext.android.inject
 class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
     private val TAG = "RegisterActivity"
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val loadingDialog = LoadingDialog(this)
 
     private val viewModel: RegisterViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,34 +33,39 @@ class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
 
         KeyboardVisibilityEvent.setEventListener(this, this)
 
-        var doubleBounce: Sprite = DoubleBounce();
-        spin_kit_r.setIndeterminateDrawable(doubleBounce)
+        signupbtn.applyClickShrink()
 
-        coordinateButtonAndInputs(sign_up_btn,name_input_r, email_input_r,password_input_r, comfirm_password_input_r)
+        coordinateButtonAndInputs(signupbtn,signupnameinput, signupemailinput,signupphnuminput, signuppwinput,signupcompwinput)
         setUpObserver()
+
+        gosigninbtn.setOnClickListener {
+            finish()
+        }
     }
 
     @SuppressLint("ShowToast")
     private fun setUpObserver() {
-        sign_up_btn.setOnClickListener(View.OnClickListener {
-            val name = name_input_r.text.toString()
-            val email = email_input_r.text.toString()
-            val password = password_input_r.text.toString()
-            val comfirm_password = comfirm_password_input_r.text.toString()
+        signupbtn.setOnClickListener(View.OnClickListener {
+            val name = signupnameinput.text.toString()
+            val email = signupemailinput.text.toString()
+            val phonenum = signupphnuminput.text.toString()
+            val password = signuppwinput.text.toString()
+            val comfirm_password = signupcompwinput.text.toString()
             if (!password.equals(comfirm_password)){
                 applicationContext.showToast("passward and comfirm password must be equal")
             }else{
-                viewModel.SignUp(name,email,comfirm_password).observe(this, Observer {
+                viewModel.SignUp(name,email,phonenum,comfirm_password).observe(this, Observer {
                     when (it) {
                         is Resource.Loading -> {
-                            spin_kit_r.visibility = View.VISIBLE
+                            loadingDialog.startLoading()
                         }
 
                         is Resource.Success -> {
+                            loadingDialog.stopLoading()
                             getUserAndSave()
                         }
                         is Resource.Failure -> {
-                            spin_kit_r.visibility = View.GONE
+                            loadingDialog.stopLoading()
                             applicationContext.showToast(it.message)
                             println(it.message)
                         }
@@ -74,8 +80,10 @@ class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
         viewModel.user(auth.currentUser!!.uid).observe(this, Observer {
             when (it) {
                 is Resource.Loading -> {
+                    loadingDialog.startLoading()
                 }
                 is Resource.Success -> {
+                    loadingDialog.stopLoading()
                     val mUser = it.data
                     Log.e("Save User===>",it.data.toString())
                     Hawk.put("user_id",mUser.value!!.user_id)
@@ -87,10 +95,11 @@ class Register : AppCompatActivity(), KeyboardVisibilityEventListener {
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
-                    spin_kit_r.visibility = View.GONE
+
                     finish()
                 }
                 is Resource.Failure -> {
+                    loadingDialog.stopLoading()
                     Log.e("Save Error=====>",it.message)
                 }
             }

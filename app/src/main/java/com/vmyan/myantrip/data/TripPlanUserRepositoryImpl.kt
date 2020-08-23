@@ -68,7 +68,12 @@ class TripPlanUserRepositoryImpl : TripPlanUserRepository{
             }
         }
 
-        return Resource.Success("success")
+        return if (user.isEmpty){
+            Resource.Failure("email not exists")
+        }else{
+            Resource.Success("success")
+        }
+
     }
 
 }

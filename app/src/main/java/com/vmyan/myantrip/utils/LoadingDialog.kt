@@ -6,6 +6,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.Login
+import kotlinx.android.synthetic.main.noaccount_loginview_dialog.view.*
 
 
 class LoadingDialog(private val appCompatActivity: AppCompatActivity) {
@@ -34,7 +36,5 @@ class LoadingDialog(private val appCompatActivity: AppCompatActivity) {
     fun stopLoading() {
         dialog.dismiss()
     }
-
-
 
 }

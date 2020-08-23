@@ -13,11 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.SharePost
 import com.vmyan.myantrip.ui.adapter.PostListAdapter
 import com.vmyan.myantrip.ui.viewmodel.BlogViewModel
 import com.vmyan.myantrip.utils.LoadingDialog
+import com.vmyan.myantrip.utils.NoAccountDialog
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.fragment_blog.*
 import kotlinx.android.synthetic.main.fragment_blog.view.*
@@ -29,6 +31,7 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
     private  val viewModel: BlogViewModel by inject()
 
     private lateinit var postListAdapter: PostListAdapter
+    private val auth = FirebaseAuth.getInstance()
 
 
     override fun onCreateView(
@@ -38,8 +41,16 @@ class BlogFragment : Fragment(),PostListAdapter.ItemClickListener {
         // Inflate the layout for this fragment
         val view =inflater.inflate(R.layout.fragment_blog, container, false)
 
-        setUpPostRecycler(view)
-        setUpObserve()
+        val userid = auth.currentUser?.uid.toString().trim()
+
+        if (userid == "null"){
+            NoAccountDialog(requireContext()).noAccountDialog()
+        }else{
+            setUpPostRecycler(view)
+            setUpObserve()
+        }
+
+
 
         view.share_btn.setOnClickListener {
             val intent = Intent(context, SharePost::class.java)

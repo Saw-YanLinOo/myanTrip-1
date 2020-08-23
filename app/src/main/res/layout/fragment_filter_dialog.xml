@@ -100,7 +100,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Thaninthayi"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="Yangon"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Ayeyarwaddy"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Kayin"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Bago"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Rakhine"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Magwe"
                 android:textStyle="bold"
                 app:chipBackgroundColor="@color/bg_chip_state"/>
             <com.google.android.material.chip.Chip
@@ -116,7 +165,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:text="Ayeyarwady"
+                android:text="Kayah"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Shan"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Sagaing"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Chin"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Kachin"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/bg_chip_state"/>
+            <com.google.android.material.chip.Chip
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:text="Nawpyidaw"
                 android:textStyle="bold"
                 app:chipBackgroundColor="@color/bg_chip_state"/>
 

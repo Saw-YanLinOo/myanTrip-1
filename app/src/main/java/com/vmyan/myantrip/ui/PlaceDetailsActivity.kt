@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.appbar.AppBarLayout
+import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -38,6 +39,7 @@ import com.vmyan.myantrip.ui.fragment.ReviewAllDialogFragment
 import com.vmyan.myantrip.ui.fragment.UpdateReviewDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.PlaceDetailsViewModel
 import com.vmyan.myantrip.utils.LoadingDialog
+import com.vmyan.myantrip.utils.NoAccountDialog
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_place_details.*
 import kotlinx.android.synthetic.main.location_card.*
@@ -56,6 +58,7 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
     private lateinit var placeDetailsGalleryAdapter: PlaceDetailsGalleryAdapter
     private lateinit var reviewListAdapter: ReviewListAdapter
     private lateinit var pcPlaceListAdapter: PCPlaceListAdapter
+    private val auth = FirebaseAuth.getInstance()
 
 
 
@@ -279,7 +282,14 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
 
         rbtn.rating = 0f
         write_review_btn.setOnClickListener {
-            addReviewDialog(data,rbtn.rating,viewModel)
+            val userid = auth.currentUser?.uid.toString().trim()
+
+            if (userid == "null"){
+                NoAccountDialog(this).noAccountDialog()
+            }else{
+                addReviewDialog(data,rbtn.rating,viewModel)
+            }
+
         }
 
         viewalluserreview_btn.setOnClickListener {
@@ -288,7 +298,15 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
 
 
         rbtn.setOnRatingChangeListener { ratingBar, rating, fromUser ->
-            addReviewDialog(data,rating,viewModel)
+
+            val userid = auth.currentUser?.uid.toString().trim()
+
+            if (userid == "null"){
+                NoAccountDialog(this).noAccountDialog()
+            }else{
+                addReviewDialog(data,rating,viewModel)
+            }
+
         }
 
         getNearybyList(data.place.place_id, data.place.city)

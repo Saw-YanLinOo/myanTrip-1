@@ -9,13 +9,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.github.ybq.android.spinkit.sprite.Sprite
-import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
+import com.realpacific.clickshrinkeffect.applyClickShrink
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.User
 import com.vmyan.myantrip.ui.viewmodel.LoginViewModel
+import com.vmyan.myantrip.utils.LoadingDialog
 import com.vmyan.myantrip.utils.Resource
 import com.vmyan.myantrip.utils.coordinateButtonAndInputs
 import com.vmyan.myantrip.utils.showToast
@@ -32,12 +32,12 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
 
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var user : User
+    private val loadingDialog = LoadingDialog(this)
 
     override fun onStart() {
         super.onStart()
-        var skip = Hawk.get<Boolean>("skip",false)
 
-        if (auth.currentUser != null || skip){
+        if (auth.currentUser != null){
             //getUserAndSave()
             goNextActivity(MainActivity())
         }else{
@@ -49,10 +49,9 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
         setContentView(R.layout.activity_login)
 
         KeyboardVisibilityEvent.setEventListener(this, this)
-        val doubleBounce:Sprite  = DoubleBounce();
-        spin_kit.setIndeterminateDrawable(doubleBounce)
 
-        coordinateButtonAndInputs(login_btn, email_input, password_input)
+        coordinateButtonAndInputs(loginbtn, loginemailinput, loginpasswordinput)
+        loginbtn.applyClickShrink()
         setUpObserver()
 
 
@@ -63,19 +62,21 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
             when (it) {
                 is Resource.Loading -> {
                     //spin_kit.visibility = View.VISIBLE
+                    loadingDialog.startLoading()
                 }
                 is Resource.Success -> {
+                    loadingDialog.stopLoading()
                     val mUser = it.data
                     Hawk.put("user_id",mUser.value!!.user_id)
                     Hawk.put("user_name",mUser.value!!.username)
                     Hawk.put("user_email",mUser.value!!.email)
                     Hawk.put("user_phone",mUser.value!!.phone_number)
                     Hawk.put("user_profile",mUser.value!!.profilephoto)
-                    spin_kit.visibility = View.GONE
                     goNextActivity(MainActivity())
 
                 }
                 is Resource.Failure -> {
+                    loadingDialog.stopLoading()
                     Log.e("Save Error=====>", it.message.toString())
                 }
             }
@@ -84,32 +85,32 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
 
     @SuppressLint("ShowToast")
     private fun setUpObserver() {
-        login_btn.setOnClickListener(View.OnClickListener {
-            val email = email_input.text.toString()
-            val password = password_input.text.toString()
+        loginbtn.setOnClickListener(View.OnClickListener {
+            val email = loginemailinput.text.toString()
+            val password = loginpasswordinput.text.toString()
             viewModel.Login(email,password).observe(this, Observer {
                 when (it) {
                     is Resource.Loading -> {
-                        spin_kit.visibility = View.VISIBLE
+                        loadingDialog.startLoading()
                     }
                     is Resource.Success -> {
+                        loadingDialog.stopLoading()
                         //applicationContext.showToast("Login Successful")
                         getUserAndSave()
 
                     }
                     is Resource.Failure -> {
-                        spin_kit.visibility = View.GONE
+                        loadingDialog.stopLoading()
                         applicationContext.showToast(it.message)
                         println(it.message)
                     }
                 }
             })
         })
-        create_account_text.setOnClickListener(View.OnClickListener {
+        gosignupbtn.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, Register::class.java))
         })
-        skip.setOnClickListener (View.OnClickListener {
-            Hawk.put("skip",true)
+        skipbtn.setOnClickListener (View.OnClickListener {
             goNextActivity(MainActivity())
         })
     }
@@ -123,9 +124,9 @@ class Login : AppCompatActivity(), KeyboardVisibilityEventListener {
 
     override fun onVisibilityChanged(isOpen: Boolean) {
         if (isOpen) {
-            skip.visibility = View.GONE
+            skipbtn.visibility = View.GONE
         } else {
-            skip.visibility = View.VISIBLE
+            skipbtn.visibility = View.VISIBLE
         }
     }
 }
