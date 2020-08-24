@@ -1,5 +1,6 @@
 package com.vmyan.myantrip.data
 
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.vmyan.myantrip.model.Place
@@ -25,6 +26,8 @@ class SearchPlaceRepositoryImpl : SearchPlaceRepository {
                 val sid = sub.id
                 val resultList = FirebaseFirestore.getInstance()
                     .collection("/PlaceList/$cid/SubCategory/$sid/Place")
+//                    .collection("/PlaceList/rhhDpjHvEumk6xomTodv/SubCategory/1/Place")
+//                    .whereEqualTo(FieldPath.documentId(),"fviUfmF6u5iak4v01VCJ")
                     .orderBy("name",Query.Direction.ASCENDING)
                     .get()
                     .await()
@@ -46,8 +49,6 @@ class SearchPlaceRepositoryImpl : SearchPlaceRepository {
                     val ratingValue = document.getDouble("ratingValue")?.toFloat()
                     val sliderImg = document.get("sliderImg") as ArrayList<String>
                     val state = document.getString("state")
-
-
 
                     placeList.add(
                         Place(id, address!!, buildDate!!, category!!, city!!, country!!, founder!!, gallery, history!!, info!!, latlng!!, mainImg!!, name!!, ratingValue!!, sliderImg, state!!)

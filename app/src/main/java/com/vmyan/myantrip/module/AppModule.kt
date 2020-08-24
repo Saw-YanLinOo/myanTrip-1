@@ -100,3 +100,9 @@ val teamMateModule = module {
         TripPlanUserViewModel(TripPlanUserRepositoryImpl())
     }
 }
+
+val emergencyModule = module {
+    single {
+        EmergencyViewModel(EmergencyRepositoryImpl())
+    }
+}

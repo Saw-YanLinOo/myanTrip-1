@@ -80,10 +80,14 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
         place_mapView.onCreate(savedInstanceState)
         place_mapView.onResume()
         detail_s_btn.setOnClickListener {
-            startActivity(Intent(this, SearchPlaceActivity::class.java))
+            val intent = Intent(this, SharePost::class.java)
+            intent.putExtra("place_id",placeId)
+            startActivity(intent)
         }
         detail_s_btnly.setOnClickListener {
-            startActivity(Intent(this, SearchPlaceActivity::class.java))
+            val intent = Intent(this, SharePost::class.java)
+            intent.putExtra("place_id",placeId)
+            startActivity(intent)
         }
 
         detail_back_btnly.setOnClickListener {

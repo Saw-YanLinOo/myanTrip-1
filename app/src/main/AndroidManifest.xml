@@ -16,22 +16,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.booking.bus.train.TrainStepper"/>
-        <activity android:name=".ui.booking.bus.train.TrainViewList"/>
-        <activity android:name=".ui.booking.bus.train.TrainBooking"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.carRental.CarRentalStepper"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.carRental.CarRentalsListView"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.carRental.CarRental"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.BusStepper"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.BusListView"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.BusBooking"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.flight.FlightStepper"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.flight.FlightListView"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.flight.FlightBooking"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.hotel.HotelStepper"/>
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.hotel.ShowHotelView"/>
+        <activity android:name=".ui.EmergencyListActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.booking.bus.train.TrainStepper" />
+        <activity android:name=".ui.booking.bus.train.TrainViewList" />
+        <activity android:name=".ui.booking.bus.train.TrainBooking" />
+        <activity android:name=".ui.booking.bus.carRental.CarRentalStepper" />
+        <activity android:name=".ui.booking.bus.carRental.CarRentalsListView" />
+        <activity android:name=".ui.booking.bus.carRental.CarRental" />
+        <activity android:name=".ui.booking.bus.BusStepper" />
+        <activity android:name=".ui.booking.bus.BusListView" />
+        <activity android:name=".ui.booking.bus.BusBooking" />
+        <activity android:name=".ui.booking.bus.flight.FlightStepper" />
+        <activity android:name=".ui.booking.bus.flight.FlightListView" />
+        <activity android:name=".ui.booking.bus.flight.FlightBooking" />
+        <activity android:name=".ui.booking.bus.hotel.HotelStepper" />
+        <activity android:name=".ui.booking.bus.hotel.ShowHotelView" />
         <activity android:name=".ui.StayingPlaceActivity" />
-        <activity android:name="com.vmyan.myantrip.ui.booking.bus.hotel.HotelBooking" />
+        <activity android:name=".ui.booking.bus.hotel.HotelBooking" />
         <activity
             android:name=".ui.plancategoryview.AddShoppingActivity"
             android:theme="@style/AddNewTripTheme"
@@ -52,31 +55,12 @@
             android:name=".ui.plancategoryview.AddDirectionActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.TripPlanUserActivity"
+        <activity
+            android:name=".ui.TripPlanUserActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.TripBackPackActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.plancategoryview.AddShoppingActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.plancategoryview.AddPlaceActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.plancategoryview.AddActivityActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.plancategoryview.AddParkingActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.plancategoryview.AddDirectionActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity

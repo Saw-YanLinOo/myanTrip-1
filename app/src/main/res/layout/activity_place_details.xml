@@ -167,12 +167,13 @@
                         android:layout_margin="5dp"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/nav_menu_btn_bg">
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/ic_search"
+                            app:tint="#000000"
+                            android:src="@drawable/ic_baseline_share_24"
                             android:id="@+id/detail_s_btn"/>
                     </RelativeLayout>
                 </RelativeLayout>

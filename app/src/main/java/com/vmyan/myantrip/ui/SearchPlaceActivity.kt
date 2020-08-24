@@ -239,7 +239,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
 
     @SuppressLint("ShowToast")
     private fun setUpObserver() {
-        viewModel.fetchPlaceBySearch().observe(this, Observer {
+        viewModel.fetchPlaceBySearch().observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     search_placeholder.startShimmer()
@@ -257,6 +257,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
                             placeList.add(data)
                         }
                     }
+                    println(placeList.size)
                     searchPlaces(search_input.text.toString())
                 }
                 is Resource.Failure -> {

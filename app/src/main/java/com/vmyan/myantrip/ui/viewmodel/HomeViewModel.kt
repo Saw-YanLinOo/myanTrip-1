@@ -37,7 +37,7 @@ class HomeViewModel (private val homeRepository: HomeRepository) : ViewModel() {
             val placeList = homeRepository.getPlaceBySubCategory(id)
             emit(placeList)
         }catch (e: Exception){
-            emit(Resource.Failure(e.cause!!.toString()))
+            emit(Resource.Failure(e.message.toString()))
         }
     }
 

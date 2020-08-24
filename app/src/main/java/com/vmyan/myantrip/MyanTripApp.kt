@@ -30,7 +30,8 @@ class MyanTripApp : Application(){
                 tripPlanModule,
                 addPlanModule,
                 backPackModule,
-                teamMateModule
+                teamMateModule,
+                emergencyModule
             ))
         }
     }

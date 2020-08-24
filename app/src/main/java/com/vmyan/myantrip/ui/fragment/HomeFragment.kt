@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
+import com.vmyan.myantrip.ui.EmergencyListActivity
 import com.vmyan.myantrip.ui.PlaceByCategoryActivity
 import com.vmyan.myantrip.ui.PlaceDetailsActivity
 import com.vmyan.myantrip.ui.SearchPlaceActivity
@@ -56,9 +57,14 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
             startActivity(Intent(activity,SearchPlaceActivity::class.java))
         }
 
+        view.home_sos_button.setOnClickListener {
+            startActivity(Intent(activity, EmergencyListActivity::class.java))
+        }
+
+
         setUpPlaceCategoryRecycler(view)
         setUpHomePlaceRecycler(view)
-        onSubTabClick(view)
+//        onSubTabClick(view)
         setUpObserver(view)
 
         return view
@@ -102,17 +108,13 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
     }
 
     private fun updatePlaceList(list: MutableList<Place>){
-        Collections.sort(
-            list,
-            object : Comparator<Place?> {
-                override fun compare(p0: Place?, p1: Place?): Int {
-                    var res = -1
-                    if (p0!!.ratingValue < p1!!.ratingValue) {
-                        res = 1
-                    }
-                    return res
-                }
-            })
+        list.sortWith { p0, p1 ->
+            var res = -1
+            if (p0!!.ratingValue < p1!!.ratingValue) {
+                res = 1
+            }
+            res
+        }
 
         homePlaceListAdapter.setItems(list)
     }
