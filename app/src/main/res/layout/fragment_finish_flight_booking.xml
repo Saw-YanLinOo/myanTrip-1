@@ -3,12 +3,287 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ui.flight.FinishFlightBooking">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="#dddd"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.booking.bus.flight.FinishFlightBooking">
+    <com.mreram.ticketview.TicketView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        app:tv_anchor1="@+id/cl_head"
+        app:tv_anchor2="@+id/cl_center"
+        >
+        <RelativeLayout
+            android:id="@+id/cl_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ticket_top">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgSuccessLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/sucess"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgSuccessLogo"
+                android:text="Sccess"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtContactName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="U Ba"
+                android:textStyle="bold"
+                android:layout_below="@+id/txtSuccess"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtContactPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="098888888"
+                android:layout_below="@+id/txtContactName"
+                android:textSize="13sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/cl_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cl_head"
+            android:background="#fff">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSelectedItemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yoe Yoe Lay"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                />
+
+
+            <LinearLayout
+                android:id="@+id/txtSelectedItemsDate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:weightSum="3"
+                android:layout_below="@id/txtSelectedItemName"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFlightSelectedFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="From "
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2 days"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorAccent"
+                        />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFlightSelectedTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="To"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/txtSelectedItemsTime"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:weightSum="3"
+                android:layout_below="@id/txtSelectedItemsDate"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFlightSelectedTimeStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="07:00AM"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2 days"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorAccent"
+                        />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFlightSelectedTimeStop"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="08:00AM "
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+            <LinearLayout
+            android:id="@+id/llSelectedItemGuests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/txtSelectedItemsTime"
+
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Duration "
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:layout_marginRight="50dp"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFlightDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFLightBaggageAllow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_below="@+id/llSelectedItemGuests"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Baggage Allow "
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="50dp"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtFlightBaggageAllow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llSelectedCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llFLightBaggageAllow"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Cost"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:textSize="20sp"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtSelectedItemTotalCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="400000 MMK"
+                    android:textSize="18sp"
+                    android:gravity="right"
+                    />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFinishFlightBooking"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="OK"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/llSelectedCost"
+                android:layout_marginBottom="10dp"
+                />
+
+
+        </RelativeLayout>
+
+
+
+    </com.mreram.ticketview.TicketView>
 
 </FrameLayout>

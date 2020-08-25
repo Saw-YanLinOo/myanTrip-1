@@ -9,11 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#dddd"
         >
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -23,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="HotelName"
-                    android:textSize="23sp"
+                    android:textSize="@dimen/titelSize"
                     android:textStyle="bold"
                     android:gravity="left|center"
                     android:layout_marginTop="5dp"
@@ -46,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:text="HotelLocation"
                         android:layout_gravity="left|center"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         />
                 </LinearLayout>
                 <androidx.cardview.widget.CardView
@@ -54,7 +56,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardElevation="5dp"
+                    android:visibility="gone"
                     android:layout_margin="7dp"
+                    android:layoutAnimation="@anim/layoutanimation_left_to_right"
                     app:cardCornerRadius="15dp">
 
                     <com.smarteist.autoimageslider.SliderView
@@ -76,6 +80,23 @@
 
 
                 </androidx.cardview.widget.CardView>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/room_images_placeholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/booking_promo_placeholder" />
+
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
 
                 <LinearLayout
@@ -166,10 +187,11 @@
                         android:layout_marginRight="10dp"
                         />
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1.7"
-                        android:background="@mipmap/ic_launcher"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_sort"
                         />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
@@ -177,6 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone"
+                    android:layoutAnimation="@anim/layoutanimation_left_to_right"
                     />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
@@ -198,7 +221,7 @@
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

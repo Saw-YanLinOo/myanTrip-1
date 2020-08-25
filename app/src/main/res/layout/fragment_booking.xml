@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardElevation="5dp"
+            android:visibility="gone"
             app:cardCornerRadius="10dp">
 
             <com.smarteist.autoimageslider.SliderView
@@ -79,12 +80,31 @@
                 app:sliderIndicatorOrientation="horizontal"
                 app:sliderIndicatorPadding="3dp"
                 app:sliderIndicatorRadius="2dp"
+                android:layoutAnimation="@anim/layoutanimation_left_to_right"
                 app:sliderIndicatorSelectedColor="#5A5A5A"
                 app:sliderIndicatorUnselectedColor="#FFF"
                 app:sliderScrollTimeInSec="1" />
 
 
         </androidx.cardview.widget.CardView>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/booking_Promo_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/booking_promo_placeholder" />
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"

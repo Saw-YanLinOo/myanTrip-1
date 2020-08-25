@@ -1,4 +1,4 @@
-package com.vmyan.myantrip.ui
+package com.vmyan.myantrip.ui.booking.bus
 
 import android.app.Activity
 import android.content.Context

@@ -11,6 +11,8 @@ data class CarRentailsItem(
     val noOfBag :String,
     val carStatus :String,
     val pricePerDay :String,
+    val carAddress :String,
+    val carPhoneNo : String,
    val driverStatus :Boolean,
     val carCompanyLogo :String,
     val carImage :String

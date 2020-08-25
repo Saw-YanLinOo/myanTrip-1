@@ -174,13 +174,21 @@ class BookingFragment : Fragment(),BookingCateAdapter.ItemClickListener {
         viewModel.fetchPromoList.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
-                    println("loading.....PlaceCategoryList")
+                    view.booking_Promo_placeholder.startShimmer()
+                    view.booking_Promo_placeholder.visibility = View.VISIBLE
+                    view.cv_slider_Promo.visibility = View.GONE
                 }
                 is Resource.Success -> {
+                    view.booking_Promo_placeholder.startShimmer()
+                    view.booking_Promo_placeholder.visibility = View.GONE
+                    view.cv_slider_Promo.visibility = View.VISIBLE
                     sliderImageAdapter.setItem(it.data[0].imgUrl)
 
                 }
                 is Resource.Failure -> {
+                    view.booking_Promo_placeholder.startShimmer()
+                    view.booking_Promo_placeholder.visibility = View.GONE
+                    view.cv_slider_Promo.visibility = View.GONE
                     println(it.message)
                     Toast.makeText(
                         activity,

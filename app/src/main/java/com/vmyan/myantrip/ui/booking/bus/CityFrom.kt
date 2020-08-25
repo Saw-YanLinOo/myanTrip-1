@@ -1,4 +1,4 @@
-package com.vmyan.myantrip.ui
+package com.vmyan.myantrip.ui.booking.bus
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -10,13 +10,10 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.SnapHelper
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.data.booking.carRental.bookingCate.BookingCategoriesRepositoryImpl
 import com.vmyan.myantrip.model.bookingCate.TownListItem
@@ -24,10 +21,16 @@ import com.vmyan.myantrip.ui.adapter.TownListAdapter
 import com.vmyan.myantrip.ui.viewmodel.bookingCate.BookingCateVMFactory
 import com.vmyan.myantrip.ui.viewmodel.bookingCate.BookingCateViewModel
 import com.vmyan.myantrip.utils.Resource
+import kotlinx.android.synthetic.main.activity_city_from.*
 import kotlinx.android.synthetic.main.activity_staying_place.*
+import kotlinx.android.synthetic.main.activity_staying_place.rv_stayPlace
+import kotlinx.android.synthetic.main.activity_staying_place.s_btn
+import kotlinx.android.synthetic.main.activity_staying_place.s_btn_ly
+import kotlinx.android.synthetic.main.activity_staying_place.searchTown
+import kotlinx.android.synthetic.main.activity_staying_place.townList_Placeholder
 import java.util.*
 
-class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickListener{
+class CityFrom : AppCompatActivity(),TownListAdapter.ItemClickListener {
     private val viewModel by lazy {
         ViewModelProviders.of(
             this,
@@ -36,25 +39,21 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
             BookingCateViewModel::class.java
         )
     }
-
-
-
     private val townList = mutableListOf<TownListItem>()
     private lateinit var layoutManager: LinearLayoutManager
     lateinit var cityListAdapter: TownListAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_staying_place)
+        setContentView(R.layout.activity_city_from)
         setUpObserver()
         setUpCityList()
-        searchTown.addTextChangedListener(object : TextWatcher {
+        searchFromTown.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchPlaces(searchTown.text.toString())
+                searchPlaces(searchFromTown.text.toString())
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -64,30 +63,12 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
         })
 
 
-        s_btn_ly.setOnClickListener {
+        cityFrom_S_btn_ly.setOnClickListener {
             openVoiceCommand()
         }
-        s_btn.setOnClickListener {
+        cityFrom_S_btn.setOnClickListener {
             openVoiceCommand()
         }
-
-        /*   sv_SearchTown.setOnQueryTextListener(object  : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-               override fun onQueryTextSubmit(p0: String?): Boolean {
-                   return false
-
-               }
-
-               override fun onQueryTextChange(newText: String?): Boolean {
-                   adapter.getFilter().filter(newText)
-                   rv_stayPlace.adapter=adapter
-                   return false
-
-               }
-
-           })*/
-
-        // setTownValue()
-
 
     }
 
@@ -136,18 +117,14 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
 
     private fun setUpCityList(){
         cityListAdapter = TownListAdapter(this, mutableListOf())
-        rv_stayPlace.layoutManager = LinearLayoutManager(this,
+        rv_CityFrom.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL,false)
-        rv_stayPlace.apply {
+        rv_CityFrom.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
         }
-
-        val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
-        snapHelperStart.attachToRecyclerView(rv_stayPlace)
-
-        rv_stayPlace.isNestedScrollingEnabled=false
-        rv_stayPlace.adapter = cityListAdapter
+        rv_CityFrom.isNestedScrollingEnabled=false
+        rv_CityFrom.adapter = cityListAdapter
 
     }
     @SuppressLint("ShowToast")
@@ -157,12 +134,12 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
                 is Resource.Loading -> {
                     townList_Placeholder.startShimmer()
                     townList_Placeholder.visibility = View.VISIBLE
-                    rv_stayPlace.visibility = View.GONE
+                    rv_CityFrom.visibility = View.GONE
                 }
                 is Resource.Success -> {
                     townList_Placeholder.stopShimmer()
                     townList_Placeholder.visibility = View.GONE
-                    rv_stayPlace.visibility = View.VISIBLE
+                    rv_CityFrom.visibility = View.VISIBLE
                     townList.addAll(it.data)
                     cityListAdapter.setItems(it.data)
 
@@ -171,7 +148,7 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
                 is Resource.Failure -> {
                     townList_Placeholder.startShimmer()
                     townList_Placeholder.visibility = View.GONE
-                    rv_stayPlace.visibility = View.GONE
+                    rv_CityFrom.visibility = View.GONE
                 }
             }
         })
@@ -198,9 +175,12 @@ class StayingPlaceActivity : AppCompatActivity() , TownListAdapter.ItemClickList
         const val ID = "id"
 
         fun getIntent(context: Context, postId: Int): Intent {
-            return Intent(context, StayingPlaceActivity::class.java).apply {
+            return Intent(context, CityFrom::class.java).apply {
                 putExtra(ID, postId)
             }
         }
     }
+
+
+
 }

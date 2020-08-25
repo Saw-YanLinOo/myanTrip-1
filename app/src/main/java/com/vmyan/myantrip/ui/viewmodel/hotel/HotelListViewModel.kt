@@ -43,5 +43,14 @@ class HotelListViewModel (private val hotelListRepository: HotelListRepository) 
             emit(Resource.Failure(e.message!!))
         }
     }
+    val fetchHotelPromoImages = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            val promoSliderList = hotelListRepository.getHotelPromoImages()
+            emit(promoSliderList)
+        } catch (e: Exception) {
+            emit(Resource.Failure(e.message!!))
+        }
+    }
 
 }

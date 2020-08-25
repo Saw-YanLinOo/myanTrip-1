@@ -22,6 +22,8 @@ class CarListRepositoryImpl  : CarListRepository {
             val noOfBag  =car.getString("NoOfBag")
             val carStatus =car.getString("CarStatus")
             val pricePerDay =car.getString("PricePerDay")
+            val carAddress =car.getString("CarAddress")
+            val carPhoneNo=car.getString("CarPhoneNo")
             val driverStatus  =car.getBoolean("DriverStatus")
             val carCompanyLogo =car.getString("CarCompanyLogo")
             val carImage =car.getString("CarImage")
@@ -46,6 +48,8 @@ class CarListRepositoryImpl  : CarListRepository {
                     noOfBag!!,
                     carStatus!!,
                     pricePerDay!!,
+                    carAddress!!,
+                    carPhoneNo!!,
                    driverStatus!!,
                     carCompanyLogo!!,
                     carImage!!

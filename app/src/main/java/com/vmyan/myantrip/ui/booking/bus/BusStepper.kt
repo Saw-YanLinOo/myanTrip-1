@@ -9,7 +9,7 @@ import com.badoualy.stepperindicator.StepperIndicator
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.NonSwipeableViewPager
 
-class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener {
+class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener ,BusDetails.OnBusDetailsListener,BusPayment.OnBusPaymentListener{
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private lateinit var mViewPager: NonSwipeableViewPager
     private lateinit var stepperIndicator: StepperIndicator
@@ -30,7 +30,7 @@ class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener {
     inner class SectionsPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         override fun getCount(): Int {
             // Show 3 total pages.
-            return 3
+            return 4
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
@@ -38,6 +38,7 @@ class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener {
                 0 -> return "Select Seat"
                 1 -> return "Details"
                 2 -> return "Payment"
+                3 -> return "Finish"
                 /* 3 -> return "Fourth"
                  4 -> return "Finish"*/
             }
@@ -49,6 +50,7 @@ class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener {
                 0 -> return SelectSeatBus.newInstance()
                 1 -> return BusDetails.newInstance()
                 2 -> return BusPayment.newInstance()
+                3 -> return BusFinishPayment.newInstance()
 
             }
             return SelectSeatBus.newInstance()
@@ -60,6 +62,10 @@ class BusStepper : AppCompatActivity() , SelectSeatBus.OnStepOneListener {
             mViewPager!!.setCurrentItem(1, true)
         } else if (fragment is BusDetails) {
             mViewPager!!.setCurrentItem(2, true)
+        }else if (fragment is BusPayment){
+            mViewPager.setCurrentItem(3,true)
+        }else if (fragment is BusFinishPayment){
+            mViewPager.setCurrentItem(4,true)
         }
     }
 }

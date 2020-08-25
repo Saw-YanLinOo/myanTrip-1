@@ -39,7 +39,6 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
     private lateinit var cid: String
     private lateinit var hotelViewAdapter : HotelViewAdapter
    lateinit var  hotelAllList :MutableList<HotelList>
-    //lateinit var  hotelTopRatingList :MutableList<HotelList>
     private lateinit var locationName :String
     private lateinit var  txtCheckIn :String
     private lateinit var  txtCheckOut:String
@@ -65,6 +64,7 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         card_TopRating.setOnClickListener(this)
         cardHighestPriceHotelList.setOnClickListener(this)
         cardLowestPriceHotelList.setOnClickListener(this)
+        appComImgHotelBackClick.setOnClickListener(this)
 
         setAllHotelList()
         setAdapter()
@@ -101,7 +101,7 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         })
     }
 
-    fun setTopRatingHotelList() {
+    private fun setTopRatingHotelList() {
 
         viewModel.fetchTopratingHotelList.observe(this, Observer {
             when (it) {
@@ -128,7 +128,7 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         })
     }
 
-    fun setHighestPriceHotelList() {
+    private fun setHighestPriceHotelList() {
 
         viewModel.fetchHighestPriceHotelList.observe(this, Observer {
             when (it) {
@@ -155,7 +155,7 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         })
     }
 
-    fun setLowestPriceHotelList() {
+    private fun setLowestPriceHotelList() {
 
         viewModel.fetchLowestPriceHotelList.observe(this, Observer {
             when (it) {
@@ -189,9 +189,9 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         rv_hotelList.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
-            val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
+          /*  val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
             snapHelperStart.attachToRecyclerView(rv_hotelList)
-
+*/
             rv_hotelList.adapter = hotelViewAdapter
             ViewCompat.setNestedScrollingEnabled(rv_hotelList, false)
         }
@@ -199,7 +199,7 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
 
 
     override fun onItemClick(id: String) {
-                Toast.makeText(this,id,Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this,id,Toast.LENGTH_SHORT).show()
                 val intent =Intent(this, HotelStepper::class.java)
                 intent.putExtra("id",id)
                 intent.putExtra("cid",cid)
@@ -214,35 +214,56 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
     }
 
     override fun onClick(p0: View?) {
-        when(p0){
-            card_All -> {
+        when(p0?.id){
+            R.id.card_All -> {
+                txtHotelAll.setTextColor(Color.WHITE)
+                txtHotelTopRating.setTextColor(Color.BLACK)
+                txtHotelHighestPrice.setTextColor(Color.BLACK)
+                txtHotelLowestPrice.setTextColor(Color.BLACK)
                 card_All.setCardBackgroundColor(Color.BLUE)
                 card_TopRating.setCardBackgroundColor(Color.TRANSPARENT)
                 cardHighestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 cardLowestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 setAllHotelList()
             }
-            card_TopRating->{
+           R.id.card_TopRating->{
+               txtHotelAll.setTextColor(Color.BLACK)
+               txtHotelLowestPrice.setTextColor(Color.BLACK)
+               txtHotelHighestPrice.setTextColor(Color.BLACK)
+               txtHotelTopRating.setTextColor(Color.WHITE)
+
                 card_TopRating.setCardBackgroundColor(Color.BLUE)
                 card_All.setCardBackgroundColor(Color.TRANSPARENT)
                 cardHighestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 cardLowestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 setTopRatingHotelList()
             }
-            cardHighestPriceHotelList->{
+            R.id.cardHighestPriceHotelList->{
+                txtHotelAll.setTextColor(Color.BLACK)
+                txtHotelLowestPrice.setTextColor(Color.BLACK)
+                txtHotelTopRating.setTextColor(Color.BLACK)
+                txtHotelHighestPrice.setTextColor(Color.WHITE)
+
                 cardHighestPriceHotelList.setCardBackgroundColor(Color.BLUE)
                 cardLowestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 card_All.setCardBackgroundColor(Color.TRANSPARENT)
                 card_TopRating.setCardBackgroundColor(Color.TRANSPARENT)
                 setHighestPriceHotelList()
             }
-            cardLowestPriceHotelList->{
+            R.id.cardLowestPriceHotelList->{
+                txtHotelAll.setTextColor(Color.BLACK)
+                txtHotelTopRating.setTextColor(Color.BLACK)
+                txtHotelHighestPrice.setTextColor(Color.BLACK)
+                txtHotelLowestPrice.setTextColor(Color.WHITE)
                 cardLowestPriceHotelList.setCardBackgroundColor(Color.BLUE)
                 cardHighestPriceHotelList.setCardBackgroundColor(Color.TRANSPARENT)
                 card_All.setCardBackgroundColor(Color.TRANSPARENT)
                 card_TopRating.setCardBackgroundColor(Color.TRANSPARENT)
                 setLowestPriceHotelList()
             }
+           R.id.appComImgHotelBackClick->{
+               this.finish()
+           }
             else ->{
                 card_All.setBackgroundColor(Color.BLUE)
 

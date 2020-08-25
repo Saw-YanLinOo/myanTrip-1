@@ -2,13 +2,17 @@ package com.vmyan.myantrip.ui.booking.bus.hotel
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
 import android.view.Gravity
+import android.view.View
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -16,18 +20,24 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
+import com.minbanyar.testbooking.viewModel.hotel.HotelListVMFactory
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 import com.vmyan.myantrip.ui.interfaceImpl.PickDate
 import com.vmyan.myantrip.ui.interfaceImpl.RoomGuest
-import com.vmyan.myantrip.ui.BS.SelectRoomGuests
+import com.vmyan.myantrip.ui.bs.SelectRoomGuests
 import com.vmyan.myantrip.R
-import com.vmyan.myantrip.model.bookingCate.TownListItem
+import com.vmyan.myantrip.data.booking.carRental.hotel.HotelListRepositoryImpl
 import com.vmyan.myantrip.model.hotel.HotelRecentItem
-import com.vmyan.myantrip.ui.PostActivityContract
+import com.vmyan.myantrip.ui.booking.bus.PostActivityContract
 import com.vmyan.myantrip.ui.adapter.hotel.HotelRecentAdapter
+import com.vmyan.myantrip.ui.adapter.promoImageAdapter.PromoSliderImageAdapter
+import com.vmyan.myantrip.ui.viewmodel.hotel.HotelListViewModel
 import com.vmyan.myantrip.ui.viewmodel.hotel.RecentViewModel
+import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_hotel_booking.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.time.ExperimentalTime
 
 class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
@@ -41,15 +51,19 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
 
     private var startDate: Timestamp? = null
     private var endDate: Timestamp? = null
-
-    val sortHotelName = ArrayList<String>()
-
-
-    //private val newWordActivityRequestCode = 1
-    val townList = ArrayList<TownListItem>()
-    var newRecentList =ArrayList<HotelRecentItem>()
+    private lateinit var sliderImageAdapter: PromoSliderImageAdapter
 
     private lateinit var recentViewModel: RecentViewModel
+    private val viewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            HotelListVMFactory(
+                HotelListRepositoryImpl()
+            )
+        ).get(
+            HotelListViewModel::class.java
+        )
+    }
     @ExperimentalTime
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +77,8 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
         setUpAdapter()
         pickPlace()
         pickRG()
+        showImageSlider()
+        setHotelPromoImage()
         card_searchHotel.setOnClickListener {
 
             /*     if (location ==""  && dCheckIn =="" && dCheckOut ==""&& noOfG =="" && noOfR =="" ){
@@ -91,7 +107,6 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
             recentViewModel.insert(HotelRecentItem(cityImagge,location,dCheckIn,dCheckOut,noOfG,noOfR))
 
 
-            // }
         }
         clearAllRecentValue.setOnClickListener {
             recentViewModel.clearAll()
@@ -103,6 +118,53 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
         rl_PickDateCheckOutHotel.setOnClickListener {
             datePicker("end")
         }
+    }
+    @SuppressLint("ShowToast")
+    private fun setHotelPromoImage() {
+
+        viewModel.fetchHotelPromoImages.observe(this,  {
+            when (it) {
+                is Resource.Loading -> {
+                  hotel_Promo_Placeholder.startShimmer()
+                    hotel_Promo_Placeholder.visibility = View.VISIBLE
+                    hotel_Promo_Images.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    hotel_Promo_Placeholder.startShimmer()
+                    hotel_Promo_Placeholder.visibility = View.GONE
+                    hotel_Promo_Images.visibility = View.VISIBLE
+                    sliderImageAdapter.setItem(it.data[0].hotelImagePro)
+
+                }
+                is Resource.Failure -> {
+                    hotel_Promo_Placeholder.startShimmer()
+                    hotel_Promo_Placeholder.visibility = View.GONE
+                    hotel_Promo_Images.visibility = View.GONE
+                    println(it.message)
+                    Toast.makeText(
+                        this,
+                        "An error is ocurred:${it.message}",
+                        Toast.LENGTH_SHORT
+                    )
+                }
+            }
+        })
+
+    }
+
+
+    private fun showImageSlider(){
+        sliderImageAdapter = PromoSliderImageAdapter()
+        hotel_Promo_Images.setSliderAdapter(sliderImageAdapter)        //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!
+       hotel_Promo_Images.setIndicatorAnimation(IndicatorAnimationType.WORM)
+         hotel_Promo_Images.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+         hotel_Promo_Images.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
+        hotel_Promo_Images.indicatorSelectedColor = Color.WHITE
+        hotel_Promo_Images.indicatorUnselectedColor = Color.GRAY
+        hotel_Promo_Images.scrollTimeInSec = 3
+        hotel_Promo_Images.isAutoCycle = true
+        hotel_Promo_Images.startAutoCycle()
+
     }
     private fun pickPlace() {
         rl_PickPlace.setOnClickListener {
@@ -139,7 +201,7 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
         picker.addOnPositiveButtonClickListener {
             when(status){
                 "start" -> {
-                    appComtxt_CheckInHotel.text = picker.headerText
+                    txt_CheckInHotel.text = picker.headerText
                     dCheckIn=picker.headerText
                     startDate = Timestamp(Date(it))
                 }
@@ -201,7 +263,7 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
 
 
     override fun dataCheckIn(dateCheckInValue: String) {
-        appComtxt_CheckInHotel.text = dateCheckInValue
+        txt_CheckInHotel.text = dateCheckInValue
         dCheckIn=dateCheckInValue
     }
 

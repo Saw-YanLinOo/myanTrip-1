@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         }
 
 
-        bottom_nav_menu.setItemSelected(R.id.nav_home,true)
-        openFragment(HomeFragment())
+        bottom_nav_menu.setItemSelected(R.id.nav_booking,true)
+        openFragment(BookingFragment())
         bottom_nav_menu.setOnItemSelectedListener {
             when(it){
                 R.id.nav_plan -> openFragment(PlanFragment())

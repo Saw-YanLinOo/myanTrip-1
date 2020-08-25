@@ -8,8 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.badoualy.stepperindicator.StepperIndicator
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.NonSwipeableViewPager
+import com.vmyan.myantrip.ui.booking.bus.flight.ConfirmFlight
+import com.vmyan.myantrip.ui.booking.bus.flight.FinishFlightBooking
+import com.vmyan.myantrip.ui.booking.bus.flight.FlightPayment
 
-class CarRentalStepper : AppCompatActivity() {
+class CarRentalStepper : AppCompatActivity(),CarRentalsDetails.OnCarDetailsListener,CarRentalsPayment.OnCarRentalsPayment {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private lateinit var mViewPager: NonSwipeableViewPager
     private lateinit var stepperIndicator: StepperIndicator
@@ -47,12 +50,24 @@ class CarRentalStepper : AppCompatActivity() {
 
         override fun getItem(position: Int): Fragment {
             when (position) {
-                0 -> return CarRentailsDetails.newInstance()
-                1 -> return CarrRentailsPayment.newInstance()
+                0 -> return CarRentalsDetails.newInstance()
+                1 -> return CarRentalsPayment.newInstance()
                 2 -> return FinishCarRentails.newInstance()
 
             }
-            return CarRentailsDetails.newInstance()
+            return CarRentalsDetails.newInstance()
         }
     }
+
+    override fun onNextPressed(fragment: Fragment?) {
+        if (fragment is CarRentalsDetails) {
+            mViewPager.setCurrentItem(1, true)
+        } else if (fragment is CarRentalsPayment) {
+            mViewPager.setCurrentItem(2, true)
+        } else if (fragment is FinishCarRentails) {
+            mViewPager.setCurrentItem(3, true)
+            finish()
+        }
+    }
+
 }

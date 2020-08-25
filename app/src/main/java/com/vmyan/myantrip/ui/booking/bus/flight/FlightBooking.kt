@@ -21,7 +21,7 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.flight.FlightRecentItem
-import com.vmyan.myantrip.ui.PostActivityContract
+import com.vmyan.myantrip.ui.booking.bus.PostActivityContract
 import com.vmyan.myantrip.ui.adapter.flight.FlightRecentAdapter
 import com.vmyan.myantrip.ui.viewmodel.flight.FlightRecentViewModel
 import kotlinx.android.synthetic.main.activity_flight_booking.*
@@ -51,6 +51,7 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
         card_Economy.setOnClickListener(this)
         card_Business.setOnClickListener(this)
         card_First.setOnClickListener(this)
+        clearAllFlightRecentValue.setOnClickListener(this)
         setUpAdapter()
         pickAdultsCount()
         pickChildCount()
@@ -216,6 +217,9 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
                 txtEconomy.setTextColor(Color.BLACK)
                 card_Business.setCardBackgroundColor(Color.TRANSPARENT)
                 txtBusiness.setTextColor(Color.BLACK)
+            }
+            R.id.clearAllFlightRecentValue->{
+                flightRecentViewModel.clearAll()
             }
         }
 

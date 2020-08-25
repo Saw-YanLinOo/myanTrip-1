@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vmyan.myantrip.R
+import kotlinx.android.synthetic.main.fragment_finish_flight_booking.view.*
 
 class FinishFlightBooking : Fragment() {
 
@@ -13,8 +14,11 @@ class FinishFlightBooking : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_finish_flight_booking, container, false)
+       val view =inflater.inflate(R.layout.fragment_finish_flight_booking, container, false)
+        view.btnFinishFlightBooking.setOnClickListener {
+            activity?.finish()
+        }
+        return view
     }
 
     companion object {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Ui.bus.BusDetails">
+    tools:context=".ui.booking.bus.BusDetails">
 
     <ScrollView
         android:layout_width="match_parent"

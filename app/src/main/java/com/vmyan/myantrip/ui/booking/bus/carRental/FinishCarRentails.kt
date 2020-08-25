@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.vmyan.myantrip.R
 
-class FinishCarRentails : Fragment() {
+class FinishCarRentails : Fragment() ,View.OnClickListener{
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_finish_car_rentails, container, false)
+        val view =inflater.inflate(R.layout.fragment_finish_car_rentails, container, false)
+
+        return view
     }
 
     companion object {
@@ -23,5 +24,9 @@ class FinishCarRentails : Fragment() {
         fun newInstance(): FinishCarRentails {
             return FinishCarRentails()
         }
+    }
+
+    override fun onClick(p0: View?) {
+        TODO("Not yet implemented")
     }
 }

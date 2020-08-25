@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         >
         <LinearLayout
             android:id="@+id/appBar"
@@ -18,9 +18,10 @@
             android:layout_height="50dp">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgBackArrow"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_arrow_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_white"
+                android:padding="16dp"
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -36,68 +37,81 @@
                 />
         </LinearLayout>
         <RelativeLayout
-            android:id="@+id/rl_FlightPickPlace"
+            android:id="@+id/rl_BusPickPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/appBar"
             android:paddingLeft="20dp"
-
-            android:layout_marginLeft="20sp"
             android:layout_marginTop="20dp"
             >
             <LinearLayout
-                android:id="@+id/llFlightFrom"
+                android:id="@+id/llBusFrom"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFlightFrom"
+                    android:id="@+id/imgBusFrom"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@mipmap/ic_launcher"
                     android:scaleType="fitXY"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_FligtFrom"
+                    android:id="@+id/txt_BusFrom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="From"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/normalTitleSize"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/allColor"
                     android:layout_below="@id/imgFlightFrom"
                     />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgFromTo"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_toRightOf="@id/llFlightFrom"
-                android:src="@drawable/ic_fromto"
-                android:scaleType="fitXY"
-                android:layout_centerVertical="false"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                />
+           <LinearLayout
+               android:id="@+id/llBusFromTo"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_toRightOf="@id/llBusFrom"
+               android:layout_marginLeft="5dp"
+               android:layout_marginRight="5dp"
+               >
+               <androidx.appcompat.widget.AppCompatImageView
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:src="@drawable/ic_bus_from_to"
+                   android:layout_gravity="bottom|center"
+                   />
+               <View
+                   android:layout_width="150dp"
+                   android:layout_height="3dp"
+                   android:background="@color/allColor"
+                   android:layout_gravity="center"
+                   />
+
+           </LinearLayout>
             <LinearLayout
-                android:id="@+id/llFlightTo"
+                android:id="@+id/llBusTo"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:layout_toRightOf="@id/imgFromTo"
+                android:layout_toRightOf="@id/llBusFromTo"
                 android:layout_height="wrap_content">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFlightTo"
+                    android:id="@+id/imgBusTo"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@mipmap/ic_launcher"
                     android:scaleType="fitXY"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_FligtTo"
+                    android:id="@+id/txt_BusTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="To"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/normalTitleSize"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/allColor"
                     android:layout_below="@id/imgFlightTo"
@@ -109,9 +123,10 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:layout_marginTop="190dp">
 
         <LinearLayout
@@ -141,7 +156,7 @@
                 android:textSize="18sp"
                 />
             <RelativeLayout
-                android:id="@+id/rl_FlightFrom"
+                android:id="@+id/rl_BusFrom"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_below="@id/apptxt_choosePlaceText"
@@ -151,7 +166,7 @@
                 android:background="@drawable/rectangel_corner">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/appImg_FlightFrom"
+                    android:id="@+id/appImg_BusFrom"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
@@ -163,7 +178,7 @@
                     android:paddingRight="10dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/appAuto_FlightFrom"
+                    android:id="@+id/appBusDepartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
@@ -213,7 +228,7 @@
                         android:layout_marginTop="7dp"
                         android:background="@drawable/rectangel_corner"
                         app:np_accessibilityDescriptionEnabled="true"
-                        app:np_dividerColor="@color/colorAccent"
+                        app:np_dividerColor="@color/divider_color"
                         app:np_dividerType="side_lines"
                         app:np_fadingEdgeEnabled="false"
                         app:np_height="60dp"
@@ -221,10 +236,10 @@
                         app:np_min="0"
                         app:np_order="ascending"
                         app:np_orientation="horizontal"
-                        app:np_selectedTextColor="@color/colorAccent"
+                        app:np_selectedTextColor="@color/selected_color"
                         app:np_selectedTextSize="25sp"
                         app:np_selectedTypeface="@string/roboto_light"
-                        app:np_textColor="@color/colorAccent"
+                        app:np_textColor="@color/black_overlay"
                         app:np_textSize="17sp"
                         app:np_typeface="@string/roboto_light"
                         app:np_width="180dp"
@@ -245,7 +260,7 @@
                 android:elevation="10dp"
                 app:cardElevation="3dp"
                 app:cardCornerRadius="15dp"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
                 >
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/card_BusSearch"
@@ -263,33 +278,46 @@
 
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
                 >
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_Ren"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Recently Search"
                     android:textSize="18dp"
+                    android:gravity="left|center"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
                     />
+
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:id="@+id/clearAllRecentValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="13dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:paddingRight="10dp"
                     android:text="CLEAR ALL"
                     android:textSize="18dp"
+                    android:textStyle="bold"
 
                     />
 
-            </RelativeLayout>
+            </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_BusRecentItem"
+                android:id="@+id/rv_hotelRecentItem"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
                 />
 
 
@@ -300,5 +328,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

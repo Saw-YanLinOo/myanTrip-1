@@ -119,6 +119,9 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
         viewModel.fetchAllRoomList(id,cid).observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
+                    room_images_placeholder.startShimmer()
+                    room_images_placeholder.visibility=View.VISIBLE
+                    cv_slider_Promo.visibility=View.GONE
                     rv_roomListPlaceHolder.startShimmer()
                     rv_roomListPlaceHolder.visibility = View.VISIBLE
                     rv_roomList.visibility = View.GONE
@@ -132,6 +135,9 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
                         view.selec_hotelAddress.text=address
                         view.selectedHotelPhoneNo.text=d.hotelList.hotel_PhoneNo
 
+                        room_images_placeholder.startShimmer()
+                        room_images_placeholder.visibility=View.GONE
+                        cv_slider_Promo.visibility=View.VISIBLE
                         rv_roomListPlaceHolder.startShimmer()
                         rv_roomListPlaceHolder.visibility = View.GONE
                         rv_roomList.visibility = View.VISIBLE
@@ -143,6 +149,9 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
                     }
                 }
                 is Resource.Failure -> {
+                    room_images_placeholder.startShimmer()
+                    room_images_placeholder.visibility=View.GONE
+                    cv_slider_Promo.visibility=View.GONE
                     rv_roomListPlaceHolder.startShimmer()
                     rv_roomListPlaceHolder.visibility = View.GONE
                     rv_roomList.visibility = View.GONE
@@ -181,6 +190,7 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
 
     override fun onItemClick(roomId: String) {
             Hawk.put("RoomId",roomId)
+        println("Roomid$roomId")
 
         if (mListener != null) {
             mListener!!.onNextPressed(this)

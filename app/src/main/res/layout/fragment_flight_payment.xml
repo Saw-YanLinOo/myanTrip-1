@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Ui.flight.FlightPayment">
+    tools:context=".ui.booking.bus.flight.FlightPayment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -137,7 +138,7 @@
                             android:paddingLeft="7dp" />
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardPay"
+                            android:id="@+id/cardFlightPay"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             app:cardElevation="5dp"
@@ -162,4 +163,4 @@
 
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

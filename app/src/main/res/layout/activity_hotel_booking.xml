@@ -8,50 +8,101 @@
     app:layoutDescription="@xml/hotel_scene">
 
 
-    <ImageView
-        android:id="@+id/hotel_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@null"
-        android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/trip_defaultimg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/hotel_Promo_Images"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:elevation="10dp"
+            android:layoutAnimation="@anim/layoutanimation_left_to_right"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="1dp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:fitsSystemWindows="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:sliderScrollTimeInSec="1" />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/hotel_Promo_Placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/backHome"
-        android:padding="16dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/ic_back_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#000000" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <include layout="@layout/booking_promo_placeholder" />
+
+    </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <TextView
         android:id="@+id/titleHotel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="24dp"
-        android:text="Train"
+        android:layout_marginStart="70dp"
+        android:text="Hotel"
+        android:elevation="10dp"
         android:textColor="#000000"
-        android:textSize="32sp"
-        android:visibility="gone"
+        android:textSize="20sp"
+        android:visibility="visible"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="14dp" />
+    <ImageView
+        android:id="@+id/backHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:tint="#000000" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cons">
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/hotel_nestedscroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/hotel_image"
+        app:layout_constraintTop_toBottomOf="@id/cardView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -82,15 +133,7 @@
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:id="@+id/formly">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Find the best train for your trip"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    />
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,7 +179,7 @@
                                     android:layout_marginLeft="10dp"
                                     android:layout_centerVertical="true"
                                     android:layout_marginRight="20dp"
-                                    android:background="@drawable/ic_from"
+                                    android:background="@drawable/ic_currentlocation"
 
                                     android:paddingRight="10dp" />
 
@@ -199,23 +242,21 @@
 
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_from"
-
+                                android:background="@drawable/ic_check_in"
                                 android:paddingRight="10dp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/appComtxt_CheckInHotel"
-
+                                android:id="@+id/txt_CheckInHotel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:gravity="center"
                                 android:hint="date"
+                                android:layout_centerHorizontal="true"
                                 android:layout_marginLeft="10dp"
                                 android:paddingLeft="5dp" />
 
@@ -246,9 +287,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_from"
-                                android:layout_alignParentRight="true"
-
+                                android:background="@drawable/ic_check_out"
                                 android:paddingRight="10dp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -259,6 +298,7 @@
                                 android:background="@android:color/transparent"
                                 android:gravity="center"
                                 android:paddingLeft="5dp"
+                                android:layout_centerHorizontal="true"
                                 android:layout_marginLeft="10dp"
                                 android:hint="date" />
 

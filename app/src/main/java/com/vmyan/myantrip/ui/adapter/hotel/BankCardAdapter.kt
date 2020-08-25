@@ -49,7 +49,7 @@ class BankCardAdapter(private val listener: ItemClickListener, private val items
                 view.cardBank.setCardBackgroundColor(Color.BLUE)
             }else if(item.bankName=="CB")
             {
-                view.cardBank.setCardBackgroundColor(Color.YELLOW)
+                view.cardBank.setCardBackgroundColor(Color.parseColor("#D1FF33"))
             }
 
             Glide.with(view)

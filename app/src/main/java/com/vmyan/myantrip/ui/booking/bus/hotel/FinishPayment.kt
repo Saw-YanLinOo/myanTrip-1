@@ -11,7 +11,6 @@ import com.vmyan.myantrip.R
 import kotlinx.android.synthetic.main.fragment_finish_payment.view.*
 
 class FinishPayment : Fragment() {
-
         lateinit var fName : String
         lateinit var lName : String
     override fun onCreateView(
@@ -23,7 +22,7 @@ class FinishPayment : Fragment() {
          fName = Hawk.get("hCFName")
         lName =Hawk.get("hCLName")
         view.btnFinishHotelBooking.setOnClickListener {
-          activity!!.finish()
+          requireActivity().finish()
         }
         view.txtContactName.text= fName+lName
         view.ConformSelectedNoOFGuests.text = Hawk.get("Guest")

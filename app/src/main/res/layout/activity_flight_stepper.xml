@@ -9,30 +9,19 @@
     <LinearLayout
         android:id="@+id/llappBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:background="#A19292"
+        android:layout_height="50dp"
         >
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/arrowBack"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_arrow_back"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1.8"
-        android:layout_gravity="center"
-        />
 
     <com.badoualy.stepperindicator.StepperIndicator
         android:id="@+id/stepperIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_toRightOf="@id/arrowBack"
-        android:layout_weight="0.2"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:stpi_lineStrokeWidth="5dp"
         app:stpi_stepCount="3"
+        app:stpi_animDuration="20"
         />
     </LinearLayout>
 

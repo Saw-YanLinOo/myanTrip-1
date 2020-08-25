@@ -9,7 +9,7 @@ import com.badoualy.stepperindicator.StepperIndicator
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.NonSwipeableViewPager
 
-class FlightStepper : AppCompatActivity() , ConfirmFlight.OnStepOneListener{
+class FlightStepper : AppCompatActivity() , ConfirmFlight.OnStepOneListener,FlightPayment.OnFlightPayment{
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private lateinit var mViewPager: NonSwipeableViewPager

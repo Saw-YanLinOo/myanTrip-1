@@ -2,7 +2,9 @@ package com.vmyan.myantrip.data.booking.carRental.hotel
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.vmyan.myantrip.model.bookingCate.PromoSliderItem
 import com.vmyan.myantrip.model.hotel.HotelList
+import com.vmyan.myantrip.model.hotel.HotelPromoImages
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
 
@@ -76,7 +78,7 @@ class HotelListRepositoryImpl :
     override suspend fun getTopRatingHotelList(): Resource<MutableList<HotelList>> {
         val topRatingHotelList = mutableListOf<HotelList>()
         val resultList = FirebaseFirestore.getInstance()
-            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("hotel_rate",Query.Direction.DESCENDING).limit(5)
+            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("hotel_rate",Query.Direction.DESCENDING)
             .get()
             .await()
         for (document in resultList) {
@@ -123,9 +125,9 @@ class HotelListRepositoryImpl :
     }
 
     override suspend fun getLowestPriceHotelList(): Resource<MutableList<HotelList>> {
-        val topRatingHotelList = mutableListOf<HotelList>()
+        val lowestPriceHotelList = mutableListOf<HotelList>()
         val resultList = FirebaseFirestore.getInstance()
-            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("miniRoomPrice",Query.Direction.ASCENDING).limit(5)
+            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("miniRoomPrice",Query.Direction.ASCENDING)
             .get()
             .await()
         for (document in resultList) {
@@ -146,7 +148,7 @@ class HotelListRepositoryImpl :
             val roomImag=document.get("roomImages") as ArrayList<String>
 
 
-            topRatingHotelList.add(
+            lowestPriceHotelList.add(
                 HotelList(
                     hotel_id,
                     hotel_name!!,
@@ -168,12 +170,12 @@ class HotelListRepositoryImpl :
             )
         }
 
-        return Resource.Success(topRatingHotelList)
+        return Resource.Success(lowestPriceHotelList)
     }
     override suspend fun getHighestPriceHotelList(): Resource<MutableList<HotelList>> {
-        val topRatingHotelList = mutableListOf<HotelList>()
+        val highestPriceHotelList = mutableListOf<HotelList>()
         val resultList = FirebaseFirestore.getInstance()
-            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("miniRoomPrice",Query.Direction.DESCENDING).limit(5)
+            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelDetails").orderBy("miniRoomPrice",Query.Direction.DESCENDING)
             .get()
             .await()
         for (document in resultList) {
@@ -194,7 +196,7 @@ class HotelListRepositoryImpl :
             val roomImag=document.get("roomImages") as ArrayList<String>
 
 
-            topRatingHotelList.add(
+            highestPriceHotelList.add(
                 HotelList(
                     hotel_id,
                     hotel_name!!,
@@ -216,7 +218,21 @@ class HotelListRepositoryImpl :
             )
         }
 
-        return Resource.Success(topRatingHotelList)
+        return Resource.Success(highestPriceHotelList)
+    }
+
+    override suspend fun getHotelPromoImages(): Resource<MutableList<HotelPromoImages>> {
+        val hotelPromoImages = mutableListOf<HotelPromoImages>()
+        val resultHotelPromoImageList=FirebaseFirestore.getInstance()
+            .collection("/BookingCategories/0howcfkVUqShkvPlTZqg/HotelPromoImages")
+            .get()
+            .await()
+        for (promo in resultHotelPromoImageList){
+            val id = promo.id
+            val imgUrl = promo.get("hotelImagePro") as ArrayList<String>
+            hotelPromoImages.add(HotelPromoImages(id,imgUrl))
+        }
+        return Resource.Success(hotelPromoImages)
     }
 
 }

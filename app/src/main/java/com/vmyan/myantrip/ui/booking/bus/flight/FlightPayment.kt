@@ -1,6 +1,7 @@
 package com.vmyan.myantrip.ui.booking.bus.flight
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,14 +16,16 @@ import androidx.recyclerview.widget.SnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.data.BankPaymentRepositoryImpl
 import com.vmyan.myantrip.ui.adapter.hotel.BankCardAdapter
+import com.vmyan.myantrip.ui.booking.bus.carRental.CarRentalsPayment
 import com.vmyan.myantrip.ui.viewmodel.BankVM
 import com.vmyan.myantrip.ui.viewmodel.BankVMFactory
 import com.vmyan.myantrip.utils.Resource
+import kotlinx.android.synthetic.main.fragment_flight_payment.*
 import kotlinx.android.synthetic.main.fragment_flight_payment.view.*
 import kotlinx.android.synthetic.main.fragment_hotel_payment.view.*
 import www.sanju.zoomrecyclerlayout.ZoomRecyclerLayout
 
-class FlightPayment : Fragment() , BankCardAdapter.ItemClickListener{
+class FlightPayment : Fragment() , BankCardAdapter.ItemClickListener,View.OnClickListener{
     private val viewModel by lazy {
         ViewModelProviders.of(
             this,
@@ -33,6 +36,7 @@ class FlightPayment : Fragment() , BankCardAdapter.ItemClickListener{
             BankVM::class.java
         )
     }
+    private var mListener: FlightPayment.OnFlightPayment? = null
     private lateinit var bankListAdapter : BankCardAdapter
 
 
@@ -41,9 +45,23 @@ class FlightPayment : Fragment() , BankCardAdapter.ItemClickListener{
         savedInstanceState: Bundle?
     ): View? {
         val view =inflater.inflate(R.layout.fragment_flight_payment, container, false)
+       view.cardFlightPay.setOnClickListener(this)
         showBankList(view)
         setConfirm()
         return view
+    }
+    interface OnFlightPayment {
+        //void onFragmentInteraction(Uri uri);
+        fun onNextPressed(fragment: Fragment?)
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mListener = if (context is OnFlightPayment) {
+            context
+        } else {
+            throw RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener")
+        }
     }
     fun showBankList(view : View) {
         bankListAdapter = BankCardAdapter(this,mutableListOf())
@@ -98,5 +116,15 @@ class FlightPayment : Fragment() , BankCardAdapter.ItemClickListener{
 
     override fun onItemClick(id: String) {
 
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0?.id){
+            R.id.cardFlightPay->{
+                if (mListener != null) {
+                    mListener!!.onNextPressed(this)
+                }
+            }
+        }
     }
 }

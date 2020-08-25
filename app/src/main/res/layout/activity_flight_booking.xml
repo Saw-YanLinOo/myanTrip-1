@@ -416,33 +416,43 @@
 
 
 
-            
-      
 
 
 
-        <RelativeLayout
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-
-            android:layout_margin="10dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
             >
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/txt_Ren"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Recently Search"
                 android:textSize="18dp"
+                android:gravity="left|center"
+                android:textStyle="bold"
+                android:layout_weight="1"
                 />
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:id="@+id/clearAllFlightRecentValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="10dp"
+                android:gravity="right|center"
+                android:layout_marginRight="13dp"
                 android:text="CLEAR ALL"
                 android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
 
                 />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_FlightRecentItem"

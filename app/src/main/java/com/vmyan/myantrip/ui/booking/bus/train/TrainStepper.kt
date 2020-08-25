@@ -8,8 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.badoualy.stepperindicator.StepperIndicator
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.ui.NonSwipeableViewPager
+import com.vmyan.myantrip.ui.booking.bus.flight.ConfirmFlight
+import com.vmyan.myantrip.ui.booking.bus.flight.FinishFlightBooking
+import com.vmyan.myantrip.ui.booking.bus.flight.FlightPayment
 
-class TrainStepper : AppCompatActivity() {
+class TrainStepper : AppCompatActivity() ,TrainDetails.OnTrianDetails,TrainPayment.OnTrainPayment{
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private lateinit var mViewPager: NonSwipeableViewPager
     private lateinit var stepperIndicator: StepperIndicator
@@ -52,6 +55,17 @@ class TrainStepper : AppCompatActivity() {
 
             }
             return TrainDetails.newInstance()
+        }
+    }
+
+    override fun onNextPressed(fragment: Fragment?) {
+        if (fragment is TrainDetails) {
+            mViewPager.setCurrentItem(1, true)
+        } else if (fragment is TrainPayment) {
+            mViewPager.setCurrentItem(2, true)
+        } else if (fragment is TrainFinish) {
+            mViewPager.setCurrentItem(3, true)
+            finish()
         }
     }
 }

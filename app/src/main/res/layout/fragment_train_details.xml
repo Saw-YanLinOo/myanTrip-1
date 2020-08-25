@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Ui.train.TrainDetails">
+    tools:context=".ui.booking.bus.train.TrainDetails">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -483,7 +483,7 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_SelectedBusContinue"
+            android:id="@+id/cardSelectedTrainContinue"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:cardBackgroundColor="@color/colorPrimary"

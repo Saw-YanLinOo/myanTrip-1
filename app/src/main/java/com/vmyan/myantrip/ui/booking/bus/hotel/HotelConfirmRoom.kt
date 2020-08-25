@@ -101,7 +101,7 @@ class HotelConfirmRoom : Fragment() ,View.OnClickListener{
     fun setConfirm(id: String,cid: String,view : View) {
 
 
-        viewModel.fectchConfirmDetails(id,cid,Hawk.get<String>("RoomId")).observe(viewLifecycleOwner, Observer {
+        viewModel.fectchConfirmDetails(id,cid,Hawk.get<String>("RoomId","7teWbjOgEu14KZmaGKOD")).observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
                     println("loading.....PlaceCategoryList")

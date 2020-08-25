@@ -11,6 +11,8 @@
     <dimen name="textView">15sp</dimen>
     <dimen name="textViewTitle">18sp</dimen>
     <dimen name="textshowlist">15sp</dimen>
+    <dimen name="normalTitleSize">18sp</dimen>
+    <dimen name="titelSize">20sp</dimen>
 
 
 <!--    <dimen name="design_fab_image_size" tools:override="true">150dp</dimen>-->

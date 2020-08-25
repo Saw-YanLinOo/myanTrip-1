@@ -8,15 +8,21 @@
     tools:context=".ui.booking.bus.hotel.ShowHotelView">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#dddd"
+        android:background="#dddddd"
         android:layout_height="120dp">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/appComImgBackClick"
-            android:layout_width="40dp"
+        <LinearLayout
+            android:id="@+id/llappBarHotelView"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@mipmap/ic_launcher"
-            android:layout_margin="10dp"
+            android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appComImgHotelBackClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:src="@drawable/ic_baseline_arrow_back_24"
+            android:scaleType="fitXY"
+            android:padding="10dp"
 
             />
         <androidx.appcompat.widget.AppCompatTextView
@@ -24,22 +30,22 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="StayLocation"
-            android:textSize="20sp"
+            android:textSize="@dimen/titelSize"
             android:textStyle="bold"
-            android:layout_toEndOf="@id/appComImgBackClick"
+            android:layout_marginLeft="10dp"
             android:gravity="left|center"
-            android:paddingLeft="15dp"
-            android:layout_marginTop="10dp"
             />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal"
-            android:layout_below="@id/appComImgBackClick"
+            android:layout_below="@id/llappBarHotelView"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangel_corner"
             >
 
@@ -54,7 +60,7 @@
             <View
                 android:layout_width="10dp"
                 android:layout_height="3dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/bottom_nav_select"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -109,7 +115,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="#959DC8"
+        android:background="@color/bottom_nav_select"
         />
 <LinearLayout
     android:layout_width="match_parent"
@@ -138,11 +144,13 @@
                 app:cardElevation="5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/first"
+                    android:id="@+id/txtHotelAll"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="All"
+                    android:textStyle="bold"
+                    android:textColor="@color/allColor"
                     android:textSize="15sp" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -155,11 +163,12 @@
                 app:cardElevation="5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-
+                    android:id="@+id/txtHotelTopRating"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="Top Rating"
+                    android:textStyle="bold"
                     android:textSize="15dp" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -172,11 +181,13 @@
                 app:cardElevation="5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtHotelHighestPrice"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="Highest Price"
                     android:padding="2dp"
+                    android:textStyle="bold"
                     android:textSize="15sp" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -189,12 +200,14 @@
                 app:cardElevation="5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtHotelLowestPrice"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="Lowest Price"
                     android:textSize="15sp"
                     android:padding="2dp"
+                    android:textStyle="bold"
                     />
             </com.google.android.material.card.MaterialCardView>
 
@@ -207,6 +220,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="3dp"
         android:visibility="gone"
+        android:layoutAnimation="@anim/layoutanimation_left_to_right"
 
         />
     <com.facebook.shimmer.ShimmerFrameLayout

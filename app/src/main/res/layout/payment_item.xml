@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardBank"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="5dp"
-
+        android:layout_margin="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        android:background="@mipmap/ic_launcher"
+        app:cardBackgroundColor="#3F51B5"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +38,7 @@
                 android:text="KBZ"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="@color/allColor"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
@@ -52,6 +49,7 @@
                 android:text="BANK"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="@color/allColor"
                 android:layout_marginRight="20sp"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/txtBankName"
@@ -68,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Account Number"
+                    android:textColor="@color/allColor"
                     android:textSize="20sp"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
@@ -75,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="**** **** **** ****"
                     android:textSize="15sp"
+                    android:textColor="@color/allColor"
                     android:layout_marginLeft="20dp"
                     />
 
@@ -98,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:text="MEMBER "
                     android:textSize="10dp"
+                    android:textColor="@color/allColor"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtSince"
@@ -105,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtMember"
                     android:text=" SINCE"
+                    android:textColor="@color/allColor"
                     android:textSize="10dp"
                     />
                 </LinearLayout>
@@ -114,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/llMember"
                     android:text="XX/XX"
+                    android:textColor="@color/allColor"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="5dp"
@@ -132,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="VALID "
                     android:textSize="10dp"
+                    android:textColor="@color/allColor"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtThru"
@@ -139,6 +143,7 @@
                     android:layout_height="wrap_content"
                     android:text="THRU"
                     android:textSize="10dp"
+                    android:textColor="@color/allColor"
                     android:layout_toRightOf="@id/txtXXMember"
                     android:layout_below="@id/txtValid"
                     />
@@ -149,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/llValid"
                     android:text="XX/XX"
+                    android:textColor="@color/allColor"
                     android:layout_centerVertical="true"
                     />
 

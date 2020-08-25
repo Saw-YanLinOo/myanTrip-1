@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#dddd"
         >
 
         <ScrollView
@@ -28,7 +29,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hotel name"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/titelSize"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
@@ -38,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Address"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:layout_marginTop="5dp"
                     android:drawableLeft="@drawable/ic_place_black_24dp"
                     android:layout_marginLeft="20dp"
@@ -51,12 +52,13 @@
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     android:layout_margin="8dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/confirmHotelImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/confirmHotelImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_launcher" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -401,7 +403,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:background="#3F51B5"
+                            android:background="@color/bottom_nav_select"
                             />
                         <LinearLayout
                             android:id="@+id/confirmCarLinear5"
@@ -523,23 +525,30 @@
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp"
+                    android:layout_margin="10dp"
 
+                    >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/rectangel_corner"
-                    android:layout_margin="10dp"
+                    android:background="@color/colorPrimaryDark"
                     >
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_reserveRoom"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:text="Reseve"
+                        android:textStyle="bold"
+                        android:textColor="@color/allColor"
                         android:layout_gravity="center"
                         android:gravity="center"
                         />
                 </LinearLayout>
-
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

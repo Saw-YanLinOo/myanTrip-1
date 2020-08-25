@@ -16,6 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.booking.bus.CityTo"></activity>
+        <activity android:name=".ui.booking.bus.CityFrom" />
+        <activity android:name=".ui.booking.bus.train.TrainStepper" />
+        <activity android:name=".ui.booking.bus.train.TrainViewList" />
+        <activity android:name=".ui.booking.bus.train.TrainBooking" />
+        <activity android:name=".ui.booking.bus.carRental.CarRentalStepper" />
+        <activity android:name=".ui.booking.bus.carRental.CarRentalsListView" />
+        <activity android:name=".ui.booking.bus.carRental.CarRental" />
+        <activity android:name=".ui.booking.bus.BusStepper" />
+        <activity android:name=".ui.booking.bus.BusListView" />
+        <activity android:name=".ui.booking.bus.BusBooking" />
+        <activity android:name=".ui.booking.bus.flight.FlightStepper" />
+        <activity android:name=".ui.booking.bus.flight.FlightListView" />
+        <activity android:name=".ui.booking.bus.flight.FlightBooking" />
+        <activity android:name=".ui.booking.bus.hotel.HotelStepper" />
+        <activity android:name=".ui.booking.bus.hotel.ShowHotelView" />
+        <activity android:name=".ui.booking.bus.StayingPlaceActivity" />
+        <activity android:name=".ui.booking.bus.hotel.HotelBooking" />
         <activity android:name=".ui.EmergencyListActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize"/>
@@ -60,6 +78,11 @@
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".ui.TripPlanUserActivity"
+            android:theme="@style/AddNewTripTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.TripBackPackActivity"
             android:name=".ui.TripBackPackActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
