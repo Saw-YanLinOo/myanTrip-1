@@ -17,5 +17,5 @@ class SearchPlaceViewModel (private val searchPlaceRepository: SearchPlaceReposi
             emit(Resource.Failure(e.cause!!.toString()))
         }
     }
-
+    
 }

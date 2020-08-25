@@ -6,6 +6,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -41,14 +44,13 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var postListAdapter: PostListAdapter
     private val REQUEST_CODE_READ_STORAGE = 2
-
+    private var USER_ID = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        //Get user id from Incomming fragment and activity
-        var userId = intent.getStringExtra("user_id")
-        init(userId!!)
+        initUser()
+
         btn_logout.setOnClickListener(View.OnClickListener {
             auth.signOut()
             Hawk.put("skip",false)
@@ -56,20 +58,26 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
             startActivity(intent)
             this.finishAffinity()
         })
+
         setUpProfilePostRecycler()
-        setUpObserve(userId)
+        setUpObserve(USER_ID)
 
     }
 
-    private fun init(userId: String) {
+    private fun initUser() {
 
-        if (userId.trim().toString() == auth.currentUser!!.uid){
-            tv_username_p.text = Hawk.get<String>("user_name")
-            loadPhoto(Hawk.get<String>("user_profile"))
+        USER_ID = intent.getStringExtra("user_id")!!
+        var userName = intent.getStringExtra("user_name")
+        var userProfile = intent.getStringExtra("user_profile")
+
+        if (userName!!.trim() == Hawk.get<String>("user_name")){
+            tv_username_p.text = "$userName (your name)"
         }
+        tv_username_p.text = userName
+        loadPhoto(userProfile!!)
 
         fab_profile.setOnClickListener{
-            if (userId.trim().toString() == auth.currentUser!!.uid){
+            if (USER_ID.trim() == auth.currentUser!!.uid){
                 if (hasNoPermissions()) {
                     val permissions = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                     ActivityCompat.requestPermissions(this, permissions,0)
@@ -81,10 +89,10 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
     }
 
     private fun showChooser() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, REQUEST_CODE_READ_STORAGE);
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        startActivityForResult(intent, REQUEST_CODE_READ_STORAGE)
     }
 
     private fun setUpProfilePostRecycler() {
@@ -106,9 +114,9 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
             }
             is Resource.Success -> {
                 val result = it.data[0]
-                println("name=="+result!!.user.username+"profile=="+result!!.user.profilephoto.toUri())
-                val url = result!!.user.profilephoto
-                tv_username_p.text = result!!.user.username
+                println("name=="+ result.user.username+"profile=="+ result.user.profilephoto.toUri())
+                val url = result.user.profilephoto
+                tv_username_p.text = result.user.username
                 loadPhoto(url)
                 postListAdapter.setItems(it.data)
             }
@@ -139,7 +147,7 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
         if (resultCode === Activity.RESULT_OK) {
             if (requestCode === REQUEST_CODE_READ_STORAGE) {
                 if (resultData != null) {
-                    val uri: Uri = resultData.getData()!!
+                    val uri: Uri = resultData.data!!
                     updatedProfile(uri.toString())
                 }
             }
@@ -178,7 +186,7 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
             .load(data.toUri())
             .into(object : BitmapImageViewTarget(fab_profile) {
                 override fun setResource(resource: Bitmap?) {
-                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(applicationContext.getResources(), resource)
+                    val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(applicationContext.resources, resource)
                     circularBitmapDrawable.isCircular = true
                     fab_profile.setImageDrawable(circularBitmapDrawable)
                 }

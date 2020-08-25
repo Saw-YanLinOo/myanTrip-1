@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.Timestamp
 import com.smarteist.autoimageslider.SliderAnimations
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.GetPost
+import com.vmyan.myantrip.ui.CommentActivity
 import com.vmyan.myantrip.ui.Profile
 import kotlinx.android.synthetic.main.post_recyclerviews.view.*
 
@@ -28,6 +28,7 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
         notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
+
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_recyclerviews,parent,false)
         return BlogViewHolder(view,listener)
     }
@@ -46,7 +47,6 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
 
         init {
             view.setOnClickListener(this)
-            view.btn_comment.setOnClickListener(this)
         }
         @SuppressLint("SetTextI18n")
         fun bind(post: GetPost){
@@ -58,19 +58,23 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
                 .into(itemView.img_profile)
 
             itemView.tv_username.text = post.user.username
-            itemView.tv_time.text = timeInterval(post.posts.time, Timestamp.now()) + " ago"
+            itemView.tv_time.text = timeInterval(post.posts.time!!, Timestamp.now()) + " ago"
             itemView.tv_descripton.text = post.posts.description
-            itemView.tv_Like.text = post.posts.like
+            itemView.tv_Like.text = "${post.posts.like} like"
+            itemView.tv_total_unlike.text = "${post.posts.unlike} unlike"
+            itemView.tv_total_comment_view.text = "${post.posts.comments} comment"
 
             Log.e("", post.posts.image_url.toString())
             imageSliderAdapter.setItems(post.posts.image_url)
             itemView.imageSlider.setSliderAdapter(imageSliderAdapter)
-            itemView.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-            itemView.imageSlider.setScrollTimeInSec(1000);
+            itemView.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+            itemView.imageSlider.scrollTimeInSec = 1000
 
             itemView.img_profile.setOnClickListener{
                 val intent = Intent(view.context, Profile::class.java)
                 intent.putExtra("user_id",post.user.user_id)
+                intent.putExtra("user_name",post.user.username)
+                intent.putExtra("user_profile",post.user.profilephoto)
                 view.context.startActivity(intent)
 
             }
@@ -81,8 +85,14 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
                 println("You Follow ${posts.user.username}")
             }
             itemView.tv_descripton.setOnClickListener{
-                    itemView.tv_descripton.setSingleLine(false)
-                    itemView.tv_descripton.ellipsize = null;
+                    itemView.tv_descripton.isSingleLine = false
+                    itemView.tv_descripton.ellipsize = null
+            }
+            itemView.btn_comment.setOnClickListener {
+                var intent = Intent(itemView.context,CommentActivity::class.java)
+                intent.putExtra("postId",posts.posts.id)
+                intent.putExtra("postComment",posts.posts.comments!!.toInt())
+                itemView.context.startActivity(intent)
             }
         }
         fun timeInterval (start : Timestamp,now : Timestamp) : String{
@@ -103,6 +113,7 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
                 return sec.toString()+"sec"
             }
         }
+
         override fun onClick(p0: View?) {
             listener.onPostClick(adapterPosition)
         }

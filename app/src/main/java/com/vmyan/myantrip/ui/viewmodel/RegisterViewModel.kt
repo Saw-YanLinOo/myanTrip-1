@@ -21,7 +21,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) {
         emit(Resource.Loading())
         try {
             val auth = registerRepository.signUp("${emial}","${password}")
-            val result = registerRepository.addNewUser(User("",ph,"${emial}","${name}","0","0","0","0"))
+            val result = registerRepository.addNewUser(User("",ph,"${emial}","${name}","0","0",0,0))
             emit(auth)
         }catch (e: Exception){
             e.printStackTrace()

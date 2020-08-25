@@ -35,11 +35,13 @@ class ProfileRepositoryImpl : ProfileRepository {
             val id = document.id
             val user_id = document.getString("user_id")
             val description = document.getString("description")
-            val like = document.getString("like")
-            val share = document.getString("share")
+            val like = document.getLong("like")
+            val unlike = document.getLong("unlike")
+            val share = document.getLong("share")
             val imglist = document.get("Photo") as ArrayList<String>
             val time = document.getTimestamp("time")
-            val post = Posts(id,user_id!!,description!!,imglist!!,like!!,share!!,time!!)
+
+            val post = Posts(id,user_id!!,"",description!!,imglist!!,like!!,unlike!!,share!!,time!!)
 
             val userResultList = FirebaseFirestore.getInstance()
                 .collection("User")
@@ -48,11 +50,11 @@ class ProfileRepositoryImpl : ProfileRepository {
                 .await()
             val username = userResultList.getString("username")
             val profilephoto = userResultList.getString("profilephoto")
-            //val backgroundphoto = userResultList.getString("backgroundphoto")
-            //val followers = userResultList.getString("followers")
-            //val followings = userResultList.getString("followings")
+            val backgroundphoto = userResultList.getString("backgroudphoto")
+            val followers = userResultList.getLong("followers")
+            val followings = userResultList.getLong("followings")
 
-            val user = User(user_id,"","",username!!,profilephoto!!,"","","")
+            val user = User(user_id,"","",username!!,profilephoto!!,"",0,0)
 
             Log.e("User ==>","${userResultList.id} => ${userResultList.data}")
             Log.e("Post List ==>", "${document.id} => ${document.data}")
@@ -70,6 +72,7 @@ class ProfileRepositoryImpl : ProfileRepository {
                     uploadPhoto(storageRef, uri)
                 }
         }.await()
+
         val data = hashMapOf("profilephoto" to uploadedPhotosUriLink.toString())
         val result = FirebaseFirestore.getInstance()
             .collection("User")

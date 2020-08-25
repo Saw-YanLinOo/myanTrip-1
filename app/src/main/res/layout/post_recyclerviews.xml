@@ -44,7 +44,7 @@
 
         <ImageView
             android:id="@+id/btn_follow"
-            android:layout_width="100dp"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_more_option"
             android:text="Follow  "
@@ -91,7 +91,7 @@
             />
         <TextView
             android:id="@+id/tv_Like"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="12"
             android:textSize="15dp"
@@ -106,24 +106,25 @@
             android:layout_marginLeft="25dp"
             android:background="@drawable/ic_unlike"/>
         <TextView
-            android:id="@+id/tv_total_Comment"
-            android:layout_width="20dp"
+            android:id="@+id/tv_total_unlike"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="12"
             android:textSize="15dp"
             android:textColor="#9E9C9C"
             android:layout_toRightOf="@id/btn_icon_comment"
             android:layout_marginLeft="10dp"/>
+
         <ImageButton
             android:id="@+id/btn_view"
-            android:layout_toRightOf="@id/tv_total_Comment"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="25dp"
-            android:background="@drawable/ic_comment"/>
+            android:layout_toRightOf="@id/tv_total_unlike"
+            android:background="@drawable/ic_comment" />
         <TextView
-            android:id="@+id/tv_total_view"
-            android:layout_width="20dp"
+            android:id="@+id/tv_total_comment_view"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="12"
             android:textSize="15dp"
@@ -148,17 +149,16 @@
         android:id="@+id/btn_comment"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Comment"
+        android:text="Write a Comment"
         android:gravity="center_vertical"
         android:textColor="#9E9C9C"
         android:paddingLeft="20dp"
         android:textSize="18dp"
         android:textAllCaps="false"
-        android:background="@drawable/button_round"
+        android:background="@drawable/round_button"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_gravity="start"
         android:layout_marginBottom="10dp"/>
-
 
 </LinearLayout>

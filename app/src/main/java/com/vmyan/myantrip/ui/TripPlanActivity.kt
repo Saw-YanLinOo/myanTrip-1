@@ -70,6 +70,7 @@ class TripPlanActivity : AppCompatActivity(),PlanListAdapter.ItemClickListener {
             intent.putExtra("tripStartDate",data.trip.tripStartDate)
             intent.putExtra("tripEndDate",data.trip.tripEndDate)
             startActivity(intent)
+            finish()
         }
 
         fab_backpack.setOnClickListener {

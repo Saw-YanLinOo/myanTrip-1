@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <inset
+        android:insetTop="10dp"
+        android:insetRight="5dp"
+        android:insetLeft="5dp" />
+    <group>
+        <item
+            android:id="@+id/nav_plan"
+            android:icon="@drawable/ic_camera"
+            android:title="Camera Capture"
+            app:cnb_iconColor="@color/bottom_nav_select" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_booking"
+            android:icon="@drawable/ic_search_image"
+            android:title="Pick Up Images"
+            app:cnb_iconColor="@color/bottom_nav_select" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_location"
+            android:title="Places"
+            app:cnb_iconColor="@color/bottom_nav_select" />
+    </group>
+
+</menu>

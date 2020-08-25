@@ -12,9 +12,21 @@ class UploadViewModel(private val uploadPostRepository: UploadPostRepository) {
     fun setPost(description:String,imageLists : ArrayList<String>) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            println("description===>"+description)
-            println("imageList===>"+imageLists.toString())
-            val blogLists = uploadPostRepository.setPost(Posts("","",description,imageLists,"0","0", Timestamp.now()))
+            println("description===>$description")
+            println("imageList===>$imageLists")
+            val blogLists = uploadPostRepository.setPost(Posts("","","",description,imageLists,0,0,0, Timestamp.now(),0))
+            emit(blogLists)
+        }catch (e : Exception){
+            emit(Resource.Failure(e.cause.toString()))
+        }
+    }
+
+    fun setPost(description:String,imageLists : ArrayList<String>,placeId : String,type : String)  = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            println("description===>$description")
+            println("imageList===>$imageLists")
+            val blogLists = uploadPostRepository.setPost(Posts("","",placeId,description,imageLists,0,0,0, Timestamp.now(),0,type))
             emit(blogLists)
         }catch (e : Exception){
             emit(Resource.Failure(e.cause.toString()))
@@ -24,7 +36,7 @@ class UploadViewModel(private val uploadPostRepository: UploadPostRepository) {
     fun uploadPhoto(imageList : ArrayList<String>) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            println("imageList===>"+imageList.toString())
+            println("imageList===>$imageList")
             val blogLists = uploadPostRepository.uploadPhotos(imageList)
             emit(blogLists)
         }catch (e : Exception){

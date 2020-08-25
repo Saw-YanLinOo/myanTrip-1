@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.firebase:firebase-auth:19.3.2'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-database:19.3.1'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -125,6 +126,9 @@ dependencies {
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
+    //retrofit service
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //ViewPager
     implementation  'com.github.badoualy:stepper-indicator:1.0.7'
 
@@ -137,6 +141,8 @@ dependencies {
     //
     implementation 'com.github.DanielMartinus:Stepper-Touch:1.0.1'
 
+    //asyn and await
+    compile 'co.metalab.asyncawait:asyncawait:1.0.0'
     implementation 'com.github.prolificinteractive:material-calendarview:1.5.0'
 
     //shrink effect
@@ -159,4 +165,7 @@ dependencies {
     //Navigation Drawer
     implementation 'com.infideap.drawerbehavior:drawer-behavior:1.0.3'
 
+    //BottomSheet
+    implementation 'com.flipboard:bottomsheet-core:1.5.3'
+    implementation 'com.flipboard:bottomsheet-commons:1.5.3'
 }

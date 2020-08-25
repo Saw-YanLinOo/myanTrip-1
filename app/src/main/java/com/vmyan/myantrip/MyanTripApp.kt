@@ -27,9 +27,13 @@ class MyanTripApp : Application(){
                 upComingTripModule,
                 profileModule,
                 uploadPostModule,
+                communicationModule,
+                communicationDetailModule,
                 tripPlanModule,
                 addPlanModule,
                 backPackModule,
+                teamMateModule,
+                commentModule,
                 teamMateModule,
                 emergencyModule
             ))

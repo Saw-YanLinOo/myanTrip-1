@@ -15,12 +15,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.PostUploadActivity
 import com.vmyan.myantrip.ui.SharePost
 import io.fotoapparat.Fotoapparat
 import io.fotoapparat.configuration.CameraConfiguration
@@ -82,7 +84,6 @@ class CameraFragment : Fragment() {
 
         fab_pick_photo.setOnClickListener {
             if (hasNoPermissions()) {
-
                 val permissions = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 ActivityCompat.requestPermissions(requireActivity(), permissions,0)
             }else{
@@ -104,8 +105,11 @@ class CameraFragment : Fragment() {
 
             val compress = compressBitmap(bitresize,25)
             val image = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(),compress,"${UUID.randomUUID()}",".jpg")
-            Log.e("Photo Uri===>",image)
-            toSingleUploadFragment(image)
+
+            arrayList.add(image)
+            requireActivity().intent.putStringArrayListExtra("imageList",arrayList)
+            requireActivity().setResult(Activity.RESULT_OK,requireActivity().intent)
+            requireActivity().finish()
         }
     }
 
@@ -121,24 +125,30 @@ class CameraFragment : Fragment() {
                         while (currentItem < count) {
                             var imageUri: Uri = resultData.getClipData()!!.getItemAt(currentItem).getUri()
                             currentItem = currentItem + 1
-                            Log.d("Uri Selected", imageUri.toString())
+//                            Log.d("Uri Selected", imageUri.toString())
                             try {
                                 arrayList.add(imageUri.toString())
-                                Log.e("imageUrl=====>",arrayList.toString())
+//                                Log.e("imageUrl=====>",arrayList.toString())
 
                             } catch (e: Exception) {
                                 Log.e("", "File select error", e)
                             }
                         }
-                        toMultiUploadFragment(arrayList)
+                        //return value
+                        requireActivity().intent.putStringArrayListExtra("imageList",arrayList)
+                        requireActivity().setResult(Activity.RESULT_OK,requireActivity().intent)
+                        requireActivity().finish()
+
                     } else if (resultData.getData() != null) {
                         val uri: Uri = resultData.getData()!!
-                        Log.i("", "Uri = " + uri.toString())
+//                        Log.i("", "Uri = " + uri.toString())
                         try {
                             arrayList.add(uri.toString())
-                            Log.e("imageUrl=====>",arrayList.toString())
+//                            Log.e("imageUrl=====>",arrayList.toString())
 
-                            toSingleUploadFragment(uri.toString())
+                            requireActivity().intent.putStringArrayListExtra("imageList",arrayList)
+                            requireActivity().setResult(Activity.RESULT_OK,requireActivity().intent)
+                            requireActivity().finish()
 
                         } catch (e: Exception) {
                             Log.e("", "File select error", e)
@@ -148,29 +158,9 @@ class CameraFragment : Fragment() {
             }
         }
     }
-    private fun toSingleUploadFragment(data: String){
-        val bundle = Bundle()
-        bundle.putString("single_Photo",data)
-
-        val fragment = UploadPost()
-        fragment.setArguments(bundle)
-        requireFragmentManager().beginTransaction()
-            .replace(R.id.share_containger, fragment)
-            .commit()
-    }
-
-    private fun toMultiUploadFragment(data: ArrayList<String>){
-        val bundle = Bundle()
-        bundle.putStringArrayList("multiple_Photo",data)
-        val fragment = UploadPost()
-        fragment.setArguments(bundle)
-        requireFragmentManager().beginTransaction()
-            .replace(R.id.share_containger, fragment)
-            .commit()
-    }
 
     private fun showChooser() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT);
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.addCategory(Intent.CATEGORY_OPENABLE);

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginBottom="30dp"
+        >
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/profile"
+            />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name Yan"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/img_profile"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_username"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/img_profile"
+            android:text="time"
+            android:textColor="#556CED"
+            android:textSize="10dp" />
+
+        <ImageView
+            android:id="@+id/btn_follow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_more_option"
+            android:text="Follow  "
+            android:gravity="center"
+            android:textColor="#9E9C9C"
+            android:textAllCaps="false"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_description_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="Description"
+        android:maxLines="1"
+        android:textColor="#000"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:ellipsize="end"
+        android:lines="2"/>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_like"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_like"
+            />
+        <TextView
+            android:id="@+id/tv_Like"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="12"
+            android:textSize="15dp"
+            android:textColor="#9E9C9C"
+            android:layout_toRightOf="@id/btn_like"
+            android:layout_marginLeft="10dp"/>
+        <ImageButton
+            android:id="@+id/btn_icon_comment"
+            android:layout_toRightOf="@id/tv_Like"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/ic_unlike"/>
+        <TextView
+            android:id="@+id/tv_total_unlike"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="12"
+            android:textSize="15dp"
+            android:textColor="#9E9C9C"
+            android:layout_toRightOf="@id/btn_icon_comment"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageButton
+            android:id="@+id/btn_view"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/tv_total_unlike"
+            android:background="@drawable/ic_comment" />
+        <TextView
+            android:id="@+id/tv_total_comment_view"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="12"
+            android:textSize="15dp"
+            android:textColor="#9E9C9C"
+            android:layout_toRightOf="@id/btn_view"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/btn_comment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Write a Comment"
+        android:gravity="center_vertical"
+        android:textColor="#9E9C9C"
+        android:paddingLeft="20dp"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:background="@drawable/round_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="start"
+        android:layout_marginBottom="10dp"/>
+</LinearLayout>

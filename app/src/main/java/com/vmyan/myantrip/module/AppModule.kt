@@ -101,6 +101,23 @@ val teamMateModule = module {
     }
 }
 
+val communicationModule = module {
+    single {
+        CommunicationViewModel(CommunicationRepositoryImpl())
+    }
+}
+val communicationDetailModule = module {
+    single {
+        CommunicationDetailViewModel(CommunicationDetailRepoImpl())
+    }
+}
+
+val commentModule = module{
+    single {
+        CommentViewModel(CommentRepositoryImpl())
+    }
+}
+
 val emergencyModule = module {
     single {
         EmergencyViewModel(EmergencyRepositoryImpl())

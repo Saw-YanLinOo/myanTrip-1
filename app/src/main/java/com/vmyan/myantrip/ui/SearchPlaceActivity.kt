@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.Place
+import com.vmyan.myantrip.model.PlaceDetails
 import com.vmyan.myantrip.ui.adapter.SearchPlaceListAdapter
 import com.vmyan.myantrip.ui.fragment.FilterDialogFragment
 import com.vmyan.myantrip.ui.viewmodel.SearchPlaceViewModel
@@ -33,7 +34,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
 
     private val viewModel: SearchPlaceViewModel by inject()
     private lateinit var searchPlaceListAdapter: SearchPlaceListAdapter
-    private val placeList = mutableListOf<Place>()
+    private val placeList = mutableListOf<PlaceDetails>()
     private var sort = ""
     private var state = ""
 
@@ -130,9 +131,9 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         var name = nameS
         if (name.isNotEmpty()) name =
             name.substring(0, 1).toUpperCase(Locale.ROOT) + name.substring(1).toLowerCase(Locale.ROOT)
-        val results: MutableList<Place> = mutableListOf()
+        val results: MutableList<PlaceDetails> = mutableListOf()
         for (user in placeList) {
-            if (user.name.contains(name)) {
+            if (user.place.name.contains(name)) {
                 results.add(user)
             }
         }
@@ -142,7 +143,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         }
     }
 
-    private fun sortResult(list: MutableList<Place>) {
+    private fun sortResult(list: MutableList<PlaceDetails>) {
         when (sort) {
             "" -> updatePlaceList(ascPlaceList(list))
             "A-Z" -> updatePlaceList(ascPlaceList(list))
@@ -154,16 +155,16 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
     }
 
 
-    private fun updatePlaceList(list: MutableList<Place>){
+    private fun updatePlaceList(list: MutableList<PlaceDetails>){
         searchPlaceListAdapter.setItems(list)
     }
 
 
 
-    private fun ascPlaceList(list: MutableList<Place>): MutableList<Place>{
+    private fun ascPlaceList(list: MutableList<PlaceDetails>): MutableList<PlaceDetails>{
         list.sortWith(Comparator { p0, p1 ->
             var res = -1
-            if (p0!!.name > p1!!.name) {
+            if (p0!!.place.name > p1!!.place.name) {
                 res = 1
             }
             res
@@ -172,10 +173,10 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         return list
     }
 
-    private fun descPlaceList(list: MutableList<Place>): MutableList<Place>{
+    private fun descPlaceList(list: MutableList<PlaceDetails>): MutableList<PlaceDetails>{
         list.sortWith(Comparator { p0, p1 ->
             var res = -1
-            if (p0!!.name < p1!!.name) {
+            if (p0!!.place.name < p1!!.place.name) {
                 res = 1
             }
             res
@@ -184,10 +185,10 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         return list
     }
 
-    private fun highRPlaceList(list: MutableList<Place>): MutableList<Place>{
+    private fun highRPlaceList(list: MutableList<PlaceDetails>): MutableList<PlaceDetails>{
         list.sortWith(Comparator { p0, p1 ->
             var res = -1
-            if (p0!!.ratingValue < p1!!.ratingValue) {
+            if (p0!!.place.ratingValue < p1!!.place.ratingValue) {
                 res = 1
             }
             res
@@ -196,10 +197,10 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         return list
     }
 
-    private fun lowRPlaceList(list: MutableList<Place>): MutableList<Place>{
+    private fun lowRPlaceList(list: MutableList<PlaceDetails>): MutableList<PlaceDetails>{
         list.sortWith(Comparator { p0, p1 ->
             var res = -1
-            if (p0!!.ratingValue > p1!!.ratingValue) {
+            if (p0!!.place.ratingValue > p1!!.place.ratingValue) {
                 res = 1
             }
             res
@@ -208,10 +209,10 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         return list
     }
 
-    private fun filterState(list: MutableList<Place>,state: String) : MutableList<Place>{
-        val resultList = mutableListOf<Place>()
+    private fun filterState(list: MutableList<PlaceDetails>,state: String) : MutableList<PlaceDetails>{
+        val resultList = mutableListOf<PlaceDetails>()
         for (data in list){
-            if (data.state == state){
+            if (data.place.state == state){
                 resultList.add(data)
             }
         }
@@ -275,10 +276,12 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
         })
     }
 
-    override fun onPlaceClick(place_id: String) {
+    override fun onPlaceClick(place: PlaceDetails) {
         val i = Intent(this, PlaceDetailsActivity::class.java)
-        i.putExtra("place_id", place_id)
+        i.putExtra("place_id", place.place.place_id)
         startActivity(i)
+
+
     }
 
     override fun onFinishDialog(sort: String, staet: String) {

@@ -19,7 +19,7 @@ class LoginRepositoryImpl:LoginRepository {
             .get()
             .await()
         var mUser = muser.data
-        var user = User(auth.currentUser!!.uid,mUser!!["phone_number"].toString(),mUser!!["email"].toString(),mUser!!["username"].toString(),mUser!!["profilephoto"].toString(),mUser!!["backgroundprofile"].toString(),mUser!!["followers"].toString(),mUser!!["followings"].toString())
+        var user = User(auth.currentUser!!.uid,mUser!!["phone_number"].toString(),mUser!!["email"].toString(),mUser!!["username"].toString(),mUser!!["profilephoto"].toString(),mUser!!["backgroundprofile"].toString())
         return Resource.Success(MutableLiveData(user))
     }
     override suspend fun signIn(email: String, password: String): Resource<MutableLiveData<AuthResult>> {

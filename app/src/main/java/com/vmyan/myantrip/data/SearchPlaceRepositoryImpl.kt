@@ -4,11 +4,13 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.vmyan.myantrip.model.Place
+import com.vmyan.myantrip.model.PlaceDetails
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
 
 class SearchPlaceRepositoryImpl : SearchPlaceRepository {
-    override suspend fun getPlaceBySearch(): Resource<MutableList<Place>> {
+    override suspend fun getPlaceBySearch(): Resource<MutableList<PlaceDetails>> {
+        val placeDetailList = mutableListOf<PlaceDetails>()
         val placeList = mutableListOf<Place>()
 
         val catList = FirebaseFirestore.getInstance()
@@ -50,14 +52,17 @@ class SearchPlaceRepositoryImpl : SearchPlaceRepository {
                     val sliderImg = document.get("sliderImg") as ArrayList<String>
                     val state = document.getString("state")
 
+
+                    var place = Place(id, address!!, buildDate!!, category!!, city!!, country!!, founder!!, gallery, history!!, info!!, latlng!!, mainImg!!, name!!, ratingValue!!, sliderImg, state!!)
                     placeList.add(
                         Place(id, address!!, buildDate!!, category!!, city!!, country!!, founder!!, gallery, history!!, info!!, latlng!!, mainImg!!, name!!, ratingValue!!, sliderImg, state!!)
                     )
-
+                    placeDetailList.add(PlaceDetails(cid,sid,place, mutableListOf()))
                 }
+
             }
         }
-        return Resource.Success(placeList)
+        return Resource.Success(placeDetailList)
     }
 
 }

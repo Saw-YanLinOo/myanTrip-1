@@ -1,10 +1,12 @@
 package com.vmyan.myantrip.model
 
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentId
 
 class Comments (
     @DocumentId
-    var username : String,
-    var profilephoto : String,
-    var description : String
+    var user: User,
+    var description : String? = "",
+    var time : Timestamp? = Timestamp.now()
+
 )

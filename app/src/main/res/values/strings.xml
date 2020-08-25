@@ -6,6 +6,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="google_map_key">AIzaSyBRKZRZbQ0PrwRmunKH7LA4UWeR5Gy48B8</string>
+    <string name="label_format">Value: %1$.0f</string>
+
     <string name="roboto_light">sans-serif-light</string>
     <string name="testmotion">
 
@@ -47,6 +49,8 @@ According to legend the pagoda is more than 2,500 years old dating back to the l
     <string name="sans_serif" translatable="false">sans-serif</string>
     <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
     <string name="deleted_key"><xliff:g example="4" id="key">%1$s</xliff:g> deleted</string>
+    <string name="please_wait">Please Wait!!</string>
+    <string name="write_a_comment">Write A Comment</string>
 
 </resources>
 

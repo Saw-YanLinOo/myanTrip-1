@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vmyan.myantrip">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".MyanTripApp"
@@ -37,22 +39,6 @@
         <activity android:name=".ui.EmergencyListActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.booking.bus.train.TrainStepper" />
-        <activity android:name=".ui.booking.bus.train.TrainViewList" />
-        <activity android:name=".ui.booking.bus.train.TrainBooking" />
-        <activity android:name=".ui.booking.bus.carRental.CarRentalStepper" />
-        <activity android:name=".ui.booking.bus.carRental.CarRentalsListView" />
-        <activity android:name=".ui.booking.bus.carRental.CarRental" />
-        <activity android:name=".ui.booking.bus.BusStepper" />
-        <activity android:name=".ui.booking.bus.BusListView" />
-        <activity android:name=".ui.booking.bus.BusBooking" />
-        <activity android:name=".ui.booking.bus.flight.FlightStepper" />
-        <activity android:name=".ui.booking.bus.flight.FlightListView" />
-        <activity android:name=".ui.booking.bus.flight.FlightBooking" />
-        <activity android:name=".ui.booking.bus.hotel.HotelStepper" />
-        <activity android:name=".ui.booking.bus.hotel.ShowHotelView" />
-        <activity android:name=".ui.StayingPlaceActivity" />
-        <activity android:name=".ui.booking.bus.hotel.HotelBooking" />
         <activity
             android:name=".ui.plancategoryview.AddShoppingActivity"
             android:theme="@style/AddNewTripTheme"
@@ -77,12 +63,8 @@
             android:name=".ui.TripPlanUserActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.CommentActivity" />
         <activity
-            android:name=".ui.TripPlanUserActivity"
-            android:theme="@style/AddNewTripTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ui.TripBackPackActivity"
             android:name=".ui.TripBackPackActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
@@ -111,6 +93,9 @@
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".ui.CommunicationDetail"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".ui.plancategoryview.AddHotelActivity"
             android:theme="@style/AddNewTripTheme"
             android:windowSoftInputMode="adjustResize" />
@@ -126,8 +111,9 @@
             android:theme="@style/AppTheme.ProfileTheme" />
         <activity android:name=".ui.PlaceDetailsActivity" />
         <activity android:name=".ui.SearchPlaceActivity" />
+        <activity android:name=".ui.SearchPlaceActivityForPost"/>
         <activity android:name=".ui.PlaceByCategoryActivity" />
-
+        <activity android:name=".ui.PostUploadActivity"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />

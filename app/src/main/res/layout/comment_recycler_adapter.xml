@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        >
+        <ImageView
+            android:id="@+id/img_profile_c"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/profile"
+            />
+        <TextView
+            android:id="@+id/tv_username_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name Yan"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/img_profile_c"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_time_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_username_c"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/img_profile_c"
+            android:text="time"
+            android:textColor="#556CED"
+            android:textSize="10dp" />
+            <TextView
+                android:id="@+id/tv_descripton_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="Description"
+                android:maxLines="1"
+                android:textColor="#000"
+                android:layout_marginBottom="7dp"
+                android:layout_toRightOf="@id/img_profile_c"
+                android:layout_below="@id/tv_time_c"
+                android:elevation="5dp"
+                />
+    </RelativeLayout>
+</LinearLayout>

@@ -5,5 +5,6 @@ import com.google.firebase.firestore.DocumentId
 class GetPost (
     @DocumentId
     var user : User,
-    var posts: Posts
+    var posts: Posts,
+    var place: Place? = null
 )

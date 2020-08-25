@@ -18,4 +18,14 @@ class BlogViewModel (private val blogRepository: BlogRepository): ViewModel(){
             emit(Resource.Failure(e.cause.toString()))
         }
     }
+
+    fun getAllUser() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            val blogLists = blogRepository.getAllUser()
+            emit(blogLists)
+        }catch (e : Exception){
+            emit(Resource.Failure(e.cause.toString()))
+        }
+    }
 }

@@ -10,6 +10,6 @@ data class User (
     var username:String,
     var profilephoto:String,
     var backgroudphoto : String?,
-    var followers : String,
-    var followings : String
+    var followers : Long? = 0,
+    var followings : Long? = 0
 )

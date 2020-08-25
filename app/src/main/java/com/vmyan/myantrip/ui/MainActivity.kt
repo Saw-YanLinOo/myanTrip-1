@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         }
 
 
-        bottom_nav_menu.setItemSelected(R.id.nav_booking,true)
-        openFragment(BookingFragment())
+        bottom_nav_menu.setItemSelected(R.id.nav_home,true)
+        openFragment(HomeFragment())
         bottom_nav_menu.setOnItemSelectedListener {
             when(it){
                 R.id.nav_plan -> openFragment(PlanFragment())
@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
                 println("User id===>"+userid)
                 val intent = Intent(this, Profile::class.java)
                 intent.putExtra("user_id",auth.currentUser?.uid)
+                intent.putExtra("user_name",Hawk.get<String>("user_name"))
+                intent.putExtra("user_profile",Hawk.get<String>("user_profile",""))
                 startActivity(intent)
             }
         }

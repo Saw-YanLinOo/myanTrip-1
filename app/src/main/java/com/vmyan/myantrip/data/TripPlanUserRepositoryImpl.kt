@@ -32,8 +32,8 @@ class TripPlanUserRepositoryImpl : TripPlanUserRepository{
                 val username = user.getString("username")
                 val backgroundphoto = user.getString("backgroudphoto")
                 val email = user.getString("email")
-                val followers = user.getString("followers")
-                val followings = user.getString("followings")
+                val followers = user.getLong("followers")
+                val followings = user.getLong("followings")
                 val phonenumbar = user.getString("phone_number")
                 val userImg = user.getString("profilephoto")
 

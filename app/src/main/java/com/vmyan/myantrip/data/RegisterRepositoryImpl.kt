@@ -20,7 +20,7 @@ class RegisterRepositoryImpl : RegisterRepository {
             .get()
             .await()
         var mUser = muser.data
-        var user = User(auth.currentUser!!.uid,mUser!!["phone_number"].toString(),mUser!!["email"].toString(),mUser!!["username"].toString(),mUser!!["profilephoto"].toString(),mUser["backgroundprofile"].toString(),mUser!!["followers"].toString(),mUser!!["followings"].toString())
+        var user = User(auth.currentUser!!.uid,mUser!!["phone_number"].toString(),mUser!!["email"].toString(),mUser!!["username"].toString(),mUser!!["profilephoto"].toString(),mUser["backgroundprofile"].toString(),mUser!!["followers"] as Long,mUser!!["followings"] as Long)
         return Resource.Success(MutableLiveData(user))
     }
 
