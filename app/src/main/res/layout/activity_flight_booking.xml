@@ -17,14 +17,15 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="50dp">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgBackArrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_arrow_back"
-            />
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/flightImgBackArrowHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:src="@drawable/ic_baseline_arrow_back_white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtFlight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/appBar"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             >
             <LinearLayout
@@ -61,6 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="From"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/allColor"
                 android:layout_below="@id/imgFlightFrom"
@@ -69,15 +72,13 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgFromTo"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_toRightOf="@id/llFlightFrom"
-                android:src="@drawable/ic_fromto"
-                android:scaleType="fitXY"
-                android:layout_centerVertical="false"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_depart_airplane"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 />
             <LinearLayout
                 android:id="@+id/llFlightTo"
@@ -97,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="To"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/allColor"
                 android:layout_below="@id/imgFlightTo"
@@ -160,23 +162,21 @@
 
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/ic_from"
-
                     android:paddingRight="10dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appComtxt_FlightDepart"
-
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:hint="date"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="5dp" />
 
@@ -196,6 +196,7 @@
             android:layout_height="wrap_content"
             android:text="Passenger"
             android:textStyle="bold"
+            android:textSize="@dimen/titelSize"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             />
@@ -316,6 +317,7 @@
             android:layout_height="wrap_content"
             android:text="Flight Class"
             android:textStyle="bold"
+            android:textSize="@dimen/titelSize"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             />
@@ -398,7 +400,7 @@
             android:elevation="10dp"
             app:cardElevation="3dp"
             app:cardCornerRadius="15dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/textColorForBooking"
             >
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/card_FlightSearch"

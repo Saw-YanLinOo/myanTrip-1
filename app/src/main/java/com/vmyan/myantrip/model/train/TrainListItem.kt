@@ -14,6 +14,6 @@ data class TrainListItem(
     val trainTimeStop : String,
     val trainStatus : String,
     val trainImage : String,
-    val trainPerSeatPrice : String
+    val trainPerSeatPrice : Long
 
 )

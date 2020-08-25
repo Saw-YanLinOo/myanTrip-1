@@ -45,9 +45,6 @@ class TrainViewList : AppCompatActivity(), TrainListAdapter.ItemClickListener {
         rv_TrainList.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
-            val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
-            snapHelperStart.attachToRecyclerView(rv_TrainList)
-
             rv_TrainList.adapter = trainListAdapter
             ViewCompat.setNestedScrollingEnabled(rv_TrainList, false)
         }

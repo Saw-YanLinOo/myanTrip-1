@@ -44,9 +44,6 @@ class CarRentalsListView : AppCompatActivity() , CarRentaisListAdapter.ItemClick
         rv_carRentailsList.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
-            val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
-            snapHelperStart.attachToRecyclerView(rv_carRentailsList)
-
             rv_carRentailsList.adapter = carRentailsListAdapter
             ViewCompat.setNestedScrollingEnabled(rv_carRentailsList, false)
         }

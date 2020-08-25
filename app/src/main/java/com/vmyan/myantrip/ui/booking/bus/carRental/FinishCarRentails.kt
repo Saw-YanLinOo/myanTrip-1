@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vmyan.myantrip.R
+import kotlinx.android.synthetic.main.fragment_finish_car_rentails.view.*
 
 class FinishCarRentails : Fragment() ,View.OnClickListener{
 
@@ -15,6 +16,9 @@ class FinishCarRentails : Fragment() ,View.OnClickListener{
         savedInstanceState: Bundle?
     ): View? {
         val view =inflater.inflate(R.layout.fragment_finish_car_rentails, container, false)
+        view.btnFinishCarRentalBooking.setOnClickListener {
+            requireActivity().finish()
+        }
 
         return view
     }

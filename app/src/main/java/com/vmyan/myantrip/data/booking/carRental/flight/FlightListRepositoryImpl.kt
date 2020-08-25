@@ -22,7 +22,7 @@ class FlightListRepositoryImpl : FlightListRepository {
             val flightDeparture =flight.getString("FlightDeparture")
             val fTimeStart =flight.getString("FTimeStart")
             val fTimeStop =flight.getString("FTimeStop")
-            val flightPrice =flight.getString("FlightPrice")
+            val flightPrice = flight.getDouble("FlightPrice")?.toLong()
             val flightClass =flight.getString("FlightClass")
             val fBaggageAllow =flight.getString("FBaggageAllow")
 

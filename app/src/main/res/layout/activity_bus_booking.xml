@@ -75,7 +75,6 @@
                android:layout_height="wrap_content"
                android:orientation="vertical"
                android:layout_toRightOf="@id/llBusFrom"
-               android:layout_marginLeft="5dp"
                android:layout_marginRight="5dp"
                >
                <androidx.appcompat.widget.AppCompatImageView
@@ -156,7 +155,7 @@
                 android:textSize="18sp"
                 />
             <RelativeLayout
-                android:id="@+id/rl_BusFrom"
+                android:id="@+id/rl_BusDepartDate"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_below="@id/apptxt_choosePlaceText"
@@ -166,15 +165,13 @@
                 android:background="@drawable/rectangel_corner">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/appImg_BusFrom"
+                    android:id="@+id/appImg_BusDepartDate"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/ic_from"
-                    android:layout_alignParentRight="true"
-
+                    android:background="@drawable/ic_date"
                     android:paddingRight="10dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -184,6 +181,7 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:gravity="center"
+                    android:layout_centerHorizontal="true"
                     android:paddingLeft="5dp"
                     android:hint="date" />
 
@@ -222,11 +220,10 @@
 
 
                     <com.shawnlin.numberpicker.NumberPicker
-                        android:id="@+id/horizontal_number_picker"
+                        android:id="@+id/busSeat_number_picker"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="7dp"
-                        android:background="@drawable/rectangel_corner"
                         app:np_accessibilityDescriptionEnabled="true"
                         app:np_dividerColor="@color/divider_color"
                         app:np_dividerType="side_lines"
@@ -296,7 +293,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/clearAllRecentValue"
+                    android:id="@+id/clearAllBusRecentValue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="13dp"
@@ -313,9 +310,9 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_hotelRecentItem"
+                android:id="@+id/rv_BusRecentItem"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="10dp"
                 />

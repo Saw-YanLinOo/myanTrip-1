@@ -8,49 +8,98 @@
     app:layoutDescription="@xml/car_rental"
     tools:context=".ui.booking.bus.carRental.CarRental">
 
-    <ImageView
-        android:id="@+id/carRental_image"
-        android:layout_width="0dp"
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/carRental_Promo_Images"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:elevation="10dp"
+        android:layoutAnimation="@anim/layoutanimation_left_to_right"
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorEnabled="true"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="1dp"
+        app:sliderIndicatorSelectedColor="#5A5A5A"
+        app:sliderIndicatorUnselectedColor="#FFF"
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/trip_defaultimg"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/backHome"
-        android:padding="16dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/ic_back_arrow"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#000000" />
+        app:sliderScrollTimeInSec="1" />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/carRental_Promo_Placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include layout="@layout/booking_promo_placeholder" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <TextView
         android:id="@+id/titleCarRental"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="70dp"
         android:text="Car Rental"
+        android:elevation="10dp"
         android:textColor="#000000"
-        android:textSize="32sp"
-        android:visibility="gone"
+        android:textSize="20sp"
+        android:visibility="visible"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/carRental_image"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="14dp" />
+    <ImageView
+        android:id="@+id/carRentalBackHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:tint="#000000" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCarRental"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cons">
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/carRental_nestedScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/carRental_image"
+        app:layout_constraintTop_toBottomOf="@id/cardCarRental"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,6 +107,7 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent"
+           android:background="@color/background_for_booking"
            android:orientation="vertical">
 
 
@@ -153,24 +203,21 @@
                     android:background="@drawable/rectangel_corner">
 
                     <androidx.appcompat.widget.AppCompatImageView
-
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/ic_from"
-
                         android:paddingRight="10dp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtPickUpCarRentals"
-
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_centerHorizontal="true"
                         android:background="@android:color/transparent"
                         android:gravity="center"
                         android:hint="date"
@@ -204,8 +251,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/ic_from"
-                        android:layout_alignParentRight="true"
-
                         android:paddingRight="10dp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -215,6 +260,7 @@
                         android:layout_centerVertical="true"
                         android:background="@android:color/transparent"
                         android:gravity="center"
+                        android:layout_centerHorizontal="true"
                         android:paddingLeft="5dp"
                         android:layout_marginLeft="10dp"
                         android:hint="date" />
@@ -286,10 +332,9 @@
             android:elevation="10dp"
             app:cardElevation="3dp"
             app:cardCornerRadius="15dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/textColorForBooking"
             >
             <androidx.appcompat.widget.AppCompatTextView
-
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Search"
@@ -338,8 +383,7 @@
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/rv_CarRecentItem"
                android:layout_width="match_parent"
-               android:layout_height="160dp"
-               android:layout_marginBottom="20dp"
+               android:layout_height="wrap_content"
                android:layout_marginLeft="10dp"
                />
        </LinearLayout>

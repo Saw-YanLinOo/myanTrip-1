@@ -11,7 +11,7 @@ data class FlightListItem(
         val flightDeparture : String,
         val fTimeStart : String,
         val fTimeStop : String,
-        val flightPrice : String,
+        val flightPrice : Long,
         val flightClass : String,
         val fBassageAllow : String,
         val flightImage : String

@@ -13,7 +13,7 @@ data class BusListItem(
     val busDeparture : String,
     val busTimeStart : String,
     val busTimeStop : String,
-    val busPricePerSeat : String,
+    val busPricePerSeat : Long,
     val busTotalNoSeat : String,
     val busImage : String
 

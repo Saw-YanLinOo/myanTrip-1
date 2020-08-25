@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.data.booking.carRental.bus.BusListRepositoryImpl
@@ -33,6 +34,15 @@ class BusListView : AppCompatActivity() , BusListAdapter.ItemClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_list_view)
+        imgBusViewFrom
+        txt_BusViewFrom.text = intent.getStringExtra("BusForm")
+        txt_BusViewTo.text =intent.getStringExtra("BusTo")
+        Glide.with(this).load(intent.getStringExtra("BusImageFrom")).into(imgBusViewFrom)
+        Glide.with(this).load(intent.getStringExtra("BusCityImageTo")).into(imgBusViewTo)
+        busDepartDateView.text=intent.getStringExtra("BusDepartsDate")
+        seatTotalNo.text=intent.getStringExtra("SeatTotalNo").toString()
+
+
        setBusAllList()
         setAdapter()
 
@@ -60,6 +70,7 @@ class BusListView : AppCompatActivity() , BusListAdapter.ItemClickListener{
                     println("loading.....PlaceCategoryList")
                 }
                 is Resource.Success -> {
+                    println(it.data)
                     busListAdapter.setItems(it.data)
 
                 }

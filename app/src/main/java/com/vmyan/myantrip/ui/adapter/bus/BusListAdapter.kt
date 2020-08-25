@@ -54,7 +54,7 @@ class BusListAdapter (private val listener: ItemClickListener, private val items
         fun bind(item : BusListItem){
             this.busList=item
             view.txt_BusName.text=item.busName
-           view.txt_busOneSeatPrice.text=item.busPricePerSeat
+           view.txt_busOneSeatPrice.text=item.busPricePerSeat.toString()
             view.busTimeStart.text=item.busTimeStart
             view.busTimeStop.text=item.busTimeStop
             view.busFromTo.text=item.busFromTo

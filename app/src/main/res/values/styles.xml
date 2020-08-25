@@ -16,6 +16,13 @@
         <item name="backgroundColor">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="BookingStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textColorForBooking</item>
+        <item name="fontFamily">@font/time_new_romen</item>
+        <item name="colorPrimary">@color/bottom_nav_select</item>
+        <item name="background_color">#dddddd</item>
+    </style>
 
     <style name="MainActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->

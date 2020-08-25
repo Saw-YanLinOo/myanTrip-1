@@ -23,29 +23,18 @@
                 android:id="@+id/imgSuccessLogo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/sucess"
+                android:src="@drawable/ic_win"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtSuccess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/imgSuccessLogo"
-                android:text="Sccess"
-                android:layout_centerHorizontal="true"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtContactName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="U Ba"
                 android:textStyle="bold"
-                android:layout_below="@+id/txtSuccess"
+                android:layout_below="@+id/imgSuccessLogo"
                 android:textSize="20sp"
                 android:layout_marginLeft="10dp"
 
@@ -271,12 +260,13 @@
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFinishFlightBooking"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="OK"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/llSelectedCost"
-                android:layout_marginBottom="10dp"
+                android:background="@color/textColorForBooking"
+                android:textColor="@color/allColor"
                 />
 
 

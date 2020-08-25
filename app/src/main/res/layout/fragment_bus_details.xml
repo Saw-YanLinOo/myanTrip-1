@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_for_booking"
     tools:context=".ui.booking.bus.BusDetails">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -16,7 +17,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +164,6 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/rectangel_corner"
-
                         android:layout_marginRight="20dp" />
 
                     <LinearLayout
@@ -189,7 +188,7 @@
                             android:text="12/5/2020"
                             android:layout_gravity="right|center"
                             android:gravity="right|center"
-                            android:textSize="12sp"
+                            android:textSize="15sp"
                             />
 
                    </LinearLayout>
@@ -222,7 +221,6 @@
                     android:layout_gravity="right"
                     android:gravity="right|center"
                     android:textSize="15sp"
-
                     />
                 </LinearLayout>
 
@@ -231,6 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Yangon-Mandalay"
+                    android:textSize="12sp"
                     android:layout_below="@id/ll2"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="7dp"
@@ -242,7 +241,7 @@
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/textColorForBooking"
                     android:layout_below="@id/txt_selectedBusRoute"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -287,19 +286,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="07:00"
-                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textSize="15sp"
 
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AM"
-                        android:layout_weight="1"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="5dp"
                         />
                     </LinearLayout>
                     <LinearLayout
@@ -329,18 +322,12 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1">
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="07:00"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:textSize="18sp"
-
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AM"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="5dp"
                         />
                     </LinearLayout>
 
@@ -364,10 +351,10 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="25,"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textSize="18sp"
+                        android:text="21"
                         />
 
                 </LinearLayout>
@@ -409,15 +396,28 @@
                     android:textSize="18sp"
                     android:layout_weight="1"
                     />
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="16000 MMK"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16000"
                     android:gravity="right"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:paddingRight="10dp"
                     android:layout_weight="1"
                     />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MMK"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
                 <LinearLayout
@@ -465,15 +465,28 @@
                         android:textSize="18sp"
                         android:layout_weight="1"
                         />
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="16000 MMK"
-                        android:gravity="right"
-                        android:textSize="18sp"
-                        android:paddingRight="10dp"
+                        android:orientation="horizontal"
                         android:layout_weight="1"
-                        />
+                        >
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="16000"
+                            android:gravity="right"
+                            android:textSize="15sp"
+                            android:paddingRight="10dp"
+                            android:layout_weight="1"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MMK"
+                            android:textSize="15sp"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -484,7 +497,7 @@
             android:id="@+id/card_SelectedBusContinue"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/textColorForBooking"
             android:elevation="10dp"
             android:layout_margin="20dp"
             >
@@ -492,6 +505,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="Continue"
+                android:textSize="18sp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@color/allColor"
@@ -501,7 +515,7 @@
 
 
     </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 

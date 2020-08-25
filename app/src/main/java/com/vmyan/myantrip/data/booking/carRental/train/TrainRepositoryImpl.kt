@@ -25,7 +25,7 @@ class TrainRepositoryImpl : TrainRepository {
             val trainTimeStop  =train.getString("TrainTimeStop")
             val trainStatus =train.getString("TrainStatus")
             val trainImage =train.getString("TrainImage")
-            val trainPerSeatPrice =train.getString("TrainPerSeatPrice")
+            val trainPerSeatPrice = train.getDouble("TrainPerSeatPrice")?.toLong()
 
             println(trainId)
             println(tranNo)

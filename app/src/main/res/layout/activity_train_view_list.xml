@@ -11,24 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:orientation="vertical"
-        android:background="@color/colorPrimary">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_arrow_back"
-            android:scaleType="fitXY"
-            />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
+        android:background="@color/textColorForBooking">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Travel Details"
-            android:textColor="@color/allColor"
-            android:textSize="20sp"
-            android:gravity="center"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/flight_back_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:src="@drawable/ic_baseline_arrow_back_white"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Train"
+                android:gravity="left|center"
+                android:textSize="@dimen/titelSize"
+                android:textStyle="bold"
+                android:textColor="@color/allColor"
+                />
+        </LinearLayout>
 
-            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="90dp"
@@ -146,8 +152,8 @@
         android:id="@+id/img_sortBusList"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"
+        android:src="@drawable/ic_sort"
+        android:padding="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_centerVertical="true"

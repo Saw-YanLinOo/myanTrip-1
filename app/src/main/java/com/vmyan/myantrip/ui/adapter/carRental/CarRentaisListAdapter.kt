@@ -56,7 +56,7 @@ class CarRentaisListAdapter (private val listener: ItemClickListener, private va
             view.txt_carCompanyName.text=item.carName
             view.txt_NoOfPeople.text =item.noOfPeople
             view.txt_NoOfBag.text=item.noOfBag
-            view.txt_carPrice.text=item.pricePerDay
+            view.txt_carPrice.text=item.pricePerDay.toString()
             view.txtCarRentalAddress.text=item.carAddress
             view.txtCarRentalPhoneNo.text=item.carPhoneNo
             Glide.with(view).load(item.carCompanyLogo).into(view.img_carCompanyLogo)

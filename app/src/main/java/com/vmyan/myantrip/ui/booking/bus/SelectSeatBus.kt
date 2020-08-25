@@ -157,7 +157,7 @@ class SelectSeatBus : Fragment() ,View.OnClickListener{
                 view.setPadding(0, 0, 0, 2 * seatGaping)
                 view.id = count
                 view.gravity = Gravity.CENTER
-                view.setBackgroundResource(R.drawable.ic_seats_reserved)
+                view.setBackgroundResource(R.drawable.ic_seats_book)
                 view.text = count.toString() + ""
                 view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 9f)
                 view.setTextColor(Color.WHITE)

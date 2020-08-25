@@ -35,6 +35,9 @@ class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_list_view)
+        flight_back_home.setOnClickListener {
+            this.finish()
+        }
         txtAdultsCount.text=intent.getStringExtra("AdultsCount")
         txtChildCount.text=intent.getStringExtra("ChildCount")
         txtInfantCount.text=intent.getStringExtra("InfantCount")

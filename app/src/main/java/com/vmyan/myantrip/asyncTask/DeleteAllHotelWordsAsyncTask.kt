@@ -3,7 +3,7 @@ package com.minbanyar.testbooking.AsyncTask
 import android.os.AsyncTask
 import com.vmyan.myantrip.dao.RecentDao
 
- class DeleteAllWordsAsyncTask internal constructor(dao: RecentDao) :
+ class DeleteAllHotelWordsAsyncTask internal constructor(dao: RecentDao) :
     AsyncTask<Void?, Void?, Void?>() {
     private val mAsyncTaskDao: RecentDao = dao
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Ui.flight.ConfirmFlight">
+    tools:context=".ui.booking.bus.flight.ConfirmFlight">
 
    <ScrollView
        android:layout_width="match_parent"
@@ -430,7 +430,7 @@
              android:elevation="10dp"
              app:cardElevation="3dp"
              app:cardCornerRadius="15dp"
-             app:cardBackgroundColor="@color/colorPrimary"
+             app:cardBackgroundColor="@color/textColorForBooking"
              >
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/card_FlightSearch"

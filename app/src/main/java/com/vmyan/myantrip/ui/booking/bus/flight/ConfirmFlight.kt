@@ -77,7 +77,7 @@ class ConfirmFlight : Fragment() {
                         view.txt_ArriveTime.text=d.fTimeStop
                         view.txt_ConfirmFlightDepartDate.text=d.flightDeparture
                         view.txtFlightBaggage.text=d.fBassageAllow
-                        view.txtFlightPrice.text=d.flightPrice
+                        view.txtFlightPrice.text=d.flightPrice.toString()
                     }
 
                 }

@@ -24,7 +24,7 @@ class BusListRepositoryImpl : BusListRepository {
             val busDeparture =bus.getString("BusDeparture")
             val busTimeStart =bus.getString("BusTimeStart")
             val busTimeStop  =bus.getString("BusTimeStop")
-            val busPricePerSeat =bus.getString("BusPricePerSeat")
+            val busPricePerSeat = bus.getDouble("BusPricePerSeat")?.toLong()
             val busTotalNoSeat =bus.getString("BusTotalNoSeat")
             val busImage =bus.getString("BusImage")
 

@@ -16,4 +16,13 @@ class CarListVM  (private val carListRepository: CarListRepository) : ViewModel(
             emit(Resource.Failure(e.message!!))
         }
     }
+    val fetchCarPromoImages = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            val promoSliderList = carListRepository.getCarRentailsPromoImageList()
+            emit(promoSliderList)
+        } catch (e: Exception) {
+            emit(Resource.Failure(e.message!!))
+        }
+    }
 }

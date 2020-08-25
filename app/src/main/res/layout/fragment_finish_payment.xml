@@ -223,17 +223,19 @@
                     android:layout_height="wrap_content"
                     android:text="400000 MMK"
                     android:textSize="18sp"
+
                     android:gravity="right"
                     />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFinishHotelBooking"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="OK"
+                android:background="@color/textColorForBooking"
+                android:textColor="@color/allColor"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/llSelectedCost"
-                android:layout_marginBottom="10dp"
                 />
 
 

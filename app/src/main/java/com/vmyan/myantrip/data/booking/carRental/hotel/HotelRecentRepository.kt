@@ -3,7 +3,7 @@ package com.vmyan.myantrip.data.booking.carRental.hotel
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.minbanyar.testbooking.AsyncTask.DeleteAllWordsAsyncTask
+import com.minbanyar.testbooking.AsyncTask.DeleteAllHotelWordsAsyncTask
 import com.vmyan.myantrip.dao.RecentDao
 import com.vmyan.myantrip.model.hotel.HotelRecentItem
 
@@ -18,7 +18,7 @@ suspend fun insert(items :HotelRecentItem){
 }
    @MainThread
     fun clearAll() {
-        DeleteAllWordsAsyncTask(recentDao).execute()
+        DeleteAllHotelWordsAsyncTask(recentDao).execute()
     }
 
 }

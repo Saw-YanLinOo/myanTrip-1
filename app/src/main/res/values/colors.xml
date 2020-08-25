@@ -12,6 +12,9 @@
 
     <color name="shimmer_placeholder">#dddddd</color>
 
+    <color name="background_for_booking">#dddddd</color>
+    <color name="textColorForBooking">#3700B3</color>
+
 
     <color name="textColor">#000000</color>
     <color name="buttonColor">#2ae</color>

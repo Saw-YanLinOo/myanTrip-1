@@ -10,7 +10,7 @@ data class CarRentailsItem(
     val noOfPeople :String,
     val noOfBag :String,
     val carStatus :String,
-    val pricePerDay :String,
+    val pricePerDay :Long,
     val carAddress :String,
     val carPhoneNo : String,
    val driverStatus :Boolean,

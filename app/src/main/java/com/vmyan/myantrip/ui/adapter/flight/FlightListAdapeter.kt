@@ -53,7 +53,7 @@ class FlightListAdapeter (private val listener: ItemClickListener, private val i
             view.txt_DepartTime.text=item.fTimeStart
             view.txt_ReturnTime.text=item.fTimeStop
             view.txt_DepartDateValue.text=item.flightDeparture
-            view.txtflightValue.text=item.flightPrice
+            view.txtflightValue.text= item.flightPrice.toString()
 
             Glide.with(view)
                 .load(item.flightImage)

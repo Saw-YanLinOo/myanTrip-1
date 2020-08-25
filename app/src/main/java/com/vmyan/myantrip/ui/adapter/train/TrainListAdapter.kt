@@ -54,7 +54,7 @@ class TrainListAdapter (private val listener: ItemClickListener, private val ite
         fun bind(item: TrainListItem) {
             this.trainList = item
             view.txt_TrainName.text = item.tranNo
-            view.txt_trainOneSeatPrice.text=item.trainPerSeatPrice
+            view.txt_trainOneSeatPrice.text=item.trainPerSeatPrice.toString()
             view.trainTimeStart.text=item.trainTimeStart
             view.trainTimeStop.text=item.trainTimeStop
             view.trainFromTo.text=item.trainFromTo

@@ -3,7 +3,7 @@ package com.vmyan.myantrip.data.booking.carRental.flight
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.vmyan.myantrip.AsyncTask.DeleteAllWordsFlistAsyncTask
+import com.vmyan.myantrip.asyncTask.DeleteAllWordsFlightAsyncTask
 import com.vmyan.myantrip.dao.FlightRecentDao
 import com.vmyan.myantrip.model.flight.FlightRecentItem
 
@@ -18,6 +18,6 @@ class FlightRecentRepository (private val flightRecentDao: FlightRecentDao){
     }
     @MainThread
     fun clearAll() {
-        DeleteAllWordsFlistAsyncTask(flightRecentDao).execute()
+        DeleteAllWordsFlightAsyncTask(flightRecentDao).execute()
     }
 }

@@ -1,15 +1,46 @@
 package com.vmyan.myantrip.ui.booking.bus.carRental
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
+import com.minbanyar.testbooking.viewModel.hotel.HotelListVMFactory
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.data.booking.carRental.CarListRepositoryImpl
+import com.vmyan.myantrip.data.booking.carRental.hotel.HotelListRepositoryImpl
+import com.vmyan.myantrip.model.carRental.CarRentalRecentItem
+import com.vmyan.myantrip.model.hotel.HotelRecentItem
+import com.vmyan.myantrip.ui.adapter.carRental.CarPromoAdapter
+import com.vmyan.myantrip.ui.adapter.carRental.CarRecentAdapter
+import com.vmyan.myantrip.ui.adapter.hotel.HotelRecentAdapter
+import com.vmyan.myantrip.ui.adapter.promoImageAdapter.PromoSliderImageAdapter
 import com.vmyan.myantrip.ui.booking.bus.PostActivityContract
 import com.vmyan.myantrip.ui.booking.bus.hotel.HotelBooking
+import com.vmyan.myantrip.ui.viewmodel.carRental.CarListVM
+import com.vmyan.myantrip.ui.viewmodel.carRental.CarListVMFactory
+import com.vmyan.myantrip.ui.viewmodel.carRental.CarRecentViewModel
+import com.vmyan.myantrip.ui.viewmodel.hotel.HotelListViewModel
+import com.vmyan.myantrip.ui.viewmodel.hotel.RecentViewModel
+import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_car_rental.*
+import kotlinx.android.synthetic.main.activity_hotel_booking.*
 import java.util.*
 import kotlin.time.ExperimentalTime
 
@@ -20,15 +51,37 @@ class CarRental : AppCompatActivity() {
     private var cityImagge : String=""
     private var startDate: Timestamp? = null
     private var endDate: Timestamp? = null
+    private var noOfCarPeople :Int=0
+    private lateinit var recentViewModel: CarRecentViewModel
+    private lateinit var sliderImageAdapter: PromoSliderImageAdapter
+    private val viewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            CarListVMFactory(
+                CarListRepositoryImpl()
+            )
+        ).get(
+            CarListVM::class.java
+        )
+    }
     @ExperimentalTime
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_rental)
         pickPlace()
+        setUpAdapter()
+        setCarPromoImage()
+        showImageSlider()
+
         card_CarRentailSearch.setOnClickListener {
+            noOfCarPeople= carRental_PeopleCount.rating.toInt()
             val intent= Intent (this, CarRentalsListView::class.java)
             startActivity(intent)
+            recentViewModel.insert(CarRentalRecentItem(cityImagge,location,dPickUpCar,dDropOffCar,noOfCarPeople.toString()))
 
+        }
+        clearAllCarRecentValue.setOnClickListener {
+            recentViewModel.clearAll()
         }
         rl_PickUp_CarRental.setOnClickListener {
             datePicker("start")
@@ -36,6 +89,52 @@ class CarRental : AppCompatActivity() {
         rl_DropOff_CarRentals.setOnClickListener {
             datePicker("end")
         }
+    }
+    @SuppressLint("ShowToast")
+    private fun setCarPromoImage() {
+
+        viewModel.fetchCarPromoImages.observe(this,  {
+            when (it) {
+                is Resource.Loading -> {
+                    carRental_Promo_Placeholder.startShimmer()
+                    carRental_Promo_Placeholder.visibility = View.VISIBLE
+                    carRental_Promo_Images.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    carRental_Promo_Placeholder.startShimmer()
+                    carRental_Promo_Placeholder.visibility = View.GONE
+                    carRental_Promo_Images.visibility = View.VISIBLE
+                    sliderImageAdapter.setItem(it.data[0].carPromoImages)
+
+                }
+                is Resource.Failure -> {
+                    carRental_Promo_Placeholder.startShimmer()
+                    carRental_Promo_Placeholder.visibility = View.GONE
+                    carRental_Promo_Images.visibility = View.GONE
+                    println(it.message)
+                    Toast.makeText(
+                        this,
+                        "An error is ocurred:${it.message}",
+                        Toast.LENGTH_SHORT
+                    )
+                }
+            }
+        })
+
+    }
+
+    private fun showImageSlider(){
+        sliderImageAdapter = PromoSliderImageAdapter()
+        carRental_Promo_Images.setSliderAdapter(sliderImageAdapter)        //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!
+        carRental_Promo_Images.setIndicatorAnimation(IndicatorAnimationType.WORM)
+        carRental_Promo_Images.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        carRental_Promo_Images.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
+        carRental_Promo_Images.indicatorSelectedColor = Color.WHITE
+        carRental_Promo_Images.indicatorUnselectedColor = Color.GRAY
+        carRental_Promo_Images.scrollTimeInSec = 3
+        carRental_Promo_Images.isAutoCycle = true
+        carRental_Promo_Images.startAutoCycle()
+
     }
 
     private fun pickPlace() {
@@ -92,5 +191,30 @@ class CarRental : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun setUpAdapter() {
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_CarRecentItem)
+        val adapter =CarRecentAdapter (this)
+
+        ViewCompat.setNestedScrollingEnabled(rv_CarRecentItem, false)
+
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        recentViewModel = ViewModelProvider(this).get(CarRecentViewModel::class.java)
+
+        // Add an observer on the LiveData returned by getAlphabetizedWords.
+        // The onChanged() method fires when the observed data changes and the activity is
+        // in the foreground.
+
+        recentViewModel.allItems.observe(this,  { words ->
+            // Upd
+            // ate the cached copy of the words in the adapter.
+            words?.let { adapter.setWords(it) }
+        })
+
     }
 }

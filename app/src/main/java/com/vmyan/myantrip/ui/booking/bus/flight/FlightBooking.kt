@@ -48,6 +48,7 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_booking)
+        flightImgBackArrowHome.setOnClickListener (this)
         card_Economy.setOnClickListener(this)
         card_Business.setOnClickListener(this)
         card_First.setOnClickListener(this)
@@ -220,6 +221,9 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
             }
             R.id.clearAllFlightRecentValue->{
                 flightRecentViewModel.clearAll()
+            }
+            R.id.flightImgBackArrowHome->{
+                this.finish()
             }
         }
 
