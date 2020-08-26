@@ -35,7 +35,8 @@ class MyanTripApp : Application(){
                 teamMateModule,
                 commentModule,
                 teamMateModule,
-                emergencyModule
+                emergencyModule,
+                bookingTicketModule
             ))
         }
     }

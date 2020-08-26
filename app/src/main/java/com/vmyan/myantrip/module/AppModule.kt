@@ -123,3 +123,9 @@ val emergencyModule = module {
         EmergencyViewModel(EmergencyRepositoryImpl())
     }
 }
+
+val bookingTicketModule = module {
+    factory {
+        BookingTicketViewModel(BookingTicketRepositoryImpl())
+    }
+}

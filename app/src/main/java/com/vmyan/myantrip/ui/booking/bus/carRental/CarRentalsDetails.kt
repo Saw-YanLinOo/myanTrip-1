@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_car_rentails_details.view.*
 
 class CarRentalsDetails : Fragment(),View.OnClickListener {
 
-    private var mListener: CarRentalsDetails.OnCarDetailsListener? = null
+    private var mListener: OnCarDetailsListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

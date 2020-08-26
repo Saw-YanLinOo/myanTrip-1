@@ -54,7 +54,7 @@ class HomeRepositoryImpl : HomeRepository {
                 .collection("/PlaceList/"+data.id+"/SubCategory/"+sub_cat_id+"/Place")
                 .whereGreaterThanOrEqualTo("ratingValue",4)
 //                .orderBy("ratingValue",Query.Direction.DESCENDING)
-                .limit(10)
+                .limit(5)
                 .get()
                 .await()
 
