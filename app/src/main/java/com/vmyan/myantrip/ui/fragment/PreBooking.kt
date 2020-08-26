@@ -1,11 +1,22 @@
 package com.vmyan.myantrip.ui.fragment
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SnapHelper
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
+import com.vmyan.myantrip.ui.adapter.TicketListAdapter
+import com.vmyan.myantrip.ui.adapter.TripPlanUserListAdapter
+import com.vmyan.myantrip.ui.viewmodel.BookingTicketViewModel
+import com.vmyan.myantrip.utils.Resource
+import kotlinx.android.synthetic.main.activity_trip_plan_user.*
+import kotlinx.android.synthetic.main.fragment_pre_booking.view.*
+import org.koin.android.ext.android.inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +33,9 @@ class PreBooking : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val viewModel: BookingTicketViewModel by inject()
+    private lateinit var ticketListAdapter: TicketListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +48,43 @@ class PreBooking : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pre_booking, container, false)
+        val view = inflater.inflate(R.layout.fragment_pre_booking, container, false)
+
+        setUpList(view)
+        getData()
+
+        return view
+    }
+
+    private fun setUpList(view: View){
+        ticketListAdapter = TicketListAdapter(mutableListOf())
+        view.preTicketRecycler.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL, false)
+        view.preTicketRecycler.apply {
+            setHasFixedSize(true)
+            setItemViewCacheSize(20)
+        }
+
+        val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.TOP)
+        snapHelperStart.attachToRecyclerView(view.preTicketRecycler)
+        view.preTicketRecycler.isNestedScrollingEnabled = false
+        view.preTicketRecycler.adapter = ticketListAdapter
+    }
+
+    private fun getData(){
+        viewModel.preTicket().observe(viewLifecycleOwner, {
+            when(it) {
+                is Resource.Loading ->  {
+
+                }
+                is Resource.Success -> {
+                    ticketListAdapter.setItems(it.data)
+                }
+                is Resource.Failure -> {
+
+                }
+            }
+        })
     }
 
     companion object {

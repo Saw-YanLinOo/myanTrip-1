@@ -27,4 +27,30 @@ class BookingTicketViewModel (private val bookingTicketRepository: BookingTicket
         }
     }
 
+    fun preTicket() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+
+        try {
+            val result = bookingTicketRepository.getPreTicketList()
+            emit(result)
+        }catch (e: Exception){
+            e.printStackTrace()
+            emit(Resource.Failure(e.cause!!.toString()))
+        }
+    }
+
+    fun expTicket() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+
+        try {
+            val result = bookingTicketRepository.getExpTicketList()
+            emit(result)
+        }catch (e: Exception){
+            e.printStackTrace()
+            emit(Resource.Failure(e.cause!!.toString()))
+        }
+    }
+
+
+
 }

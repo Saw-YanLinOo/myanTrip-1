@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ExpireTicket">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Expire Ticket"/>
+        android:layout_margin="5dp"
+        tools:listitem="@layout/ticket_layout_item"
+        android:id="@+id/expTicketRecycler"/>
 
 </FrameLayout>
