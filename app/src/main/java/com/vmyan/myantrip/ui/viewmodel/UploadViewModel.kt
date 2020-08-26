@@ -9,24 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
 class UploadViewModel(private val uploadPostRepository: UploadPostRepository) {
-    fun setPost(description:String,imageLists : ArrayList<String>) = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            println("description===>$description")
-            println("imageList===>$imageLists")
-            val blogLists = uploadPostRepository.setPost(Posts("","","",description,imageLists,0,0,0, Timestamp.now(),0))
-            emit(blogLists)
-        }catch (e : Exception){
-            emit(Resource.Failure(e.cause.toString()))
-        }
-    }
 
-    fun setPost(description:String,imageLists : ArrayList<String>,placeId : String,type : String)  = liveData(Dispatchers.IO) {
+    fun setPost(description:String,imageLists : ArrayList<String>,placeId : String,type : Long)  = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
             println("description===>$description")
             println("imageList===>$imageLists")
-            val blogLists = uploadPostRepository.setPost(Posts("","",placeId,description,imageLists,0,0,0, Timestamp.now(),0,type))
+            val blogLists = uploadPostRepository.setPost(Posts("","",placeId,description,imageLists,0,0,0, Timestamp.now(),0,type.toInt()))
             emit(blogLists)
         }catch (e : Exception){
             emit(Resource.Failure(e.cause.toString()))

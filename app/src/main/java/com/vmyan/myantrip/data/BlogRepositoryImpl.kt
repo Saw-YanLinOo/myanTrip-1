@@ -62,9 +62,9 @@ class BlogRepositoryImpl:BlogRepository {
             val time = document.getTimestamp("time")
             val comments = document.getLong("comment")
             val place_id = document.getString("place_id")
-            val type = document.getString("type")
+            val type = document.getLong("type")
 
-            var post = Posts(id,user_id!!,"",description!!,imglist!!,like!!,unlike!!,share!!,time!!,comments,"")
+            var post = Posts(id,user_id!!,"",description!!,imglist!!,like!!,unlike!!,share!!,time!!,comments,type!!.toInt())
             Log.e("Post List ==>", "${document.id} => ${post}")
 
             val userResultList = FirebaseFirestore.getInstance()

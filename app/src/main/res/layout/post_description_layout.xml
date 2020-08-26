@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         >
         <ImageView
             android:id="@+id/img_profile"
@@ -29,7 +29,13 @@
             android:layout_toRightOf="@id/img_profile"
             android:layout_marginLeft="5dp"
             />
-
+        <TextView
+            android:layout_toRightOf="@id/tv_username"
+            android:text="share a description"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
@@ -54,7 +60,7 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <TextView
-        android:id="@+id/tv_description_"
+        android:id="@+id/tv_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
@@ -64,7 +70,9 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         android:ellipsize="end"
-        android:lines="2"/>
+        android:lines="3"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
     <RelativeLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

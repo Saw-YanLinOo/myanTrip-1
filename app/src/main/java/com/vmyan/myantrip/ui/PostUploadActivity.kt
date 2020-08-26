@@ -86,7 +86,7 @@ class PostUploadActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadPost(description: String, imageList: ArrayList<String>, placeId: String,type : String) {
+    private fun uploadPost(description: String, imageList: ArrayList<String>, placeId: String,type : Long) {
         viewModel.uploadPhoto(imageList).observe(this, {
             when (it) {
                 is Resource.Loading -> {
@@ -221,13 +221,13 @@ class PostUploadActivity : AppCompatActivity() {
     private fun checkType() {
         var type = postType(this.description,this.imageListSize,this.placeId)
         if (type.trim() == "place and image"){
-            uploadPost(this.description,this.imageList,this.placeId,"place and image")
+            uploadPost(this.description,this.imageList,this.placeId,4)
         }else if (type.trim() == "place"){
-            uploadPost(this.description,this.imageList,this.placeId,"place")
+            uploadPost(this.description,this.imageList,this.placeId,3)
         }else if(type.trim() == "image"){
-            uploadPost(this.description,this.imageList,this.placeId,"image")
+            uploadPost(this.description,this.imageList,this.placeId,2)
         }else {
-            uploadPost(this.description,this.imageList,this.placeId,"description")
+            uploadPost(this.description,this.imageList,this.placeId,1)
         }
     }
 }

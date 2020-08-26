@@ -118,6 +118,7 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
                 val url = result.user.profilephoto
                 tv_username_p.text = result.user.username
                 loadPhoto(url)
+
                 postListAdapter.setItems(it.data)
             }
             is Resource.Failure -> {

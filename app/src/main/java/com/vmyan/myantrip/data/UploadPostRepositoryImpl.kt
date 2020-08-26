@@ -29,8 +29,12 @@ class UploadPostRepositoryImpl : UploadPostRepository {
     override suspend fun setPost(posts: Posts): Resource<MutableLiveData<DocumentReference>> {
 
         val hashMap : HashMap<String, Any> = HashMap()
-
-        hashMap["Photo"] = posts.image_url
+        if (posts.image_url.size != 0) {
+            hashMap["Photo"] = posts.image_url
+        }else{
+            hashMap["Photo"] = ArrayList<String>()
+        }
+        println("${posts.image_url.size}")
         hashMap["description"] = posts.description as String
         hashMap["user_id"] = auth.currentUser!!.uid
         hashMap["like"] = posts.like as Long
@@ -39,7 +43,7 @@ class UploadPostRepositoryImpl : UploadPostRepository {
         hashMap["time"] = Timestamp.now()
         hashMap["comment"] = posts.comments as Long
         hashMap["place_id"] = posts.place_id as String
-        hashMap["type"] = posts.type as String
+        hashMap["type"] = posts.type!!.toLong()
 
         println("Upload Post===> $hashMap")
         val result = FirebaseFirestore.getInstance()
@@ -54,16 +58,18 @@ class UploadPostRepositoryImpl : UploadPostRepository {
         val photosUrls = ArrayList<String>()
         println("Photo List ==> $photosUri")
 
-        val uploadedPhotosUriLink = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
-            (photosUri.indices).map { index ->
-                async(Dispatchers.IO) {
-                    uploadPhoto(storageRef, photosUri[index])
+        if (photosUri.size != 0){
+            val uploadedPhotosUriLink = withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                (photosUri.indices).map { index ->
+                    async(Dispatchers.IO) {
+                        uploadPhoto(storageRef, photosUri[index])
+                    }
                 }
-            }
-        }.awaitAll()
-
-        uploadedPhotosUriLink.forEach { photoUriLink -> photosUrls.add(photoUriLink.toString()) }
-        return Resource.Success(MutableLiveData(photosUrls))
+            }.awaitAll()
+            uploadedPhotosUriLink.forEach { photoUriLink -> photosUrls.add(photoUriLink.toString()) }
+            return Resource.Success(MutableLiveData(photosUrls))
+        }
+        return Resource.Success(MutableLiveData(ArrayList<String>()))
     }
 
 

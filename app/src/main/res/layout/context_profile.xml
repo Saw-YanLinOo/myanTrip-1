@@ -119,16 +119,28 @@
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/profile_recyclerView"
-            android:layout_below="@id/tv_post"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="5dp"/>
+            android:background="#F1F1F1">
+<!--            <TextView-->
+<!--                android:id="@+id/tv_show_no_post"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="No Post"-->
+<!--                android:textSize="30dp"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:textAlignment="center"-->
+<!--                />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profile_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="5dp"/>
+        </RelativeLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

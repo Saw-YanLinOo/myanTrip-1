@@ -6,11 +6,13 @@ import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.vmyan.myantrip.model.GetPost
+import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.model.Posts
 import com.vmyan.myantrip.model.User
 import com.vmyan.myantrip.utils.Resource
@@ -40,8 +42,11 @@ class ProfileRepositoryImpl : ProfileRepository {
             val share = document.getLong("share")
             val imglist = document.get("Photo") as ArrayList<String>
             val time = document.getTimestamp("time")
+            val comments = document.getLong("comment")
+            val place_id = document.getString("place_id")
+            val type = document.getLong("type")
 
-            val post = Posts(id,user_id!!,"",description!!,imglist!!,like!!,unlike!!,share!!,time!!)
+            val post = Posts(id,user_id!!,place_id,description!!,imglist!!,like!!,unlike!!,share!!,time!!,comments,type!!.toInt())
 
             val userResultList = FirebaseFirestore.getInstance()
                 .collection("User")
@@ -53,13 +58,28 @@ class ProfileRepositoryImpl : ProfileRepository {
             val backgroundphoto = userResultList.getString("backgroudphoto")
             val followers = userResultList.getLong("followers")
             val followings = userResultList.getLong("followings")
+            val user = User(user_id,"","",username!!,profilephoto!!,backgroundphoto,followers,followings)
 
-            val user = User(user_id,"","",username!!,profilephoto!!,"",0,0)
+            var place : Place? = null
+            if (place_id!!.trim() != ""){
+                val placeResultList = FirebaseFirestore.getInstance()
+                    .collection("PlaceList")
+                    .document("${place_id.trim()}")
+                    .get()
+                    .await()
+                var placename = placeResultList.getString("name")
+                var category = placeResultList.getString("category")
+                var placeImgList = placeResultList.get("gallery") as ArrayList<String>
+
+                place = Place("","","",category!!,"","","",placeImgList,"","",
+                    GeoPoint(0.0,0.0),"",placename!!,"0.0".toFloat(),ArrayList(),"")
+
+            }
 
             Log.e("User ==>","${userResultList.id} => ${userResultList.data}")
             Log.e("Post List ==>", "${document.id} => ${document.data}")
 
-            postList.add(GetPost(user,post))
+            postList.add(GetPost(user,post,place))
         }
 
         return Resource.Success(postList)
