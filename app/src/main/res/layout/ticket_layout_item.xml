@@ -13,11 +13,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/profile"
-            android:scaleType="fitXY"
             android:id="@+id/t_type_img"/>
 
         <LinearLayout
@@ -31,14 +30,14 @@
                 android:textSize="18sp"
                 android:text="Yoe Yoe Lay"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="@color/textColorForBooking"
                 android:id="@+id/tName"/>
 
             <TextView
                 android:id="@+id/fromto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:textColor="@color/textColorForBooking"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:text="20/02/2020 - 20/02/2020"
@@ -50,7 +49,7 @@
                 android:text="5000 MMK"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/textColorForBooking"
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
 

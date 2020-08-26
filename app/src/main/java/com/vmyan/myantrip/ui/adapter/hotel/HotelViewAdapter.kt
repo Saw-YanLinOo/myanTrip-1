@@ -56,7 +56,7 @@ class HotelViewAdapter(private val listener: ItemClickListener, private val item
             view.hotelLocation.text=hoteladdress
 
             view.hotel_rating_value.text=item.ratingValue
-            view.room_lowestPrice.text=item.lowestPrice
+            view.room_lowestPrice.text=item.lowestPrice.toString()
 
             view.hotel_rating_bar.rating=item.ratingValue.toFloat()
 

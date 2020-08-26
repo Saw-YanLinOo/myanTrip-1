@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_for_booking"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.booking.bus.train.TrainDetails">
 
@@ -347,32 +348,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/llSeatSelected"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/llSelectedBusTime"
-                    >
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Your Seat"
-                        android:textSize="18sp"
-                        android:layout_weight="1"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="25,"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        />
-
-                </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -486,7 +461,7 @@
             android:id="@+id/cardSelectedTrainContinue"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="@color/textColorForBooking"
             android:elevation="10dp"
             android:layout_margin="20dp"
             >

@@ -23,6 +23,7 @@
             android:layout_marginLeft="15dp"
             android:textStyle="bold"
             android:textSize="25sp"
+            android:textColor="@color/textColorForBooking"
             android:layout_marginTop="7dp"
             />
 
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="Hey, "
+                android:textColor="@color/textColorForBooking"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 />
@@ -44,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="Min Banyar"
+                android:textColor="@color/textColorForBooking"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
@@ -52,8 +55,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="This Promo For You"
+            android:textColor="@color/textColorForBooking"
             android:layout_marginLeft="10dp"
-            android:textSize="15sp"
+            android:textSize="@dimen/normalTitleSize"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             />
@@ -110,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Let's booking!"
+            android:textColor="@color/textColorForBooking"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -164,7 +169,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/tabcard" />

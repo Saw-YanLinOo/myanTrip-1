@@ -20,6 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:stpi_stepCount="3"
+            app:stpi_lineStrokeWidth="5dp"
+            app:stpi_lineColor="@color/textColorForBooking"
+            app:stpi_labelColor="@color/textColorForBooking"
+            app:stpi_indicatorColor="@color/textColorForBooking"
             />
     </LinearLayout>
 

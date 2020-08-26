@@ -49,7 +49,16 @@ class BankCardAdapter(private val listener: ItemClickListener, private val items
                 view.cardBank.setCardBackgroundColor(Color.BLUE)
             }else if(item.bankName=="CB")
             {
-                view.cardBank.setCardBackgroundColor(Color.parseColor("#D1FF33"))
+                view.cardBank.setCardBackgroundColor(Color.parseColor("#ffc40c"))
+                view.txtBankName.setTextColor(Color.BLACK)
+                view.bank.setTextColor(Color.BLACK)
+                view.number.setTextColor(Color.BLACK)
+                view.txtSince.setTextColor(Color.BLACK)
+                view.txtMember.setTextColor(Color.BLACK)
+                view.txtXXMember.setTextColor(Color.BLACK)
+                view.txtValid.setTextColor(Color.BLACK)
+                view.txtThru.setTextColor(Color.BLACK)
+                view.txtXXValid.setTextColor(Color.BLACK)
             }
 
             Glide.with(view)

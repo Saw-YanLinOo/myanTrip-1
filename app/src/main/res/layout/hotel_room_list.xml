@@ -44,7 +44,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@mipmap/ic_launcher"
+            android:src="@drawable/ic_wifi"
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/roomWifi"
@@ -67,7 +67,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@mipmap/ic_launcher"
+            android:src="@drawable/ic_toilet"
             />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/haveBathwithTiilet"
@@ -89,7 +89,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@mipmap/ic_launcher"
+                android:src="@drawable/ic_air_con"
                 />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/roomAirCon"

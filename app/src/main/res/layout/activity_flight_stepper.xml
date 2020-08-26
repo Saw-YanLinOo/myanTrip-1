@@ -19,9 +19,12 @@
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        app:stpi_lineStrokeWidth="5dp"
         app:stpi_stepCount="3"
         app:stpi_animDuration="20"
+        app:stpi_lineStrokeWidth="5dp"
+        app:stpi_lineColor="@color/textColorForBooking"
+        app:stpi_labelColor="@color/textColorForBooking"
+        app:stpi_indicatorColor="@color/textColorForBooking"
         />
     </LinearLayout>
 

@@ -8,4 +8,5 @@ import com.vmyan.myantrip.utils.Resource
 interface CarListRepository {
     suspend fun getCarRentailsList() : Resource<MutableList<CarRentailsItem>>
     suspend fun getCarRentailsPromoImageList() : Resource<MutableList<CarPromoImages>>
+
 }

@@ -24,7 +24,7 @@ class SelectTrainPassenger  : BottomSheetDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val bottomSheet =
             super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        roomGusest = (activity as HotelBooking)
+        //roomGusest = (activity as HotelBooking)
 
 
         //inflating layout

@@ -53,7 +53,6 @@ class BusBooking : AppCompatActivity(), View.OnClickListener {
             intent.putExtra("BusCityImageTo",cityImageTo)
             intent.putExtra("SeatTotalNo",seatNumber)
             intent.putExtra("BusDepartsDate",busDepartDate)
-
             startActivity(intent)
             recentViewModel.insert(BusRecentItem(locationFrom,locationTo,busDepartDate))
         }
@@ -65,25 +64,17 @@ class BusBooking : AppCompatActivity(), View.OnClickListener {
     }
     private fun setUpAdapter() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_BusRecentItem)
-
         val adapter = BusRecentAdapter(this)
-
         ViewCompat.setNestedScrollingEnabled(rv_BusRecentItem, false)
-
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
         recentViewModel = ViewModelProvider(this).get(BusRecentViewModel::class.java)
-
-
         recentViewModel.allItems.observe(this,  { words ->
             // Upd
             // ate the cached copy of the words in the adapter.
             words?.let { adapter.setWords(it) }
         })
-
     }
 
     private fun pickPlace() {

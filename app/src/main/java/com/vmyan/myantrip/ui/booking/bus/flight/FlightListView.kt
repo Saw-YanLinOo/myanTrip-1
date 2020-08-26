@@ -15,13 +15,20 @@ import com.bumptech.glide.Glide
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.data.booking.carRental.flight.FlightListRepositoryImpl
+import com.vmyan.myantrip.model.flight.FlightListItem
+import com.vmyan.myantrip.model.train.TrainListItem
 import com.vmyan.myantrip.ui.adapter.flight.FlightListAdapeter
+import com.vmyan.myantrip.ui.bs.FlightSorting
+import com.vmyan.myantrip.ui.bs.Sorting_BS
+import com.vmyan.myantrip.ui.interfaceImpl.Sorting
 import com.vmyan.myantrip.ui.viewmodel.flight.FlightListVM
 import com.vmyan.myantrip.ui.viewmodel.flight.FlightListVMFactory
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_flight_list_view.*
+import kotlinx.android.synthetic.main.activity_flight_list_view.flight_back_home
+import kotlinx.android.synthetic.main.activity_train_view_list.*
 
-class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener{
+class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener, Sorting {
     private val viewModel by lazy {
         ViewModelProviders.of(
             this,
@@ -31,12 +38,17 @@ class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener
         )
     }
     private lateinit var flightListAdaper: FlightListAdapeter
+    private  var flightListSorting = mutableListOf<FlightListItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight_list_view)
         flight_back_home.setOnClickListener {
             this.finish()
+        }
+        img_FlightSorting.setOnClickListener {
+            val bottomSheet= FlightSorting()
+            bottomSheet.show(supportFragmentManager,bottomSheet.tag)
         }
         txtAdultsCount.text=intent.getStringExtra("AdultsCount")
         txtChildCount.text=intent.getStringExtra("ChildCount")
@@ -78,6 +90,7 @@ class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener
                 }
                 is Resource.Success -> {
                     flightListAdaper.setItems(it.data)
+                    flightListSorting.addAll(it.data)
 
                 }
                 is Resource.Failure -> {
@@ -96,5 +109,38 @@ class FlightListView : AppCompatActivity(), FlightListAdapeter.ItemClickListener
         val intent =Intent(this, FlightStepper::class.java)
         startActivity(intent)
 
+    }
+
+    override fun lowestPrice(lPrice: String) {
+        flightListAdaper.setItems(lowRPlaceList(flightListSorting))
+
+    }
+
+    override fun highestPrice(hPrice: String) {
+        flightListAdaper.setItems(highRPlaceList(flightListSorting))
+
+    }
+    private fun highRPlaceList(list: MutableList<FlightListItem>): MutableList<FlightListItem>{
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.flightPrice < p1!!.flightPrice) {
+                res = 1
+            }
+            res
+        })
+
+        return list
+    }
+
+    private fun lowRPlaceList(list: MutableList<FlightListItem>): MutableList<FlightListItem>{
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.flightPrice> p1!!.flightPrice) {
+                res = 1
+            }
+            res
+        })
+
+        return list
     }
 }

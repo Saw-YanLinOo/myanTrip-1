@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
+    android:background="@color/background_for_booking"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.booking.bus.train.TrainPayment">
 
@@ -145,12 +146,13 @@
                             android:layout_marginLeft="30dp"
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="30dp"
-                            app:cardBackgroundColor="@color/colorAccent"
+                            app:cardBackgroundColor="@color/textColorForBooking"
                             >
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="20sp"
+                                android:textColor="@color/allColor"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:text="Pay"/>

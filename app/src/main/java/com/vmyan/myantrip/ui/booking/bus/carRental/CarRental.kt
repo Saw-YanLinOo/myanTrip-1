@@ -1,12 +1,14 @@
 package com.vmyan.myantrip.ui.booking.bus.carRental
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +43,7 @@ import com.vmyan.myantrip.ui.viewmodel.hotel.RecentViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_car_rental.*
 import kotlinx.android.synthetic.main.activity_hotel_booking.*
+import kotlinx.android.synthetic.main.show_empty_message.*
 import java.util.*
 import kotlin.time.ExperimentalTime
 
@@ -72,13 +75,30 @@ class CarRental : AppCompatActivity() {
         setUpAdapter()
         setCarPromoImage()
         showImageSlider()
+        carRentalBackHome.setOnClickListener {
+            this.finish()
+        }
 
         card_CarRentailSearch.setOnClickListener {
             noOfCarPeople= carRental_PeopleCount.rating.toInt()
-            val intent= Intent (this, CarRentalsListView::class.java)
-            startActivity(intent)
-            recentViewModel.insert(CarRentalRecentItem(cityImagge,location,dPickUpCar,dDropOffCar,noOfCarPeople.toString()))
-
+            if (location == "" && dPickUpCar == "" && dDropOffCar == "" && noOfCarPeople == 1 ) {
+                val dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(false)
+                dialog.setContentView(R.layout.show_empty_message)
+                dialog.btnOk.setOnClickListener {
+                    dialog.dismiss()
+                }
+                dialog.show()
+            }else {
+                val intent = Intent(this, CarRentalsListView::class.java)
+                startActivity(intent)
+                recentViewModel.insert(CarRentalRecentItem(cityImagge,
+                    location,
+                    dPickUpCar,
+                    dDropOffCar,
+                    noOfCarPeople.toString()))
+            }
         }
         clearAllCarRecentValue.setOnClickListener {
             recentViewModel.clearAll()

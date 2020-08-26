@@ -16,5 +16,14 @@ class TrainVM (private val trainRepository: TrainRepository) :ViewModel(){
             emit(Resource.Failure(e.message!!))
         }
     }
+    val fetchTrainPromoImages = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            val promoSliderList = trainRepository.getTrainPromoImages()
+            emit(promoSliderList)
+        } catch (e: Exception) {
+            emit(Resource.Failure(e.message!!))
+        }
+    }
 
 }

@@ -8,51 +8,99 @@
     app:layoutDescription="@xml/train"
     >
 
-    <ImageView
-        android:layout_width="0dp"
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/train_Promo_Images"
+        android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:id="@+id/trainImage"
+        android:elevation="10dp"
+        android:layoutAnimation="@anim/layoutanimation_left_to_right"
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorEnabled="true"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="1dp"
+        app:sliderIndicatorSelectedColor="#5A5A5A"
+        app:sliderIndicatorUnselectedColor="#FFF"
         android:adjustViewBounds="true"
         android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/trip_defaultimg"
-        />
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/trainBackImage"
-        android:padding="16dp"
-        android:src="@drawable/ic_arrow_back"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#000000" />
+        app:sliderScrollTimeInSec="1" />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/train_Promo_Placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include layout="@layout/booking_promo_placeholder" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <TextView
-        android:id="@+id/trainTitle"
+        android:id="@+id/titleTrain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="70dp"
         android:text="Train"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        android:visibility="gone"
+        android:elevation="10dp"
+        android:textColor="@color/textColorForBooking"
+        android:textSize="20sp"
+        android:visibility="visible"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/trainImage"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="14dp" />
+    <ImageView
+        android:id="@+id/backHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:elevation="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:tint="#000000" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardTrain"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cons">
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/train_nestedscroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/trainImage"
+        app:layout_constraintTop_toBottomOf="@id/cardTrain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -239,17 +287,16 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
                                 android:background="@drawable/ic_from"
-                                android:layout_alignParentRight="true"
-
                                 android:paddingRight="10dp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
-
+                                android:id="@+id/trainDepartDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_centerVertical="true"
                                 android:background="@android:color/transparent"
                                 android:gravity="center"
+                                android:layout_centerHorizontal="true"
                                 android:paddingLeft="5dp"
                                 android:hint="date" />
 
@@ -265,87 +312,43 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    app:cardElevation="5dp"
                     >
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="7dp"
+                        android:padding="15dp"
+                        android:layout_marginBottom="10dp"
                         >
-                    <androidx.appcompat.widget.AppCompatTextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Passenger "
-                        android:textSize="18sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        />
-
-                    <RelativeLayout
-                        android:id="@+id/rl_TrainPickPassenger"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/rectangel_corner">
-
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/appComNoOFAdults"
-                            android:layout_width="20dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="How many people ?"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            />
+                        <com.willy.ratingbar.ScaleRatingBar
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/train_PeopleCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_centerVertical="true"
-                            android:gravity="center"
-                            android:textSize="18dp"
-
-                            android:text="0"
-                            android:paddingRight="10dp" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/appComAdults"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:layout_centerVertical="true"
-                            android:background="@android:color/transparent"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:layout_toRightOf="@+id/appComNoOFAdults"
-                            android:paddingLeft="5dp"
-                            android:hint="Adults" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/appComNoOFInfant"
-                            android:layout_width="20dp"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="129dp"
-                            android:layout_toRightOf="@+id/appComNoOFAdults"
-                            android:gravity="center"
-                            android:paddingRight="10dp"
-
-                            android:text="0"
-                            android:textSize="18dp" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/appComInfant"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-
-                            android:layout_toRightOf="@+id/appComNoOFInfant"
-                            android:background="@android:color/transparent"
-                            android:gravity="center"
-                            android:hint="Infant"
-                            android:paddingLeft="5dp"
-                            android:textSize="18dp" />
-
-
-                    </RelativeLayout>
+                            android:layout_marginTop="20dp"
+                            app:srb_numStars="6"
+                            app:srb_minimumStars="1"
+                            app:srb_starWidth="80dp"
+                            app:srb_starHeight="90dp"
+                            app:srb_starPadding="3dp"
+                            app:srb_isIndicator="false"
+                            app:srb_scrollable="false"
+                            app:srb_clearRatingEnabled="false"
+                            app:srb_drawableEmpty="@drawable/ic_person1"
+                            app:srb_drawableFilled="@drawable/ic_person">
+                        </com.willy.ratingbar.ScaleRatingBar>
                     </LinearLayout>
-
-
                 </androidx.cardview.widget.CardView>
 
 
@@ -360,7 +363,7 @@
                     android:elevation="10dp"
                     app:cardElevation="3dp"
                     app:cardCornerRadius="15dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardBackgroundColor="@color/textColorForBooking"
                     >
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/card_TrainSearch"
@@ -394,7 +397,7 @@
                         />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/clearAllCarRecentValue"
+                        android:id="@+id/clearAllTrainRecentValue"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingRight="10dp"
@@ -411,7 +414,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_CarRecentItem"
+                    android:id="@+id/rv_TrainRecentItem"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:layout_marginBottom="20dp"
@@ -422,12 +425,5 @@
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

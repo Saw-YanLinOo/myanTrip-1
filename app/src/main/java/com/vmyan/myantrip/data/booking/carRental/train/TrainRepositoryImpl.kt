@@ -2,7 +2,9 @@ package com.vmyan.myantrip.data.booking.carRental.train
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.vmyan.myantrip.model.carRental.CarPromoImages
 import com.vmyan.myantrip.model.train.TrainListItem
+import com.vmyan.myantrip.model.train.TrainPromoImages
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.coroutines.tasks.await
 
@@ -59,5 +61,20 @@ class TrainRepositoryImpl : TrainRepository {
 
         return Resource.Success(trainList)
     }
+
+    override suspend fun getTrainPromoImages(): Resource<MutableList<TrainPromoImages>> {
+        val trainPromoImages = mutableListOf<TrainPromoImages>()
+        val resultCarPromoImageList=FirebaseFirestore.getInstance()
+            .collection("/BookingCategories/yTtXLW0pKedAEXBvlder/TrainPromoImages")
+            .get()
+            .await()
+        for (promo in resultCarPromoImageList){
+            val id = promo.id
+            val imgUrl = promo.get("trainPromoImages") as ArrayList<String>
+            trainPromoImages.add(TrainPromoImages(id,imgUrl))
+        }
+        return Resource.Success(trainPromoImages)
+    }
+
 
 }

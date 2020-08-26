@@ -7,7 +7,6 @@
     android:orientation="vertical"
     app:layoutDescription="@xml/car_rental"
     tools:context=".ui.booking.bus.carRental.CarRental">
-
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/carRental_Promo_Images"
         android:layout_width="wrap_content"
@@ -148,9 +147,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="20dp"
-                        android:background="@drawable/ic_from"
-
-                        android:paddingRight="10dp" />
+                       android:src="@drawable/ic_currentlocation"
+                        />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtCarRentalLocation"
@@ -208,8 +206,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="20dp"
-                        android:background="@drawable/ic_from"
-                        android:paddingRight="10dp" />
+                        android:src="@drawable/ic_check_in"
+                        />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtPickUpCarRentals"
@@ -220,7 +218,7 @@
                         android:layout_centerHorizontal="true"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:hint="date"
+                        android:hint="depart"
                         android:paddingLeft="5dp" />
 
 
@@ -250,8 +248,8 @@
                         android:layout_marginLeft="10dp"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:background="@drawable/ic_from"
-                        android:paddingRight="10dp" />
+                        android:src="@drawable/ic_check_out"
+                        />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_DropOffCarRentals"
@@ -263,7 +261,7 @@
                         android:layout_centerHorizontal="true"
                         android:paddingLeft="5dp"
                         android:layout_marginLeft="10dp"
-                        android:hint="date" />
+                        android:hint="return" />
 
 
 

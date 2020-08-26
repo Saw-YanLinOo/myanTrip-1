@@ -76,7 +76,6 @@ class BookingFragment : Fragment(),BookingCateAdapter.ItemClickListener {
             setUpPlaceCategoryRecycler(view)
         }
 
-
         view.viewPager2.adapter = ExpierPreViewPagerAdapter(requireActivity())
         view.viewPager2.setPageTransformer(ZoomOutPageTransformer())
         TabLayoutMediator(view.tabLayout, view.viewPager2,

@@ -35,13 +35,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:orientation="horizontal">
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginLeft="20dp"
                         android:layout_gravity="left|center"
-                        android:background="@drawable/ic_place_black_24dp"
-                        />
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_location1" />
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/selec_hotelAddress"
                         android:layout_width="match_parent"
@@ -173,8 +173,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-
-                    android:weightSum="2"
                     >
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -182,16 +180,8 @@
                         android:text="Room"
                         android:background="@drawable/rectangel_corner"
                         android:layout_gravity="center"
-                        android:layout_weight="0.3"
                         android:gravity="center"
                         android:layout_marginRight="10dp"
-                        />
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.7"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_sort"
                         />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView

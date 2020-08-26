@@ -50,7 +50,7 @@ class TicketListAdapter(private val items: MutableList<BookingTicket>)
             view.fromto.text = "${item.dateFrom} - ${item.dateTo}"
             Glide.with(view)
                 .load(item.tTypeImage)
-                .into(view.userimg)
+                .into(view.t_type_img)
         }
 
 

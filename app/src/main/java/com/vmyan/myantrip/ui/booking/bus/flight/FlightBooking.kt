@@ -1,12 +1,14 @@
 package com.vmyan.myantrip.ui.booking.bus.flight
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +25,12 @@ import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.flight.FlightRecentItem
 import com.vmyan.myantrip.ui.booking.bus.PostActivityContract
 import com.vmyan.myantrip.ui.adapter.flight.FlightRecentAdapter
+import com.vmyan.myantrip.ui.booking.bus.CityFromPostActivityContract
+import com.vmyan.myantrip.ui.booking.bus.CityToPostActivityContract
 import com.vmyan.myantrip.ui.viewmodel.flight.FlightRecentViewModel
 import kotlinx.android.synthetic.main.activity_flight_booking.*
+import kotlinx.android.synthetic.main.activity_train_booking.*
+import kotlinx.android.synthetic.main.show_empty_message.*
 import nl.dionsegijn.steppertouch.OnStepCallback
 import java.security.Timestamp
 import kotlin.time.ExperimentalTime
@@ -58,19 +64,34 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
         pickChildCount()
         pickInfantCount()
 
-        card_FlightSearch.setOnClickListener{
-            val intent = Intent (this, FlightListView::class.java)
-            intent.putExtra("AdultsCount",fAultsCount)
-            intent.putExtra("ChildCount",fChildCount)
-            intent.putExtra("InfantCount",fInfantCount)
-            intent.putExtra("ImgFlightFrom",flightfromImagge)
-            intent.putExtra("ImgFlightTo",flightToImagge)
-            intent.putExtra("FlightDepartDate",departDepart)
-            intent.putExtra("FlightFromTxt",flightFrom)
-            intent.putExtra("FlightToTxt",flightTo)
-          //intent.putExtra("FlightClass",flightCLass )
-            startActivity(intent)
-            flightRecentViewModel.insert(FlightRecentItem(flightFrom,flightTo,departDepart,fAultsCount,fChildCount,fInfantCount))
+            card_FlightSearch.setOnClickListener {
+                if (flightFrom == "" && flightTo == "" && departDepart == "" && fAultsCount == "" ) {
+                    val dialog = Dialog(this)
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                    dialog.setCancelable(false)
+                    dialog.setContentView(R.layout.show_empty_message)
+                    dialog.btnOk.setOnClickListener {
+                        dialog.dismiss()
+                    }
+                    dialog.show()
+                }else {
+                val intent = Intent(this, FlightListView::class.java)
+                intent.putExtra("AdultsCount", fAultsCount)
+                intent.putExtra("ChildCount", fChildCount)
+                intent.putExtra("InfantCount", fInfantCount)
+                intent.putExtra("ImgFlightFrom", flightfromImagge)
+                intent.putExtra("ImgFlightTo", flightToImagge)
+                intent.putExtra("FlightDepartDate", departDepart)
+                intent.putExtra("FlightFromTxt", flightFrom)
+                intent.putExtra("FlightToTxt", flightTo)
+                startActivity(intent)
+                flightRecentViewModel.insert(FlightRecentItem(flightFrom,
+                    flightTo,
+                    departDepart,
+                    fAultsCount,
+                    fChildCount,
+                    fInfantCount))
+            }
         }
         pickPlace()
         rl_PickDateFlightDepart.setOnClickListener {
@@ -79,6 +100,26 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
         }
 
     }
+    private val cityFromOpenPostActivityCustom =
+        registerForActivityResult(CityFromPostActivityContract()) { result ->
+            if (result != null) {
+                txt_FligtFrom.text = result[0]
+                Glide.with(this).load(result[1]).into(imgFlightFrom)
+                flightFrom = result[0]
+                flightfromImagge=result[1]
+            }
+        }
+    private val cityToOpenPostActivityCustom =
+        registerForActivityResult(CityToPostActivityContract()) { result ->
+            if (result != null) {
+                if (result != null) {
+                    txt_FligtTo.text = result[0]
+                    Glide.with(this).load(result[1]).into(imgFlightTo)
+                    flightTo = result[0]
+                    flightToImagge=result[1]
+                }
+            }
+        }
     private fun pickAdultsCount(){
         stAdultsValue.minValue = 0
         stAdultsValue.maxValue = 10
@@ -116,32 +157,14 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
     }
     private fun pickPlace() {
         llFlightFrom.setOnClickListener {
-            openPostActivityCustom.launch(1)
+            cityFromOpenPostActivityCustom.launch(1)
             //lightFrom=txt_FligtFrom.text.toString()
 
         }
         llFlightTo.setOnClickListener {
-            flightToClicked.launch(1)
+            cityToOpenPostActivityCustom.launch(1)
         }
     }
-    private val openPostActivityCustom =
-        registerForActivityResult(PostActivityContract()) { result ->
-            if (result != null) {
-                txt_FligtFrom.text = result[0]
-                Glide.with(this).load(result[1]).into(imgFlightFrom)
-                flightFrom = result[0]
-                flightfromImagge=result[1]
-            }
-        }
-    private val flightToClicked =
-        registerForActivityResult(PostActivityContract()) { result ->
-            if (result != null) {
-                txt_FligtTo.text = result[0]
-                Glide.with(this).load(result[1]).into(imgFlightTo)
-                flightTo = result[0]
-                flightToImagge=result[1]
-            }
-        }
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -153,7 +176,7 @@ class FlightBooking : AppCompatActivity(), View.OnClickListener {
         picker.addOnPositiveButtonClickListener {
             when(status){
                 "start" -> {
-                    appComtxt_FlightDepart.text = picker.headerText
+                    flightDepartDate.text = picker.headerText
                     departDepart=picker.headerText
                     /*startDate = Timestamp(Date(it))*/
                 }

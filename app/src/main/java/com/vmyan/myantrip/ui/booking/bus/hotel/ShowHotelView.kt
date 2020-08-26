@@ -189,9 +189,6 @@ class ShowHotelView : AppCompatActivity(), HotelViewAdapter.ItemClickListener ,V
         rv_hotelList.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(20)
-          /*  val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
-            snapHelperStart.attachToRecyclerView(rv_hotelList)
-*/
             rv_hotelList.adapter = hotelViewAdapter
             ViewCompat.setNestedScrollingEnabled(rv_hotelList, false)
         }

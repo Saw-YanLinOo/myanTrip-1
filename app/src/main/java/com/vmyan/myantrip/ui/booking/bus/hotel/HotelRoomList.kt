@@ -24,6 +24,11 @@ import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.data.booking.carRental.hotel.RoomRepositoryImpl
+import com.vmyan.myantrip.model.PlaceDetails
+import com.vmyan.myantrip.model.hotel.RoomList
+import com.vmyan.myantrip.ui.bs.SelectRoomGuests
+import com.vmyan.myantrip.ui.bs.Sorting_BS
+import com.vmyan.myantrip.ui.interfaceImpl.Sorting
 import com.vmyan.myantrip.ui.viewmodel.hotel.RoomListVM
 import com.vmyan.myantrip.ui.viewmodel.hotel.RoomListVMFactory
 import com.vmyan.myantrip.utils.Resource
@@ -34,13 +39,13 @@ import kotlinx.android.synthetic.main.fragment_hotel_room_list.view.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
+class HotelRoomList : Fragment(),Sorting, RoomLIstViewAdapter.ItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
     private var checkIn : String?=null
     private var checkOut : String?=null
-
     private var mListener: OnStepOneListener? = null
+    private lateinit var roomListSorting : MutableList<RoomList>
 
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -71,18 +76,12 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view =inflater.inflate(R.layout.fragment_hotel_room_list,container,false)
         view.hotelSelectedCheckIn.text=checkIn
         view.hotelSelectedCheckOut.text=checkOut
-
         showImageSlider(view)
         showRoomList(view)
-
         setAllRoomList(param1!!,param2!!,view)
-
-
-
         return view
     }
     fun showRoomList(view : View) {
@@ -93,7 +92,6 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
             setItemViewCacheSize(20)
             val snapHelperStart: SnapHelper = GravitySnapHelper(Gravity.START)
             snapHelperStart.attachToRecyclerView(rv_roomList)
-
             rv_roomList.adapter = roomListViewAdapter
             ViewCompat.setNestedScrollingEnabled(rv_roomList, false)
         }
@@ -109,7 +107,6 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
         view.sv_RoomImage.scrollTimeInSec = 3
         view.sv_RoomImage.isAutoCycle = true
         view.sv_RoomImage.startAutoCycle()
-
     }
     @SuppressLint("ShowToast")
     fun setAllRoomList(id: String,cid: String,view : View) {
@@ -144,8 +141,8 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
 
                         roomImageSliderAdapter.setItem(d.hotelList.roomImages)
 
-
                         roomListViewAdapter.setItems(d.roomList)
+                        roomListSorting.addAll(d.roomList)
                     }
                 }
                 is Resource.Failure -> {
@@ -195,5 +192,37 @@ class HotelRoomList : Fragment(), RoomLIstViewAdapter.ItemClickListener {
         if (mListener != null) {
             mListener!!.onNextPressed(this)
         }
+    }
+
+    override fun lowestPrice(lPrice: String) {
+        roomListViewAdapter.setItems(lowRPlaceList(roomListSorting))
+    }
+
+    override fun highestPrice(hPrice: String) {
+        TODO("Not yet implemented")
+    }
+
+    private fun highRPlaceList(list: MutableList<PlaceDetails>): MutableList<PlaceDetails>{
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.place.ratingValue < p1!!.place.ratingValue) {
+                res = 1
+            }
+            res
+        })
+
+        return list
+    }
+
+    private fun lowRPlaceList(list: MutableList<RoomList>): MutableList<RoomList>{
+        list.sortWith(Comparator { p0, p1 ->
+            var res = -1
+            if (p0!!.roomPrice > p1!!.roomPrice) {
+                res = 1
+            }
+            res
+        })
+
+        return list
     }
 }

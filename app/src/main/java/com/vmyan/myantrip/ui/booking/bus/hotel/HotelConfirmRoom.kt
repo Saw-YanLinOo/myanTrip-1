@@ -41,10 +41,6 @@ class HotelConfirmRoom : Fragment() ,View.OnClickListener{
     lateinit var hotelName :String
     lateinit var checkIn : String
     lateinit var checkOut : String
-
-
-
-
     private val viewModel by lazy {
         ViewModelProviders.of(
             this,
@@ -118,8 +114,8 @@ class HotelConfirmRoom : Fragment() ,View.OnClickListener{
                             .load(d.hotelList.hotel_image)
                             .into(view.confirmHotelImage)
                         view.confirmRoomStatus.text=d.roomList.roomType
-                        view.confirmRoomPrice.text=d.roomList.roomPrice
-                         oneRoomCost =d.roomList.roomPrice
+                        view.confirmRoomPrice.text=d.roomList.roomPrice.toString()
+                         oneRoomCost =d.roomList.roomPrice.toString()
                         view.confirmTotalRoomCost.text=oneRoomCost
 
                         view.llConfirmWifi.visibility=View.GONE

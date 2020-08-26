@@ -28,9 +28,6 @@ class FinishPayment : Fragment() {
         val view =inflater.inflate(R.layout.fragment_finish_payment, container, false)
          fName = Hawk.get("hCFName")
         lName =Hawk.get("hCLName")
-        view.btnFinishHotelBooking.setOnClickListener {
-          requireActivity().finish()
-        }
         view.txtContactName.text= fName+lName
         view.ConformSelectedNoOFGuests.text = Hawk.get("Guest")
         view.ConformSelectedNoOFRoom.text =Hawk.get("Room")
@@ -47,8 +44,9 @@ class FinishPayment : Fragment() {
                 Hawk.get("CheckOut"),
                 Hawk.get<String>("OneRoomCost").toLong(),
                 Hawk.get("HotelName"),
-                "TypeImage"
+                "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/ticketType%2Fhotel.png?alt=media&token=7caea8cf-1626-4b77-b29f-d436f4fb6c7f"
             )
+            requireActivity().finish()
         }
 
         return view

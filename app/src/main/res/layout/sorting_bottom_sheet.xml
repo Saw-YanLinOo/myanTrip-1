@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="7dp"
+    android:background="@color/background_for_booking"
+    android:orientation="vertical">
+   <View
+       android:layout_width="80dp"
+       android:layout_height="2dp"
+       android:layout_gravity="center"
+       android:layout_marginTop="5dp"
+       android:background="@color/textColorForBooking"
+       />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtLowestPrice"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Lowest Price"
+        android:textSize="@dimen/titelSize"
+        android:layout_marginTop="20dp"
+        android:gravity="left|center"
+        android:layout_marginLeft="10dp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtHighestPrice"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Highest Price"
+        android:textSize="@dimen/titelSize"
+        android:layout_marginTop="10dp"
+        android:gravity="left|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
+        />
+
+
+</LinearLayout>

@@ -10,7 +10,7 @@ data class HotelList(
     val hotel_city: String,
     val hotel_country: String,
     val ratingValue: String,
-    val lowestPrice: String,
+    val lowestPrice: Long,
     val hotel_PhoneNo: String,
     val hotel_image :String,
 

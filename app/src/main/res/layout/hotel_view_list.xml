@@ -40,6 +40,19 @@
             android:textSize="18sp"
             android:textStyle="bold"
             />
+        <LinearLayout
+            android:id="@+id/llHotelLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hotelName"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_location1"
+                android:layout_marginLeft="10dp"
+                />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/hotelLocation"
             android:maxLines="1"
@@ -48,28 +61,29 @@
             android:layout_height="wrap_content"
             android:text="Location"
             android:textSize="10sp"
-            android:layout_below="@id/hotelName"
             android:paddingLeft="10dp"
             />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/llWifi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hotelLocation"
+            android:layout_below="@id/llHotelLocation"
             android:layout_marginTop="5dp"
             >
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@mipmap/ic_launcher"
                 android:layout_gravity="center"
-                />
+                android:src="@drawable/ic_wifi"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/wifi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Wifi"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -84,7 +98,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/ic_launcher"
+                android:src="@drawable/ic_breakfast"
                 />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/bf"
@@ -92,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="BreakFast"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -104,7 +119,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@mipmap/ic_launcher"
+                android:src="@drawable/ic_bus_from_to"
                 android:layout_gravity="center"
                 />
             <androidx.appcompat.widget.AppCompatTextView
@@ -112,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CarPack"
+                android:layout_marginLeft="5dp"
                 android:textSize="12sp"
                 />
         </LinearLayout>
@@ -125,7 +141,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@mipmap/ic_launcher"
+                android:src="@drawable/ic_swimming_pool"
                 android:layout_gravity="center"
                 />
             <androidx.appcompat.widget.AppCompatTextView
@@ -134,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:text="Water Pool"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -147,7 +164,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/ic_launcher"
+                android:src="@drawable/ic_restaurant"
                 />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/restaurant"
@@ -156,6 +173,7 @@
                 android:text="Rastaurant"
                 android:layout_gravity="center"
                 android:textSize="12sp"
+                android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
 

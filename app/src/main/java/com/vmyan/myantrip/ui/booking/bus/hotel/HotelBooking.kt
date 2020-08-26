@@ -1,6 +1,7 @@
 package com.vmyan.myantrip.ui.booking.bus.hotel
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.view.Gravity
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
@@ -37,6 +39,7 @@ import com.vmyan.myantrip.ui.viewmodel.hotel.HotelListViewModel
 import com.vmyan.myantrip.ui.viewmodel.hotel.RecentViewModel
 import com.vmyan.myantrip.utils.Resource
 import kotlinx.android.synthetic.main.activity_hotel_booking.*
+import kotlinx.android.synthetic.main.show_empty_message.*
 import java.util.*
 import kotlin.time.ExperimentalTime
 
@@ -48,11 +51,9 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
     private var dCheckOut : String=""
     private var noOfR : String=""
     private var noOfG : String=""
-
     private var startDate: Timestamp? = null
     private var endDate: Timestamp? = null
     private lateinit var sliderImageAdapter: PromoSliderImageAdapter
-
     private lateinit var recentViewModel: RecentViewModel
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -81,32 +82,32 @@ class HotelBooking : AppCompatActivity(), PickDate, RoomGuest {
         setHotelPromoImage()
         card_searchHotel.setOnClickListener {
 
-            /*     if (location ==""  && dCheckIn =="" && dCheckOut ==""&& noOfG =="" && noOfR =="" ){
-                         val dialog =Dialog(this)
-                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                         dialog.setCancelable(false)
-                         dialog.setContentView(R.layout.show_empty_message)
+            if (location == "" && dCheckIn == "" && dCheckOut == "" && noOfG == "" && noOfR == "") {
+                val dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(false)
+                dialog.setContentView(R.layout.show_empty_message)
+                dialog.btnOk.setOnClickListener {
+                    dialog.dismiss()
+                }
+                dialog.show()
+            } else {
+                val intent = Intent(applicationContext, ShowHotelView::class.java)
+                intent.putExtra("id", hid)
+                intent.putExtra("LocationName", location)
+                intent.putExtra("DateCheckIn", dCheckIn)
+                intent.putExtra("DatecheckOut", dCheckOut)
+                intent.putExtra("NumberOfRoom", noOfR)
+                intent.putExtra("NumberOfGuests", noOfG)
+                startActivity(intent)
+                recentViewModel.insert(HotelRecentItem(cityImagge,
+                    location,
+                    dCheckIn,
+                    dCheckOut,
+                    noOfG,
+                    noOfR))
 
-                         dialog.btnOk.setOnClickListener {
-                             dialog.dismiss()
-                         }
-                     dialog.show()
-
-
-
-                 }
-                 else{*/
-            val intent = Intent(applicationContext,ShowHotelView::class.java)
-            intent.putExtra("id",hid)
-            intent.putExtra("LocationName",location)
-            intent.putExtra("DateCheckIn",dCheckIn)
-            intent.putExtra("DatecheckOut",dCheckOut)
-            intent.putExtra("NumberOfRoom",noOfR)
-            intent.putExtra("NumberOfGuests",noOfG)
-            startActivity(intent)
-            recentViewModel.insert(HotelRecentItem(cityImagge,location,dCheckIn,dCheckOut,noOfG,noOfR))
-
-
+            }
         }
         clearAllRecentValue.setOnClickListener {
             recentViewModel.clearAll()

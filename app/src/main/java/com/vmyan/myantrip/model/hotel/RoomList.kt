@@ -6,7 +6,7 @@ data class RoomList(
     @DocumentId
     val roomId : String,
     val roomType : String,
-    val roomPrice : String,
+    val roomPrice : Long,
 
     val roomWifi : Boolean,
 

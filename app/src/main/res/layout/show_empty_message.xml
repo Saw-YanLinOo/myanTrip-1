@@ -8,11 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@mipmap/ic_launcher"
+        android:src="@drawable/ic_sad"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -27,11 +27,14 @@
         android:layout_below="@id/img"
         android:gravity="center"
         />
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOk"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text=" I got it"
+        android:textColor="@color/allColor"
+        android:background="@color/textColorForBooking"
+        android:textAllCaps="false"
         android:layout_margin="20dp"
         android:layout_below="@id/txt"
         />

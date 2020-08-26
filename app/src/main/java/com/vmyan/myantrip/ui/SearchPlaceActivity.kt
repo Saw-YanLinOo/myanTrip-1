@@ -157,6 +157,7 @@ class SearchPlaceActivity : AppCompatActivity(), SearchPlaceListAdapter.ItemClic
 
     private fun updatePlaceList(list: MutableList<PlaceDetails>){
         searchPlaceListAdapter.setItems(list)
+
     }
 
 

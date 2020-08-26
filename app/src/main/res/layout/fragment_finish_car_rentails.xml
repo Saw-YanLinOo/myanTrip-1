@@ -127,7 +127,7 @@
                         android:layout_gravity="center"
                         android:scaleType="fitXY"
                         android:layout_marginLeft="2dp"
-                        android:src="@drawable/ic_person" />
+                        android:src="@drawable/ic_bag" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_NoOfBag"

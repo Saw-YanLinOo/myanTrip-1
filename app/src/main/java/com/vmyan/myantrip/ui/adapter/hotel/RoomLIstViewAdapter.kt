@@ -44,7 +44,7 @@ class RoomLIstViewAdapter (private val listener: ItemClickListener, private val 
         fun bind(item : RoomList){
             this.roomList=item
             view.roomStatus.text=item.roomType
-            view.roomPrice.text=item.roomPrice
+            view.roomPrice.text=item.roomPrice.toString()
 
             view.llRoomWifi.visibility = View.GONE
             if (item.roomWifi){

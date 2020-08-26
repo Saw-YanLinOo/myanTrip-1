@@ -32,7 +32,7 @@ class ConfirmRepositoryImpl :
             val hotel_city = hotelData.getString("hotel_city")
             val hotel_country = hotelData.getString("hotel_country")
             val hotel_image = hotelData.getString("hotel_image")
-            val miniRoomPrice = hotelData.getString("miniRoomPrice")
+            val miniRoomPrice = hotelData.getDouble("miniRoomPrice")?.toLong()
             val phoneNo = hotelData.getString("phoneNo")
             val isWifi = hotelData.getBoolean("isWifi")
             val isBreakfast = hotelData.getBoolean("isBreakfast")
@@ -51,7 +51,7 @@ class ConfirmRepositoryImpl :
 
                 val roomId = roomAllList.id
                 val roomType = roomAllList.getString("room_type")
-                val roomPrice = roomAllList.getString("room_price")
+                val roomPrice = roomAllList.getDouble("room_price")?.toLong()
                 val roomWifi = roomAllList.getBoolean("isRoomWifi")
                 val roomAircon = roomAllList.getBoolean("isRoomAircon")
                 val roomWithToilet = roomAllList.getBoolean("isRoomwithTiilet")

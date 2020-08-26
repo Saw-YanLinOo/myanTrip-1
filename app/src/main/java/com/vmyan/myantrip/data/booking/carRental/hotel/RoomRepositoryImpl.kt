@@ -12,7 +12,6 @@ import kotlinx.coroutines.tasks.await
 class RoomRepositoryImpl : RoomRepository {
     override suspend fun getAllRoomList(hotel_id : String,cid: String): Resource<MutableList<HotelWithRoom>> {
         val allRoomList = mutableListOf <HotelWithRoom>()
-
         val resultList= FirebaseFirestore.getInstance()
             .collection("/BookingCategories/"+cid+"/HotelDetails")
             .whereEqualTo(FieldPath.documentId(),hotel_id)
@@ -26,7 +25,7 @@ class RoomRepositoryImpl : RoomRepository {
             val hotel_city = hotelData.getString("hotel_city")
             val hotel_country = hotelData.getString("hotel_country")
             val hotel_image = hotelData.getString("hotel_image")
-            val miniRoomPrice = hotelData.getString("miniRoomPrice")
+            val miniRoomPrice = hotelData.getDouble("miniRoomPrice")?.toLong()
             val phoneNo = hotelData.getString("phoneNo")
             val isWifi = hotelData.getBoolean("isWifi")
             val isBreakfast = hotelData.getBoolean("isBreakfast")
@@ -34,39 +33,22 @@ class RoomRepositoryImpl : RoomRepository {
             val isRestaurant = hotelData.getBoolean("isRestaurant")
             val isWaterPool = hotelData.getBoolean("isWaterPool")
             val roomImages =hotelData.get("roomImages") as ArrayList<String>
-           /* println(hotel_name)
-            println(hotel_address)
-            println(hotelRate)
-            println(hotel_city)
-            println(hotel_country)
-            println(miniRoomPrice)
-            println(phoneNo)
-            println(isWifi)
-            println(isBreakfast)*/
             println(roomImages)
             val roomList= mutableListOf<RoomList>()
             val resultRoomList=FirebaseFirestore.getInstance()
                 .collection("/BookingCategories/"+cid+"/HotelDetails/"+hotel_id+"/room_list")
-                .orderBy("room_price",Query.Direction.DESCENDING)
+                .orderBy("room_type",Query.Direction.ASCENDING)
                 .get()
                 .await()
             for (roomAllList in resultRoomList){
-
                 val roomId = roomAllList.id
                 val roomType = roomAllList.getString("room_type")
-                val roomPrice = roomAllList.getString("room_price")
+                val roomPrice = roomAllList.getDouble("room_price")?.toLong()
                 val roomWifi = roomAllList.getBoolean("isRoomWifi")
                 val roomAircon =roomAllList.getBoolean("isRoomAircon")
                 val roomWithToilet=roomAllList.getBoolean("isRoomwithTiilet")
-
                 roomList.add(RoomList(roomId,roomType!!, roomPrice!!,roomWifi!!,roomAircon!!,roomWithToilet!!))
-
             }
-
-//          allRoomList.add(HotelWithRoom(HotelList(id,hotel_name!!,hotel_address!!,hotel_city!!,hotel_country!!,
-//               hotelRate!!,miniRoomPrice!!,phoneNo!!,hotel_image!!,isWifi!!,isBreakfast!!,isCarPack!!,
-//           isWaterPool!!,isRestaurant!!), mutableListOf()))
-
             allRoomList.add(
                 HotelWithRoom(
                 HotelList(
@@ -90,7 +72,6 @@ class RoomRepositoryImpl : RoomRepository {
                 roomList)
             )
         }
-
         return Resource.Success(allRoomList)
     }
 

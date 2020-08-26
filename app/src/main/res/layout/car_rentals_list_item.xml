@@ -7,56 +7,55 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:cardElevation="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        >
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        app:cardElevation="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2"
             android:padding="10dp"
-            >
+            android:weightSum="2">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_weight="1.3"
-                >
+                android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_carCompanyLogo"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:scaleType="fitXY"
                     android:layout_gravity="center"
+                    android:scaleType="fitXY"
                     />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_carImage"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:src="@mipmap/flightt"
-                    android:scaleType="fitXY"
+
                     android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
-                    />
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/flightt" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_weight="0.7"
-                >
+                android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_carCompanyName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Company Name"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtCarRentalAddress"
                     android:layout_width="match_parent"
@@ -71,84 +70,80 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
 
                     >
+
                     <LinearLayout
                         android:layout_width="50dp"
                         android:layout_height="30dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/rectangel_corner"
                         android:layout_marginLeft="10dp"
-                        >
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_user"
-                        android:scaleType="fitXY"
-                        android:layout_marginLeft="2dp"
-                        android:layout_gravity="center"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_NoOfPeople"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:orientation="horizontal"
                         android:background="@drawable/rectangel_corner"
-                        android:layout_marginLeft="30dp"
-                        >
+                        android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_person"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
                             android:layout_marginLeft="2dp"
-                            />
+                            android:src="@drawable/ic_user" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_NoOfPeople"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/rectangel_corner"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitXY"
+                            android:layout_marginLeft="2dp"
+                            android:src="@drawable/ic_bag" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txt_NoOfBag"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
                             android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
-                            />
+                            android:text="0" />
                     </LinearLayout>
 
 
-
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:orientation="horizontal">
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_user"
-                        android:scaleType="fitXY"
-                        android:layout_marginTop="7dp"
-                        />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_driver" />
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Driver Included"
-                        android:layout_marginTop="7dp"
-                        />
+                        android:layout_marginLeft="5dp"
+                        android:text="Driver Included" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -161,8 +156,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_user"
-                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_phone"
                         android:layout_marginTop="7dp"
                         />
                     <androidx.appcompat.widget.AppCompatTextView
@@ -170,6 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phone no"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="7dp"
                         />
 
@@ -178,39 +173,36 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="right"
                     android:gravity="right"
-                    >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Per day"
-                    android:textSize="10sp"
-                    android:layout_marginRight="50dp"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="right"
-                    android:layout_marginRight="10dp"
-                    >
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MMK"
-                        android:layout_marginRight="4dp"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_carPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30000"
-                        />
+                    android:orientation="vertical">
 
-                </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="50dp"
+                        android:text="Per day"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MMK" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_carPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30000" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

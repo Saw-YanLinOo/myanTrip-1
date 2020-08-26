@@ -261,7 +261,7 @@
         android:layout_marginLeft="5dp"
         />
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_Sorting"
+            android:id="@+id/img_FlightSorting"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

@@ -137,7 +137,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="fitXY"
                                 android:layout_marginLeft="2dp"
-                                android:src="@drawable/ic_person" />
+                                android:src="@drawable/ic_bag" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/txt_NoOfBag"
@@ -161,13 +161,13 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_user" />
+                            android:src="@drawable/ic_driver" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Driver Included" />
+                            android:text="Driver Included"
+                            android:layout_marginLeft="5dp"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -180,8 +180,7 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_user"
-                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_phone"
                             android:layout_marginTop="7dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
@@ -189,6 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Phone no"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="7dp"
                             />
 

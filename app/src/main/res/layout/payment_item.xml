@@ -44,6 +44,7 @@
                 android:layout_marginRight="5dp"
                 />
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BANK"
@@ -62,18 +63,13 @@
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
                 >
+
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Account Number"
-                    android:textColor="@color/allColor"
-                    android:textSize="20sp"
-                    />
-                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="**** **** **** ****"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/titelSize"
                     android:textColor="@color/allColor"
                     android:layout_marginLeft="20dp"
                     />
