@@ -84,11 +84,13 @@ class BlogRepositoryImpl:BlogRepository {
                 .document("${place_id.trim()}")
                 .get()
                 .await()
+                var placeId = placeResultList.id
                 var placename = placeResultList.getString("name")
                 var category = placeResultList.getString("category")
+                var address = placeResultList.getString("address")
                 var placeImgList = placeResultList.get("gallery") as ArrayList<String>
 
-                place = Place("","","",category!!,"","","",placeImgList,"","",
+                place = Place(placeId,address!!,"",category!!,"","","",placeImgList,"","",
                     GeoPoint(0.0,0.0),"",placename!!,"0.0".toFloat(),ArrayList(),"")
 
             }

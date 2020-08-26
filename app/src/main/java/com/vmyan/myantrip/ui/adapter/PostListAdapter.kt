@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,6 +19,7 @@ import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.GetPost
 import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.ui.CommentActivity
+import com.vmyan.myantrip.ui.PlaceDetailsActivity
 import com.vmyan.myantrip.ui.Profile
 import kotlinx.android.synthetic.main.post_description_layout.view.*
 import kotlinx.android.synthetic.main.post_place_layout.view.*
@@ -253,10 +255,10 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
         @SuppressLint("SetTextI18n")
         fun bind(post: GetPost){
             this.posts = post
-            Glide.with(itemView) //1
+            Glide.with(itemView)
                 .load(post.user.profilephoto)
                 .placeholder(R.drawable.ic_account_circle)
-                .transform(CircleCrop()) //4
+                .transform(CircleCrop())
                 .into(itemView.img_profile)
 
             itemView.tv_username.text = post.user.username
@@ -365,7 +367,8 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
 
             itemView.tv_place_name_post.text = post.place!!.name
             itemView.tv_place_address_post.text = post.place!!.address
-            placeSliderAdapter.setItems(postList,postList[adapterPosition].place!!.gallery)
+
+            placeSliderAdapter.setItems(post,postList[adapterPosition].place!!.gallery)
 
             itemView.img_profile.setOnClickListener{
                 val intent = Intent(view.context, Profile::class.java)
@@ -417,12 +420,15 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
         }
 
         override fun onItemClick(place: Place) {
-            Toast.makeText(itemView.context,"${place.name}",Toast.LENGTH_SHORT).show()
+            Toast.makeText(itemView.context,"${place.place_id}",Toast.LENGTH_SHORT).show()
+            val i = Intent(itemView.context, PlaceDetailsActivity::class.java)
+            i.putExtra("place_id", place.place_id)
+            itemView.context.startActivity(i)
         }
 
         @SuppressLint("WrongConstant")
         private fun setUpPlaceRecycler() {
-            placeSliderAdapter = PostPlaceSliderAdapter(this, mutableListOf())
+            placeSliderAdapter = PostPlaceSliderAdapter(this)
             itemView.place_imageSlider.layoutManager = LinearLayoutManager(itemView.context,LinearLayout.HORIZONTAL,false)
             itemView.place_imageSlider.adapter = placeSliderAdapter
         }

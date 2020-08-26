@@ -3,6 +3,8 @@ package com.vmyan.myantrip.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -17,20 +19,19 @@ import kotlinx.android.synthetic.main.image_slider_layout_item.view.iv_auto_imag
 import kotlinx.android.synthetic.main.place_slider_layout_item.view.*
 
 
-class PostPlaceSliderAdapter(private val listener: PostPlaceSliderAdapter.ItemClickListener, private val postList:MutableList<GetPost> ): RecyclerView.Adapter<PostPlaceSliderAdapter.PlaceAdapterVH>() {
+class PostPlaceSliderAdapter(private val listener: PostPlaceSliderAdapter.ItemClickListener): RecyclerView.Adapter<PostPlaceSliderAdapter.PlaceAdapterVH>() {
 
     private var imageList = ArrayList<String>()
+    private lateinit var postList:MutableLiveData<GetPost>
 
     interface ItemClickListener {
         fun onItemClick(place : Place)
     }
 
-    fun setItems(postList: List<GetPost>, imageList : ArrayList<String>){
+    fun setItems(postList: GetPost, imageList : ArrayList<String>){
         this.imageList.clear()
         this.imageList.addAll(imageList)
-
-        this.postList.clear()
-        this.postList.addAll(postList)
+        this.postList = MutableLiveData(postList)
         notifyDataSetChanged()
     }
 
@@ -39,15 +40,20 @@ class PostPlaceSliderAdapter(private val listener: PostPlaceSliderAdapter.ItemCl
     }
 
     override fun onBindViewHolder(holder: PlaceAdapterVH, position: Int) {
-        holder.bind(postList[position],imageList[position])
+        holder.bind(postList.value!!,imageList[position])
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return imageList.size
     }
 
     class PlaceAdapterVH(var listener: ItemClickListener,view: View) : RecyclerView.ViewHolder(view),View.OnClickListener {
         private lateinit var post: GetPost
+
+        init {
+
+            itemView.setOnClickListener(this)
+        }
 
         fun bind(post : GetPost,image : String){
             this.post = post
@@ -62,11 +68,14 @@ class PostPlaceSliderAdapter(private val listener: PostPlaceSliderAdapter.ItemCl
             requestOptions.skipMemoryCache(true)
             requestOptions.fitCenter()
 
+            itemView.tv_place_name_post.text = post.place!!.name
+            itemView.tv_place_address_post.text = post.place!!.address
+
             Glide.with(itemView)
                 .load(image)
                 .apply(requestOptions)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .into(itemView.iv_auto_image_slider)
+                .into(itemView.iv_auto_place_slider)
         }
 
         override fun onClick(p0: View?) {

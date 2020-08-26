@@ -67,6 +67,16 @@ class PostUploadActivity : AppCompatActivity() {
             .into(user_profile_upload)
 
 
+        if (intent != null){
+            var cat_id = intent!!.getStringExtra("place_cat_id")
+            var sub_id = intent.getStringExtra("place_sub_id")
+            var id = intent.getStringExtra("place_id")
+            var name =intent.getStringExtra("place_name")
+            var image =intent.getStringExtra("place_image")
+            var category = intent.getStringExtra("place_category")
+            var address = intent.getStringExtra("place_address")
+            setUpPlace(cat_id!!,sub_id!!,id!!,name!!,image!!,category!!,address!!)
+        }
 
         btn_Upload.setOnClickListener {
             et_descriton = findViewById<EditText>(R.id.et_description_upload)
