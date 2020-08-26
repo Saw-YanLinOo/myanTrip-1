@@ -64,7 +64,7 @@ class HomeFragment : Fragment(), PlaceCategoryAdapter.ItemClickListener, HomePla
 
         setUpPlaceCategoryRecycler(view)
         setUpHomePlaceRecycler(view)
-//        onSubTabClick(view)
+        onSubTabClick(view)
         setUpObserver(view)
 
         return view

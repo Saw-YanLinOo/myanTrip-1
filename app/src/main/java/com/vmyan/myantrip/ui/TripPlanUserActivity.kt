@@ -42,8 +42,8 @@ class TripPlanUserActivity : AppCompatActivity() {
 
         fab_adduser.setOnClickListener {
             if (teammateuseremailinput.text.toString() != null || teammateuseremailinput.text.toString() != ""){
-                teammateuseremailinput.setText("")
                 addData()
+                teammateuseremailinput.setText("")
             }
         }
 
@@ -67,7 +67,9 @@ class TripPlanUserActivity : AppCompatActivity() {
     private fun getData(){
         viewModel.getTeammates(tripId).observe(this, {
             when(it) {
-                is Resource.Loading -> loadingDialog.startLoading()
+                is Resource.Loading ->  {
+                    loadingDialog.startLoading()
+                }
                 is Resource.Success -> {
                     tripPlanUserListAdapter.setItems(it.data)
                     loadingDialog.stopLoading()

@@ -621,7 +621,7 @@ class PlanListAdapter(private val listener: ItemClickListener, private val items
             view.shop_time.text = SimpleDateFormat("hh:mm a").format(plan.date.toDate())
             view.shop_date.text = SimpleDateFormat("MMM, dd\nyyyy").format(plan.date.toDate())
             view.shop_type.text = plan.type
-
+            view.shop_cost.text = "${plan.estimationCost} MMK"
             Glide.with(view).load(plan.img).into(view.shopimg)
         }
 
