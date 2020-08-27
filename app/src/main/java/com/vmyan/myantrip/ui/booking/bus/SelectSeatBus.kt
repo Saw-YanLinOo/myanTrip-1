@@ -35,7 +35,6 @@ class SelectSeatBus : Fragment() ,View.OnClickListener{
             + "AA__AA/"
             + "AA__AA/"
             + "bbbb/")
-
     val seatViewList:ArrayList<TextView> = ArrayList()
     var seatSize = 120
     var seatGaping = 10

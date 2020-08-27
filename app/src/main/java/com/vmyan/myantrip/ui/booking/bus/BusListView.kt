@@ -40,6 +40,9 @@ class BusListView : AppCompatActivity() , BusListAdapter.ItemClickListener, Sort
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_list_view)
+        img_BusBack.setOnClickListener {
+            this.finish()
+        }
         img_sortBusList.setOnClickListener {
             val bottomSheet= BusSorting()
             bottomSheet.show(supportFragmentManager,bottomSheet.tag)
@@ -50,11 +53,8 @@ class BusListView : AppCompatActivity() , BusListAdapter.ItemClickListener, Sort
         Glide.with(this).load(intent.getStringExtra("BusCityImageTo")).into(imgBusViewTo)
         busDepartDateView.text=intent.getStringExtra("BusDepartsDate")
         seatTotalNo.text=intent.getStringExtra("SeatTotalNo").toString()
-
-
-       setBusAllList()
+        setBusAllList()
         setAdapter()
-
     }
     fun setAdapter() {
         busListAdapter = BusListAdapter(this, mutableListOf())
@@ -98,6 +98,7 @@ class BusListView : AppCompatActivity() , BusListAdapter.ItemClickListener, Sort
 
     override fun onItemClick(id: String) {
         val intent=Intent(this, BusStepper::class.java)
+
         startActivity(intent)
     }
 

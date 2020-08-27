@@ -13,6 +13,7 @@
         android:orientation="vertical"
         android:background="@color/textColorForBooking">
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_BusBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -56,7 +57,7 @@
                 android:id="@+id/busFromTo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_bus_from_to"
+                android:src="@drawable/ic_busfromto"
                 android:layout_toEndOf="@id/llFlightViewFrom"
                 android:elevation="3dp"
                 android:layout_centerHorizontal="true"

@@ -163,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rectangel_corner"
+                        android:src="@drawable/shwe"
                         android:layout_marginRight="20dp" />
 
                     <LinearLayout
@@ -185,7 +185,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
-                            android:text="12/5/2020"
+                            android:text="27/8/2020"
                             android:layout_gravity="right|center"
                             android:gravity="right|center"
                             android:textSize="15sp"
@@ -205,7 +205,7 @@
                     android:id="@+id/txt_selectedBusName"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:text="Bus Name"
+                    android:text="Shwe Sin Set Kyar"
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:gravity="left|center"
@@ -228,7 +228,7 @@
                     android:id="@+id/txt_selectedBusRoute"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yangon-Mandalay"
+                    android:text="Yangon-Meiktila-Mandalay"
                     android:textSize="12sp"
                     android:layout_below="@id/ll2"
                     android:layout_marginLeft="5dp"
@@ -288,7 +288,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="07:00"
+                        android:text="08:00 AM"
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:textSize="15sp"
@@ -303,7 +303,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="11 hr 30 min"
+                            android:text="12 hr 00 min"
                             android:textSize="12sp"
                             android:gravity="left|center"
                             />
@@ -324,7 +324,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="07:00"
+                        android:text="08:00 PM"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:textSize="18sp"
@@ -405,7 +405,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="16000"
+                    android:text="16200"
                     android:gravity="right"
                     android:textSize="15sp"
                     android:paddingRight="10dp"
@@ -474,7 +474,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="16000"
+                            android:text="16200"
                             android:gravity="right"
                             android:textSize="15sp"
                             android:paddingRight="10dp"

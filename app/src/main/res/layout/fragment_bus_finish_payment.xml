@@ -44,7 +44,7 @@
                 android:id="@+id/txtContactPhoneNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="098888888"
+                android:text="0969608019"
                 android:layout_below="@+id/txtContactName"
                 android:textSize="13sp"
                 android:layout_marginLeft="20dp"
@@ -86,7 +86,7 @@
                     android:id="@+id/txtFlightSelectedFrom"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:text="From "
+                    android:text="Yangom "
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -98,13 +98,6 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     >
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2 days"
-                        android:gravity="center"
-                        android:textSize="10sp"
-                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -116,7 +109,7 @@
                     android:id="@+id/txtFlightSelectedTo"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:text="To"
+                    android:text="Mandalay"
                     android:layout_weight="1"
                     android:gravity="center"
                     />
@@ -135,7 +128,7 @@
                     android:id="@+id/txtFlightSelectedTimeStart"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:text="07:00AM"
+                    android:text="08:00AM"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_weight="1"
@@ -150,7 +143,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2 days"
+                        android:text="24 hr 00 min"
                         android:gravity="center"
                         android:textSize="10sp"
                         />
@@ -165,7 +158,7 @@
                     android:id="@+id/txtFlightSelectedTimeStop"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:text="08:00AM "
+                    android:text="08:00 PM"
                     android:layout_weight="1"
                     android:gravity="center"
                     />
@@ -195,48 +188,20 @@
                     android:id="@+id/txtFlightDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1 day"
                     android:textSize="15sp"
                     android:layout_weight="1"
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llFLightBaggageAllow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_below="@+id/llSelectedItemGuests"
-                >
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Baggage Allow "
-                    android:textSize="15sp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="50dp"
-                    />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtFlightBaggageAllow"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="15sp"
-                    android:layout_weight="1"
-                    />
-            </LinearLayout>
+
 
 
             <LinearLayout
                 android:id="@+id/llSelectedCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/llFLightBaggageAllow"
+                android:layout_below="@id/llSelectedItemGuests"
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
@@ -254,7 +219,7 @@
                     android:id="@+id/txtSelectedItemTotalCost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="400000 MMK"
+                    android:text="16200 MMK"
                     android:textSize="18sp"
                     android:gravity="right"
                     />

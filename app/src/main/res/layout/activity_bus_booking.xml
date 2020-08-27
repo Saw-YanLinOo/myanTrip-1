@@ -53,7 +53,7 @@
                     android:id="@+id/imgBusFrom"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/busdepart"
                     android:scaleType="fitXY"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
@@ -61,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="From"
+                    android:layout_gravity="center"
                     android:textStyle="bold"
                     android:textSize="@dimen/normalTitleSize"
                     android:layout_marginTop="5dp"
@@ -80,16 +81,12 @@
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="50dp"
                    android:layout_height="50dp"
-                   android:src="@drawable/ic_bus_from_to"
-                   android:layout_gravity="bottom|center"
-                   />
-               <View
-                   android:layout_width="150dp"
-                   android:layout_height="3dp"
-                   android:background="@color/allColor"
+                   android:layout_marginLeft="30dp"
+                   android:layout_marginRight="30dp"
+                   android:layout_marginTop="30dp"
+                   android:src="@drawable/ic_busfromto"
                    android:layout_gravity="center"
                    />
-
            </LinearLayout>
             <LinearLayout
                 android:id="@+id/llBusTo"
@@ -101,7 +98,7 @@
                     android:id="@+id/imgBusTo"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/busstop"
                     android:scaleType="fitXY"
                     />
                 <androidx.appcompat.widget.AppCompatTextView
@@ -109,6 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="To"
+                    android:layout_gravity="center"
                     android:textStyle="bold"
                     android:textSize="@dimen/normalTitleSize"
                     android:layout_marginTop="5dp"

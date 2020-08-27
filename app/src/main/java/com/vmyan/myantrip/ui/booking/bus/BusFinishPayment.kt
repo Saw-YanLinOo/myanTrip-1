@@ -23,10 +23,8 @@ class BusFinishPayment : Fragment() ,View.OnClickListener{
         savedInstanceState: Bundle?
     ): View? {
         val view =inflater.inflate(R.layout.fragment_bus_finish_payment, container, false)
-            view.btnFinishBusBooking.setOnClickListener {
-                requireActivity().finish()
-            }
         view.btnFinishBusBooking.setOnClickListener {
+            requireActivity().finish()
             addTicket(
                 Hawk.get("CheckIn"),
                 Hawk.get("CheckOut"),
