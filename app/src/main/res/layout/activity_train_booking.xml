@@ -230,7 +230,6 @@
                                     android:layout_centerVertical="true"
                                     android:layout_marginRight="20dp"
                                     android:background="@drawable/ic_to"
-
                                     android:paddingRight="10dp" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -286,7 +285,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_from"
+                                android:background="@drawable/ic_date"
                                 android:paddingRight="10dp" />
 
                             <androidx.appcompat.widget.AppCompatTextView

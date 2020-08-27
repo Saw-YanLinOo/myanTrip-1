@@ -71,7 +71,7 @@
                 android:id="@+id/trainFromTo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_bus_from_to"
+                android:src="@drawable/ic_train"
                 android:layout_toEndOf="@id/llFlightViewFrom"
                 android:elevation="3dp"
                 android:layout_centerHorizontal="true"

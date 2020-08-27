@@ -90,7 +90,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_flight"
+                    android:src="@drawable/ic_user"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
                     />
@@ -108,7 +108,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_flight"
+                    android:src="@drawable/ic_rooom"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
                     android:layout_marginLeft="20dp"

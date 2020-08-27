@@ -45,6 +45,9 @@ class CityFrom : AppCompatActivity(),TownListAdapter.ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city_from)
+        imgCityFromBack.setOnClickListener {
+            this.finish()
+        }
         setUpObserver()
         setUpCityList()
         searchFromTown.addTextChangedListener(object : TextWatcher {

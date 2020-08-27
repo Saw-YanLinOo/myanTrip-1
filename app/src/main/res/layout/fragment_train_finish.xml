@@ -98,13 +98,6 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     >
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2 days"
-                        android:gravity="center"
-                        android:textSize="10sp"
-                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"

@@ -92,6 +92,10 @@ class CarRental : AppCompatActivity() {
                 dialog.show()
             }else {
                 val intent = Intent(this, CarRentalsListView::class.java)
+                intent.putExtra("CarLocation",location)
+                intent.putExtra("CarStart",dPickUpCar)
+                intent.putExtra("CarEnd",dDropOffCar)
+                intent.putExtra("CarNoOfPeople",noOfCarPeople.toString())
                 startActivity(intent)
                 recentViewModel.insert(CarRentalRecentItem(cityImagge,
                     location,

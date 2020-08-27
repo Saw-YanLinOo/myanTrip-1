@@ -39,6 +39,11 @@ class CarRentalsListView : AppCompatActivity() , CarRentaisListAdapter.ItemClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_rentals_list_view)
+        carTxtSelectedLocationName.text=intent.getStringExtra("CarLocation")
+        txtSelectedCarPickUp.text=intent.getStringExtra("CarStart")
+        txtSelectedCarDropOff.text=intent.getStringExtra("CarEnd")
+        txtCarNoOfPeople.text=intent.getStringExtra("CarNoOfPeople")
+
         imgCarSorting.setOnClickListener {
             val bottomSheet= CarSorting()
             bottomSheet.show(supportFragmentManager,bottomSheet.tag)

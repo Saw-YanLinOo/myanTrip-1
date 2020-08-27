@@ -1,6 +1,7 @@
 package com.vmyan.myantrip.data.booking.carRental.bookingCate
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.vmyan.myantrip.model.bookingCate.BookingCateItem
 import com.vmyan.myantrip.model.bookingCate.PromoSliderItem
 import com.vmyan.myantrip.model.bookingCate.TownListItem
@@ -11,7 +12,7 @@ class BookingCategoriesRepositoryImpl : BookingCategoriesRepository {
     override suspend fun getBookingCategories(): Resource<MutableList<BookingCateItem>> {
         val cateList = mutableListOf <BookingCateItem>()
         val resultList=FirebaseFirestore.getInstance()
-            .collection("BookingCategories")
+            .collection("BookingCategories").orderBy("bookingCate_name",Query.Direction.ASCENDING)
             .get()
             .await()
         for (document in resultList){

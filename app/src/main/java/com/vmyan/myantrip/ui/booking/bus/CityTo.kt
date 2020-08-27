@@ -46,6 +46,9 @@ class CityTo : AppCompatActivity() ,TownListAdapter.ItemClickListener{
         setContentView(R.layout.activity_city_to)
         setUpObserver()
         setUpCityList()
+        imgCityToBack.setOnClickListener {
+            this.finish()
+        }
         searchToTown.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 

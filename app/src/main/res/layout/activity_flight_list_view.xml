@@ -237,7 +237,6 @@
         </LinearLayout>
     </LinearLayout>
     </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="8dp"
@@ -246,7 +245,7 @@
         android:id="@+id/txtResultValue"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="12"
+        android:text="9"
         android:gravity="center"
         android:layout_gravity="center"
         />

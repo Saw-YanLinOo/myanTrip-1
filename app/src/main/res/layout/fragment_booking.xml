@@ -84,7 +84,7 @@
                     app:sliderIndicatorMargin="15dp"
                     app:sliderIndicatorOrientation="horizontal"
                     app:sliderIndicatorPadding="3dp"
-                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorRadius="1dp"
                     app:sliderIndicatorSelectedColor="#5A5A5A"
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="1" />
@@ -139,15 +139,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
                     <include layout="@layout/home_cate_placeholder" />
-
                     <include layout="@layout/home_cate_placeholder" />
-
                     <include layout="@layout/home_cate_placeholder" />
-
                     <include layout="@layout/home_cate_placeholder" />
-
                     <include layout="@layout/home_cate_placeholder" />
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>

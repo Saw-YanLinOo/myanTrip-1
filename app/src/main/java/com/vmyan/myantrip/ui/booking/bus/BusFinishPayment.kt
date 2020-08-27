@@ -26,11 +26,11 @@ class BusFinishPayment : Fragment() ,View.OnClickListener{
         view.btnFinishBusBooking.setOnClickListener {
             requireActivity().finish()
             addTicket(
-                Hawk.get("CheckIn"),
-                Hawk.get("CheckOut"),
-                Hawk.get<String>("OneRoomCost").toLong(),
-                Hawk.get("HotelName"),
-                "TypeImage"
+                "27/8/2020",
+                "",
+               16200,
+                "Shwe Sin Set Kyar",
+                "https://firebasestorage.googleapis.com/v0/b/myantrip-45671.appspot.com/o/ticketType%2Fbus.png?alt=media&token=17c521bc-e84c-434c-96de-578f31be2467"
             )
         }
 

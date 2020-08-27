@@ -38,7 +38,6 @@ class SelectSeatBus : Fragment() ,View.OnClickListener{
     val seatViewList:ArrayList<TextView> = ArrayList()
     var seatSize = 120
     var seatGaping = 10
-
     var STATUS_AVAILABLE = 1
     var STATUS_BOOKED = 2
     var STATUS_RESERVED = 3
@@ -51,15 +50,11 @@ class SelectSeatBus : Fragment() ,View.OnClickListener{
         val  root =inflater.inflate(R.layout.fragment_select_seat_bus, container, false)
         nextBT=root.findViewById(R.id.card_NextBusStepper)
         nextBT.setOnClickListener (this )
-
       root.card_NextBusStepper.setOnClickListener {
-          Toast.makeText(context, "Clicked " , Toast.LENGTH_SHORT).show()
           if (mListener != null) {
               mListener!!.onNextPressed(this)
           }
       }
-
-
         layout = root.findViewById(R.id.layoutSeat)
       //  root.txt_seatNumber.text=selectedIds
 
@@ -181,26 +176,20 @@ class SelectSeatBus : Fragment() ,View.OnClickListener{
         }
     }
     override fun onClick(view: View?) {
-
-       // Toast.makeText(context, "Seat " , Toast.LENGTH_SHORT).show()
         if (view != null) {
-
-
             if (view.tag as Int == STATUS_AVAILABLE) {
                 if (selectedIds.contains(view.id.toString() + ",")) {
                     selectedIds = selectedIds.replace(view.id.toString() + ",", "")
-
                     view.setBackgroundResource(R.drawable.ic_seats_book)
                 } else {
                     selectedIds = selectedIds + view.id + ","
-                    Toast.makeText(context, "Seat " +selectedIds, Toast.LENGTH_SHORT).show()
                     txt_seatNumber.text=selectedIds
                     view.setBackgroundResource(R.drawable.ic_seats_selected)
                 }
             } else if (view.tag as Int == STATUS_BOOKED) {
-                Toast.makeText(context, "Seat " + view.id + " is Booked", Toast.LENGTH_SHORT).show()
+
             } else if (view.tag as Int == STATUS_RESERVED) {
-                Toast.makeText(context, "Seat " + view.id + " is Reserved", Toast.LENGTH_SHORT).show()
+
             }
         }
 
