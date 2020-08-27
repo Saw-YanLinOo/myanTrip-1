@@ -54,7 +54,7 @@ class PostUploadActivity : AppCompatActivity() {
 
         val viewGroup = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
         initUser(viewGroup)
-        choosePostCategory(viewGroup)
+
     }
 
     private fun initUser(viewGroup: View) {
@@ -67,7 +67,7 @@ class PostUploadActivity : AppCompatActivity() {
             .into(user_profile_upload)
 
 
-        if (intent != null){
+        if (intent.getStringExtra("place_name") != null && intent.getStringExtra("place_name") != ""){
             var cat_id = intent!!.getStringExtra("place_cat_id")
             var sub_id = intent.getStringExtra("place_sub_id")
             var id = intent.getStringExtra("place_id")
@@ -76,6 +76,8 @@ class PostUploadActivity : AppCompatActivity() {
             var category = intent.getStringExtra("place_category")
             var address = intent.getStringExtra("place_address")
             setUpPlace(cat_id!!,sub_id!!,id!!,name!!,image!!,category!!,address!!)
+        }else{
+            choosePostCategory(viewGroup)
         }
 
         btn_Upload.setOnClickListener {

@@ -2,18 +2,21 @@ package com.vmyan.myantrip.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.smarteist.autoimageslider.SliderAnimations
 import com.vmyan.myantrip.R
 import com.vmyan.myantrip.model.GetPost
@@ -21,10 +24,11 @@ import com.vmyan.myantrip.model.Place
 import com.vmyan.myantrip.ui.CommentActivity
 import com.vmyan.myantrip.ui.PlaceDetailsActivity
 import com.vmyan.myantrip.ui.Profile
+import com.vmyan.myantrip.utils.PostHelper
+import com.vmyan.myantrip.utils.showToast
 import kotlinx.android.synthetic.main.post_description_layout.view.*
 import kotlinx.android.synthetic.main.post_place_layout.view.*
 import kotlinx.android.synthetic.main.post_place_recyclerview.view.*
-import kotlinx.android.synthetic.main.post_recyclerviews.view.*
 import kotlinx.android.synthetic.main.post_recyclerviews.view.btn_comment
 import kotlinx.android.synthetic.main.post_recyclerviews.view.btn_follow
 import kotlinx.android.synthetic.main.post_recyclerviews.view.btn_like
@@ -39,9 +43,13 @@ import kotlinx.android.synthetic.main.post_recyclerviews.view.tv_username
 
 class PostListAdapter(private val listener: ItemClickListener,private val postList:MutableList<GetPost>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
+    private val firebaseFirestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private var postHelper = PostHelper()
     interface ItemClickListener {
         fun onPostClick(position : Int)
     }
+
     companion object {
         const val DESCRIPTION = 1
         const val IMAGE = 2
@@ -76,6 +84,7 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setIsRecyclable(false)
         when(postList[position].posts.type){
             DESCRIPTION ->  (holder as BlogDescriptionViewHolder).bind(postList[position])
             IMAGE -> (holder as BlogImageViewHolder).bind(postList[position])
@@ -355,9 +364,10 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
             itemView.tv_username.text = post.user.username
             itemView.tv_time.text = timeInterval(post.posts.time!!, Timestamp.now()) + " ago"
             itemView.tv_descripton.text = post.posts.description
-            itemView.tv_Like.text = "${post.posts.like} like"
-            itemView.tv_total_unlike.text = "${post.posts.unlike} unlike"
             itemView.tv_total_comment_view.text = "${post.posts.comments} comment"
+
+            updateLikeUI(post)
+            uploadUnLikeUI(post)
 
             Log.e("", post.posts.image_url.toString())
             imageSliderAdapter.setItems(post.posts.image_url)
@@ -379,8 +389,14 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
 
             }
             itemView.btn_like.setOnClickListener{
-                println("You Like ${posts.posts.id}")
+                postHelper.updateLike(post.posts.id!!)
+                updateLikeUI(post)
             }
+            itemView.btn_icon_unlike_pp.setOnClickListener {
+                postHelper.updateUnLike(post.posts.id!!)
+                uploadUnLikeUI(post)
+            }
+
             itemView.btn_follow.setOnClickListener{
                 println("You Follow ${posts.user.username}")
             }
@@ -394,6 +410,49 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
                 intent.putExtra("postComment",posts.posts.comments!!.toInt())
                 itemView.context.startActivity(intent)
             }
+        }
+
+        @SuppressLint("SetTextI18n")
+        fun updateLikeUI(post : GetPost){
+            //get Like Count
+            firebaseFirestore.collection("Post/${post.posts.id}/Like").addSnapshotListener { value, error ->
+                if (!value!!.isEmpty) {
+                    itemView.tv_Like.text = "${value.size()} like"
+                } else {
+                    itemView.tv_Like.text = "0 like"
+                }
+            }
+            //get Like exit
+            firebaseFirestore.collection("Post/${post.posts.id}/Like").document(auth.currentUser!!.uid)
+                .addSnapshotListener(EventListener { value, error ->
+                    if (value!!.exists()){
+                        itemView.btn_like.setBackgroundResource(R.drawable.ic_active_like)
+                    }else{
+                        itemView.btn_like.setBackgroundResource(R.drawable.ic_like)
+                    }
+                })
+        }
+
+        @SuppressLint("SetTextI18n")
+        fun uploadUnLikeUI(post : GetPost){
+            //get UnLike Count
+            firebaseFirestore.collection("Post/${post.posts.id}/UnLike").addSnapshotListener { value, error ->
+                if (!value!!.isEmpty) {
+                    itemView.tv_total_unlike.text = "${value.size()} unlike"
+                } else {
+                    itemView.tv_total_unlike.text = "0 unlike"
+                }
+            }
+
+            //get UnLike exit
+            firebaseFirestore.collection("Post/${post.posts.id}/UnLike").document(auth.currentUser!!.uid)
+                .addSnapshotListener(EventListener { value, error ->
+                    if (value!!.exists()){
+                        itemView.btn_icon_unlike_pp.setBackgroundResource(R.drawable.ic_active_unlike)
+                    }else{
+                        itemView.btn_icon_unlike_pp.setBackgroundResource(R.drawable.ic_unlike)
+                    }
+                })
         }
 
         fun timeInterval (start : Timestamp,now : Timestamp) : String{
@@ -420,7 +479,6 @@ class PostListAdapter(private val listener: ItemClickListener,private val postLi
         }
 
         override fun onItemClick(place: Place) {
-            Toast.makeText(itemView.context,"${place.place_id}",Toast.LENGTH_SHORT).show()
             val i = Intent(itemView.context, PlaceDetailsActivity::class.java)
             i.putExtra("place_id", place.place_id)
             itemView.context.startActivity(i)

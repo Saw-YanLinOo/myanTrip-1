@@ -48,8 +48,13 @@ class CommunicationDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_communication_detail)
 
+        var audioFile = File(getExternalFilesDir(null).toString() + File.separator + "audio")
+        if (!audioFile.exists()){
+            loading_layout.visibility = View.VISIBLE
+            setUpObserve()
+        }
+
         init()
-        setUpObserve()
 
     }
 

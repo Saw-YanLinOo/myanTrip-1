@@ -37,6 +37,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.context_profile.*
 import org.koin.android.ext.android.inject
 
+@Suppress("DEPRECATED_IDENTITY_EQUALS")
 class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
 
     private val viewModel: ProfileViewModel by inject()
@@ -64,6 +65,7 @@ class Profile : AppCompatActivity(),PostListAdapter.ItemClickListener {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initUser() {
 
         USER_ID = intent.getStringExtra("user_id")!!

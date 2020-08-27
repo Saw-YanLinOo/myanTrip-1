@@ -124,7 +124,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Place Name(Category)"
-                                    android:maxLength="15"
+                                    android:maxLength="25"
+                                    android:textSize="12sp"
                                     android:ellipsize="end"/>
                                 <TextView
                                     android:id="@+id/tv_place_address_post"
@@ -135,6 +136,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:maxLength="30"
+                                    android:textSize="12sp"
                                     android:ellipsize="end"/>
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
@@ -155,9 +157,8 @@
 
         <ImageButton
             android:id="@+id/btn_like"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/ic_like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             />
         <TextView
             android:id="@+id/tv_Like"
@@ -169,12 +170,11 @@
             android:layout_toRightOf="@id/btn_like"
             android:layout_marginLeft="10dp"/>
         <ImageButton
-            android:id="@+id/btn_icon_comment"
+            android:id="@+id/btn_icon_unlike_pp"
             android:layout_toRightOf="@id/tv_Like"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/ic_unlike"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"/>
         <TextView
             android:id="@+id/tv_total_unlike"
             android:layout_width="wrap_content"
@@ -182,13 +182,13 @@
             android:text="12"
             android:textSize="15dp"
             android:textColor="#9E9C9C"
-            android:layout_toRightOf="@id/btn_icon_comment"
+            android:layout_toRightOf="@id/btn_icon_unlike_pp"
             android:layout_marginLeft="10dp"/>
 
         <ImageButton
             android:id="@+id/btn_view"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="25dp"
             android:layout_toRightOf="@id/tv_total_unlike"
             android:background="@drawable/ic_comment" />

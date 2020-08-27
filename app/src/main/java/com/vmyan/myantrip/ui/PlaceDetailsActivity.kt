@@ -88,21 +88,21 @@ class PlaceDetailsActivity : AppCompatActivity(),PCPlaceListAdapter.ItemClickLis
             intent.putExtra("place_category",place.place.category)
             intent.putExtra("place_address",place.place.address)
             intent.putExtra("place_image",place.place.mainImg)
-            setResult(RESULT_OK,intent)
             startActivity(intent)
+            finish()
         }
-        detail_s_btnly.setOnClickListener {
-            val intent = Intent(this, PostUploadActivity::class.java)
-            intent.putExtra("place_cat_id",place.cat_id)
-            intent.putExtra("place_sub_id",place.subcat_id)
-            intent.putExtra("place_id", place.place.place_id)
-            intent.putExtra("place_name", place.place.name)
-            intent.putExtra("place_category",place.place.category)
-            intent.putExtra("place_address",place.place.address)
-            intent.putExtra("place_image",place.place.mainImg)
-            setResult(RESULT_OK,intent)
-            startActivity(intent)
-        }
+//        detail_s_btnly.setOnClickListener {
+//            val intent = Intent(this, PostUploadActivity::class.java)
+//            intent.putExtra("place_cat_id",place.cat_id)
+//            intent.putExtra("place_sub_id",place.subcat_id)
+//            intent.putExtra("place_id", place.place.place_id)
+//            intent.putExtra("place_name", place.place.name)
+//            intent.putExtra("place_category",place.place.category)
+//            intent.putExtra("place_address",place.place.address)
+//            intent.putExtra("place_image",place.place.mainImg)
+//            startActivity(intent)
+//            finish()
+//        }
 
         detail_back_btnly.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
